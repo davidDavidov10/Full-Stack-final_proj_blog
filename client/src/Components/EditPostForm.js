@@ -11,7 +11,6 @@ class EditPostForm extends Component {
             resp:null
         }
     }
-
     handlePostTitle =(event) =>{
         this.setState({
             title: event.target.value

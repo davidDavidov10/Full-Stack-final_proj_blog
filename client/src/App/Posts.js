@@ -10,8 +10,7 @@ class Posts extends  React.Component {
         super(props);
         this.state = {
             posts: [],
-            resultsFromSearch:[],
-            waitingForSearchRes: false,
+
         }
     }
 
@@ -35,32 +34,11 @@ class Posts extends  React.Component {
                 });
         }
     }
-
-    showSearchResults=(searchResult)=>{
-        this.setState({
-            waitingForSearchRes:true,
-            resultsFromSearch:searchResult
-        });
-    }
-    showAll=(searchResult)=>{
-        this.setState({
-            waitingForSearchRes:false,
-            resultsFromSearch:[]
-        });
-    }
-
     render(){
         if (this.state.posts){
                 return(
                         <div className="post-section">
-                            <SearchBar sendSearchResults= {this.showSearchResults} showAll={this.showAll}/>
-                            {this.state.waitingForSearchRes ?
-                                (this.state.resultsFromSearch.length > 0 ?
-                                    makePosts(this.state.resultsFromSearch)
-                                    : <div>nothing was found... </div>)
-                            : makePosts(this.state.posts)}
-
-
+                            {makePosts(this.state.posts)}
                         </div>
                 );
         }

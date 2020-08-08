@@ -6,7 +6,6 @@ import {
   Switch,
 } from "react-router-dom";
 
-
 import {checkLogin} from "../utils/server/User"
 import Header from "../Components/Header";
 
@@ -37,8 +36,7 @@ class App extends React.Component {
     }
   }
   handleLog=(data)=>{
-    this.setState({user: data}
-    );
+    this.setState({user: data});
   }
   componentDidMount() {
     checkLogin()
