@@ -30,6 +30,7 @@ constructor(props) {
             <section className="post-section">
                 <label className="title">This is my blog</label>
                 <div className="posts-list">
+
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
                     <Posts user={null}/>
                 </div>
