@@ -8,6 +8,3 @@ ReactDOM.render(
     <App />,
   document.getElementById('root')
 );
-
-// testing number 2!!!!!
-//second line testing
