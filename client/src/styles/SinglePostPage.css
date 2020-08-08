@@ -1,0 +1,16 @@
+.post-page-section span{
+    position: center;
+    font-size: 25px;
+}
+.post-page-section h1{
+    font-size: 50px;
+}
+.comment-box{
+    height: 200px;
+    width: 400px;
+    border: none;
+    resize: none;
+}
+span{
+    font-size: 15px;
+}
