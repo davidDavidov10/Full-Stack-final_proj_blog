@@ -12,7 +12,6 @@ class searchBar extends  React.Component {
         this.setState({
             search:event.target.value,
         })
-        console.log(this.state.search)
         if (this.state.search.length -1 === 0 ) {
             this.props.showAll();
         }

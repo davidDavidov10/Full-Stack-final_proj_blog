@@ -30,9 +30,17 @@ constructor(props) {
             <section className="post-section">
                 <label className="title">This is my blog</label>
                 <div className="posts-list">
-
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
-                    <Posts user={null}/>
+                    {this.state.waitingForSearchRes
+                        ?
+                        <div>
+                            {this.state.resultsFromSearch.length === 0
+                                ?<div>empty</div>
+                                :<div>{makePosts(this.state.resultsFromSearch)}</div>
+                            }
+                        </div>
+                        :
+                        <Posts user={null}/>}
                 </div>
             </section>
         );
