@@ -422,7 +422,6 @@ def password_reset_email():
 
     if not record:
         abort(401)
-
     check_reset_validation(user_email)
 
     token = str(uuid.uuid4())
