@@ -7,6 +7,7 @@ import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login"
 import {doSignUp} from "../../utils/server/User";
 import {doLogin} from "../../utils/server/User";
+import SignupBox from "../../Components/SignupBox";
 
 
 class LoginPage extends React.Component{
@@ -64,7 +65,7 @@ class LoginPage extends React.Component{
     render(){
         return(
             <div>
-                <LoginBox handleLog ={this.props.handleLog}/>
+                <LoginBox  {...this.props} handleLog ={this.props.handleLog}/>
                 <FacebookLogin
                     appId="195415831906766"
                     fields="name,email,picture"

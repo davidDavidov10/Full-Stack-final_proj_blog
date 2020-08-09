@@ -30,7 +30,7 @@ class EditPostPage extends React.Component {
         if(this.state.post){
             return (
                 <div>
-                    <EditPostForm user={this.props.user}
+                    <EditPostForm {...this.props} user={this.props.user}
                                   post = {this.state.post}
                                   newPost={false}/>
                 </div>

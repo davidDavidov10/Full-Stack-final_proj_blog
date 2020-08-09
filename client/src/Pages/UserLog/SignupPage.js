@@ -56,7 +56,7 @@ class SignupPage extends React.Component{
     render(){
         return(
             <div>
-                <SignupBox/>
+                <SignupBox {...this.props} />
                 <FacebookLogin
                     appId="195415831906766"
                     textButton = "Sign Up with Facebook"

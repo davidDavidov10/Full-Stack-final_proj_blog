@@ -20,6 +20,7 @@ import SinglePostPage from "../Pages/SinglePostPage"
 import ForgetMyPasswordPage from "../Pages/UserLog/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/UserLog/ResetPasswordPage"
 
+
 import '../styles/App.css';
 
 const user ={
@@ -64,12 +65,13 @@ class App extends React.Component {
             <Header user={this.state.user} handleLogout={this.handleLog}/>
             <div className="blog-body">
               <Switch>
-                <Route path ="/login"><LoginPage  handleLog={this.handleLog}/></Route>
-                <Route path ="/signUp"><SignupPage  handleLog={this.handleLog}/></Route>
+
+                <Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
+                <Route path='/signUp' render={(props) => <SignupPage{...props} handleLog={this.handleLog}/>}/>
                 <Route path ="/home"><HomePage  handleLog={this.handleLog}/></Route>
                 <Route path ="/about"><AboutPage  handleLog={this.handleLog}/></Route>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
-                <Route path='/new post' render={(props) => <NewPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
+                <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id' render={(props) => <SinglePostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>

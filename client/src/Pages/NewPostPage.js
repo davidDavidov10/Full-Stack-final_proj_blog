@@ -17,7 +17,7 @@ class NewPostPage extends React.Component {
     render(){
         return (
             <div>
-                <EditPostForm user={this.props.user}
+                <EditPostForm {...this.props} user={this.props.user}
                              post={this.post}
                              newPost={true}/>
             </div>

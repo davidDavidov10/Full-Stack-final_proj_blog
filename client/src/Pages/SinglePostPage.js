@@ -36,6 +36,7 @@ class SinglePostPage extends  React.Component {
     handleDelete=()=>{
         deletePost(this.state.post)
             .then((res)=>{
+                this.props.history.push('/my posts');
                 this.setState({resp:"Post Deleted!"})
             })
             .catch(()=>{

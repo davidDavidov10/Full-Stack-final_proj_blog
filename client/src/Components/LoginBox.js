@@ -39,7 +39,8 @@ class LoginBox extends React.Component{
                     isLoggedIn:true
                 }
                 this.props.handleLog(user)
-                this.setState({resp:"Success ! you are Logged in"})
+                this.props.history.push('/')
+                // this.setState({resp:"Success ! you are Logged in"})
             })
             .catch((err)=>{
                 console.log("err = ")

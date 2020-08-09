@@ -4,6 +4,7 @@ import SearchBar from "../Components/searchBar"
 import {makePosts} from "../utils/utils";
 
 
+
 class MainSection extends  React.Component{
 constructor(props) {
     super(props);
@@ -31,16 +32,7 @@ constructor(props) {
                 <label className="title">This is my blog</label>
                 <div className="posts-list">
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
-                    {this.state.waitingForSearchRes
-                        ?
-                        <div>
-                            {this.state.resultsFromSearch.length === 0
-                                ?<div>empty</div>
-                                :<div>{makePosts(this.state.resultsFromSearch)}</div>
-                            }
-                        </div>
-                        :
-                        <Posts user={null}/>}
+                    <Posts user={null}/>
                 </div>
             </section>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import {makePosts} from "../utils/utils";
 import {getAllPosts, getAllPostsByUser} from "../utils/server/Posts";
 import SearchBar from "../Components/searchBar";
-import "../styles/searchBarstyle.css"
+import '../styles/MainSection.css'
 
 
 class Posts extends  React.Component {

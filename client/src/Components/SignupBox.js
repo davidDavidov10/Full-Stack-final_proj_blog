@@ -38,7 +38,8 @@ class SignupBox extends React.Component{
         if(this.state.password == this.state.c_password){
             doSignUp(this.state)
                 .then((res)=>{
-                    this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+                    this.props.history.push('/login')
+                    // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
                 })
                 .catch(()=>{
                     this.setState({resp:"Something went wrong, try again please."})

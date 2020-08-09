@@ -27,8 +27,7 @@ class EditPostForm extends Component {
             if(this.props.newPost){
                 addNewPost(this.state)
                     .then((res)=>{
-                        this.setState({resp:"Post Created! go to my posts to publish the post"})
-
+                        this.props.history.push(`post/${res.data.id}`)
                 })
                     .catch(()=>{
                         this.setState({resp:"Something went wrong, try again please."})
@@ -40,7 +39,8 @@ class EditPostForm extends Component {
                 post.content = this.state.content
                 editPost(post)
                     .then((res)=>{
-                        this.setState({resp:"Post Edited!"})
+                        this.props.history.push(`post/${res.data.id}`)
+                        // this.setState({resp:"Post Edited!"})
                     })
                     .catch(()=>{
                         this.setState({resp:"Something went wrong, try again please."})
