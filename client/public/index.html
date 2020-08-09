@@ -39,5 +39,17 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      setTimeout(()=>{
+        document.querySelector('.img-btn').addEventListener('click', function()
+                {
+                  document.querySelector('.cont').classList.toggle('s-signup')
+                }
+        );
+      },5000)
+    </script>
   </body>
 </html>
+
+<!--document.querySelector('.img-bth').addEventListener('click',function ()-->
+<!--{document.querySelector('.cont').classList.toggle('s-signup')});-->

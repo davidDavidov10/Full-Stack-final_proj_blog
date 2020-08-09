@@ -20,6 +20,9 @@ import SinglePostPage from "../Pages/SinglePostPage"
 import ForgetMyPasswordPage from "../Pages/UserLog/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/UserLog/ResetPasswordPage"
 
+import LoginPage_test from "../test/LoginPage_test";
+
+
 
 import '../styles/App.css';
 
@@ -65,8 +68,8 @@ class App extends React.Component {
             <Header user={this.state.user} handleLogout={this.handleLog}/>
             <div className="blog-body">
               <Switch>
-
                 <Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
+                <Route path='/test/login' render={(props) => <LoginPage_test{...props} handleLog={this.handleLog}/>}/>
                 <Route path='/signUp' render={(props) => <SignupPage{...props} handleLog={this.handleLog}/>}/>
                 <Route path ="/home"><HomePage  handleLog={this.handleLog}/></Route>
                 <Route path ="/about"><AboutPage  handleLog={this.handleLog}/></Route>
