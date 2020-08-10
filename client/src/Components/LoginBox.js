@@ -29,7 +29,6 @@ class LoginBox extends React.Component{
         })
     }
     handleLogin=()=>{
-        console.log("test123")
         doLogin(this.state)
             .then((res)=>{
                 console.log(res)

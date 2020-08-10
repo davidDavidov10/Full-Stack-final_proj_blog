@@ -251,14 +251,14 @@
 }
 
 
-.sign-in{
+.log-in{
     padding-top: 65px;
     -webkit-transition-timing-function:ease-out;
     transition-timing-function:ease-out;
     box-sizing: border-box;
 }
 
-.cont.s-signup .sign-in{
+.cont.s-signup .log-in{
     -webkit-transition-timing-function:ease-in-out;
     transition-timing-function:ease-in-out;
     -webkit-transition-duration:1.2s;

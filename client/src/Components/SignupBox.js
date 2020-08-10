@@ -33,7 +33,7 @@ class SignupBox extends React.Component{
             c_password: e.target.value
         });
     }
-    handleSubmit=(event)=>{
+    handleSignUp=(event)=>{
         event.preventDefault();
         if(this.state.password == this.state.c_password){
             doSignUp(this.state)
@@ -50,7 +50,7 @@ class SignupBox extends React.Component{
     }
     render(){
         return (
-            <form className="signUpBox" onSubmit={this.handleSubmit}>
+            <form className="signUpBox" onSubmit={this.handleSignUp}>
                 <img className="avatar" src={"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"}/>
                     <h1>Sign up Here</h1>
                     <label>User Name</label>
