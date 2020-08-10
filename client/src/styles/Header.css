@@ -1,94 +1,94 @@
 
-.custom-padding{
-    padding-top:25px;
-}
+/*.custom-padding{*/
+/*    padding-top:25px;*/
+/*}*/
 
-nav{
-    position: relative;
-    padding: 10px 20px 10px 10px;
-    text-align: right;
-    z-index: 1;
-    background: #333333;
-    margin: 0 auto;
-    width: calc(100% - 60px);
-    height: 30px;
-}
+/*nav{*/
+/*    position: relative;*/
+/*    padding: 10px 20px 10px 10px;*/
+/*    text-align: right;*/
+/*    z-index: 1;*/
+/*    background: #333333;*/
+/*    margin: 0 auto;*/
+/*    width: calc(100% - 60px);*/
+/*    height: 30px;*/
+/*}*/
 
-nav:before{
-    position: absolute;
-    content: '';
-    left:0;
-    top: 100%;
-    border-top:10px solid black;
-    border-right:10px solid black;
-    border-left:10px solid transparent;
-    border-bottom:10px solid transparent;
-}
+/*nav:before{*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    left:0;*/
+/*    top: 100%;*/
+/*    border-top:10px solid black;*/
+/*    border-right:10px solid black;*/
+/*    border-left:10px solid transparent;*/
+/*    border-bottom:10px solid transparent;*/
+/*}*/
 
-nav:after{
-    position: absolute;
-    content: '';
-    right:0;
-    top:100%;
-    border-top:10px solid black;
-    border-right:10px solid black;
-    border-left:10px solid transparent;
-    border-bottom:10px solid transparent;
+/*nav:after{*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    right:0;*/
+/*    top:100%;*/
+/*    border-top:10px solid black;*/
+/*    border-right:10px solid black;*/
+/*    border-left:10px solid transparent;*/
+/*    border-bottom:10px solid transparent;*/
 
-}
+/*}*/
 
-nav ul {
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-}
+/*nav ul {*/
+/*    margin: 0px;*/
+/*    padding: 0px;*/
+/*    list-style: none;*/
+/*}*/
 
-nav li {
-    display: block;
-    width: 100px;
-    background: #333333;
-    line-height: 40px;
-    text-align: center;
-    font-size: 15px;
-    margin-right: 2px;
-}
+/*nav li {*/
+/*    display: block;*/
+/*    width: 100px;*/
+/*    background: #333333;*/
+/*    line-height: 40px;*/
+/*    text-align: center;*/
+/*    font-size: 15px;*/
+/*    margin-right: 2px;*/
+/*}*/
 
-.logout-link{
+/*.logout-link{*/
 
-}
+/*}*/
 
-.welcome-user{
-    display: block;
-    width: 200px;
-}
+/*.welcome-user{*/
+/*    display: block;*/
+/*    width: 200px;*/
+/*}*/
 
-nav li {
-    text-decoration: none;
-    color: white;
-    display: block;
-}
-nav li a{
-    text-decoration: none;
-    color: white;
-    display: block;
-}
+/*nav li {*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*    display: block;*/
+/*}*/
+/*nav li a{*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*    display: block;*/
+/*}*/
 
-nav li a:hover{
-    background: tomato;
-    color:white;
-}
+/*nav li a:hover{*/
+/*    background: tomato;*/
+/*    color:white;*/
+/*}*/
 
-.tool-bar li{
-    float: left;
-}
+/*.tool-bar li{*/
+/*    float: left;*/
+/*}*/
 
-.logged-in li{
-    float: right;
-}
+/*.logged-in li{*/
+/*    float: right;*/
+/*}*/
 
-.not-logged-in li{
-    float: right;
-}
+/*.not-logged-in li{*/
+/*    float: right;*/
+/*}*/
 
 
 

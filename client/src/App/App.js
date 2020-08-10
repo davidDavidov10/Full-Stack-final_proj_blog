@@ -19,8 +19,8 @@ import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
 import ForgetMyPasswordPage from "../Pages/UserLog/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/UserLog/ResetPasswordPage"
-
 import LoginPage_test from "../test/LoginPage_test";
+import Header_test from "../test/Header_test";
 
 
 
@@ -65,7 +65,8 @@ class App extends React.Component {
     return(
         <div>
           <Router>
-            <Header user={this.state.user} handleLogout={this.handleLog}/>
+            <Header_test user={this.state.user} handleLogout={this.handleLog}/>
+            {/*<Header user={this.state.user} handleLogout={this.handleLog}/>*/}
             <div className="blog-body">
               <Switch>
                 <Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
