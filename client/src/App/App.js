@@ -15,8 +15,8 @@ import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
-import Account from "../Pages/Account/LoginPage_test";
-import Header_test from "../Components/Header_test";
+import Account from "../Pages/Account/LoginPage";
+import Header_test from "../Components/Header";
 
 
 import '../styles/App/App.css';
@@ -61,7 +61,6 @@ class App extends React.Component {
         <div>
           <Router>
             <Header_test user={this.state.user} handleLogout={this.handleLog}/>
-            {/*<Header Account={this.state.Account} handleLogout={this.handleLog}/>*/}
 
             <div className="blog-body">
               <Switch>

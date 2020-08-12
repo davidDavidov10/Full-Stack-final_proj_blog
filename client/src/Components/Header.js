@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {doLogout} from "../utils/server/User";
-import Header_test from "../styles/App/Header_test.css";
+import Header_test from "../styles/App/Header.css";
 
 class Header extends React.Component{
     constructor(props) {
@@ -23,8 +23,9 @@ class Header extends React.Component{
     }
     render() {
         return (
-            <nav className="navBar">
-                <ul className="AllLinks">
+            <header>
+                <nav className="navBar">
+                    <ul className="AllLinks">
                         <ul className="leftNavSide">
                             <li className="Logo"><a className="navbar-brand text-white" href="#"><i className="fa fa-graduation-cap fa-lg mr-2"></i>BLOG</a></li>
 
@@ -37,14 +38,14 @@ class Header extends React.Component{
                             </li>
                             {this.props.user.isLoggedIn
                                 ?
-                            <ul className="leftNavSide">
-                                <li className="listElement">
-                                    <Link to="/new post"className="link"><i className="fa fa-plus-square-o" aria-hidden="true"></i> New post</Link>
-                                </li>
-                                <li className="listElement">
-                                    <Link to="/my posts" className="link"><i className="fa fa-th-list fa-fw mr-1"></i>My posts</Link>
-                                </li>
-                            </ul>:null}
+                                <ul className="leftNavSide">
+                                    <li className="listElement">
+                                        <Link to="/new post"className="link"><i className="fa fa-plus-square-o" aria-hidden="true"></i> New post</Link>
+                                    </li>
+                                    <li className="listElement">
+                                        <Link to="/my posts" className="link"><i className="fa fa-th-list fa-fw mr-1"></i>My posts</Link>
+                                    </li>
+                                </ul>:null}
                         </ul>
                         <ul className="rightNavSide">
                             {this.props.user.isLoggedIn
@@ -55,16 +56,19 @@ class Header extends React.Component{
                                         <Link to="/" className="link"  onClick={this.handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
                                     </li>
                                 </ul>
-                        :
+                                :
                                 <ul className="rightNavSide">
                                     <li className="listElement">
-                                            <Link to="/account" className="link"><i className="fa fa-user-circle" aria-hidden="true"></i> Account</Link>
+                                        <Link to="/account" className="link"><i className="fa fa-user-circle" aria-hidden="true"></i> Account</Link>
                                     </li>
                                 </ul>
                             }
-                            </ul>
-                </ul>
-            </nav>
+                        </ul>
+                    </ul>
+                </nav>
+                <img className="header-cover-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMti-9yi9IgVgWl6lOGlTfnNdHiIceEnJ80Q&usqp=CAU"/>
+            </header>
+
         );
     }
 }

@@ -4,7 +4,6 @@ import {getAllPosts} from "../utils/server/Posts";
 import {makePosts} from "../utils/utils";
 import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
-// import '../styles/HomePage.css';
 import '../styles/Home/MainSection.css'
 
 
