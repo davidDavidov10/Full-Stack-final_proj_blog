@@ -100,7 +100,7 @@ class SinglePostPage extends  React.Component {
                             }
                             <br/>
                             <h5>Comments:</h5>
-                            
+
                             {this.props.user.isLoggedIn ?
                                 <div className="input_comment">
                                     <textarea type="text" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>

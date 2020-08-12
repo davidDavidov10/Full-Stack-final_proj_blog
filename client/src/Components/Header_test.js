@@ -58,10 +58,7 @@ class Header extends React.Component{
                         :
                                 <ul className="rightNavSide">
                                     <li className="listElement">
-                                        <Link to="/login" className="link"><i className="fa fa-user-plus fa-fw mr-1"></i>Sign up</Link>
-                                    </li>
-                                    <li className="listElement">
-                                            <Link to="/login" className="link"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
+                                            <Link to="/account" className="link"><i className="fa fa-user-circle" aria-hidden="true"></i> Account</Link>
                                     </li>
                                 </ul>
                             }
