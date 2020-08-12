@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import 2Flask, request, g, make_response, abort, Response
+from flask import Flask, request, g, make_response, abort, Response
 from flask_mail import Mail, Message
 import mysql.connector.pooling
 import uuid
