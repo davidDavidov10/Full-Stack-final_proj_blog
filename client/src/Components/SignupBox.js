@@ -52,18 +52,18 @@ class SignupBox extends React.Component{
         return (
             <form className="signUpBox" onSubmit={this.handleSignUp}>
                 <img className="avatar" src={"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"}/>
-                    <h1>Sign up Here</h1>
-                    <label>User Name</label>
-                    <input  type="text" placeholder="Enter User Name" onChange={this.handleUsername}></input>
-                    <label>Email Address</label>
-                    <input
-                        type="email"
-                        placeholder="default@example.com"
-                        onChange={this.handleEmail}>
-                    </input>
-                    <label>Password</label>
-                    <input type="password" placeholder="Password"  required onChange={this.handlePassword}></input>
-                    <input type="password" placeholder="Confirm Password" required onChange={this.handle_c_Password}></input>
+                <h1>Sign up Here</h1>
+                <label>User Name</label>
+                <input  type="text" placeholder="Enter User Name" onChange={this.handleUsername}></input>
+                <label>Email Address</label>
+                <input
+                    type="email"
+                    placeholder="default@example.com"
+                    onChange={this.handleEmail}>
+                </input>
+                <label>Password</label>
+                <input type="password" placeholder="Password"  required onChange={this.handlePassword}></input>
+                <input type="password" placeholder="Confirm Password" required onChange={this.handle_c_Password}></input>
                 <button type="submit" value="Sign Up" className="SignUpButton" >submit</button>
                 {this.state.resp ? <span className ="serverResponse">{this.state.resp}</span> : null}
             </form>

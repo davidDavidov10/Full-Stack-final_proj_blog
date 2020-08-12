@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import 2Flask, request, g, make_response, abort, Response
+from flask import Flask, request, g, make_response, abort, Response, url_for, session,redirect
 from flask_mail import Mail, Message
 import mysql.connector.pooling
 import uuid
@@ -33,8 +33,6 @@ app.config.update(
 )
 
 mail = Mail(app)
-
-
 @app.before_request
 def before_request():
     g.db = pool.get_connection()

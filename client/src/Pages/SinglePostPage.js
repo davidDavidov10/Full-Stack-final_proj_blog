@@ -83,47 +83,33 @@ class SinglePostPage extends  React.Component {
         if (this.state.post) {
             return (
                 <div>
+
                     <div className="post-page-section">
                         <h1>{this.state.post.title}</h1>
-                        <span className="post-content">{this.state.post.content}</span>
+                        <hr className="contentSeparator"/><span className="post-content">{this.state.post.content}</span><hr className="contentSeparator"/>
                     </div>
                         <section className="comments-section">
-                            <h2>Comments</h2>
-                            {this.state.comments.length != 0
-                                ? <div>{makeComments(this.state.comments)}</div>
-                                : <span>be the first one to comment!</span>
+                            {this.state.post.author_id == this.props.user.id
+                                ?
+                                <section className="author-section">
+                                    <Link to={`/post/${this.state.post.id}/edit`}><button>Edit Post</button><br/></Link>
+                                    <button onClick={this.handleDelete}>Delete Post</button><br/>
+                                    <button onClick={this.postPhases}>{this.state.publishButton}</button>
+                                </section>
+                                : null
                             }
                             <br/>
+                            <h5>Comments:</h5>
+                            
                             {this.props.user.isLoggedIn ?
-                                (this.state.userWantToComment
-                                        ? <p>
-                                            <button onClick={this.changeClickState}>close comment text box</button>
-                                            <button onClick={this.handleSubmitComment}>save comment</button>
-                                            <br/>
-                                            <textarea
-                                                className="comment-box"
-                                                placeholder="comment here"
-                                                onChange={this.handleComment}/>
-                                        </p>
-                                        :
-                                        <p>
-                                            <button onClick={this.changeClickState}>open comment text box</button>
-                                            <br/>
-                                        </p>
-                                )
+                                <div className="input_comment">
+                                    <textarea type="text" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>
+                                    <button onClick={this.handleSubmitComment}>save comment</button>
+                                </div>
                                 :<Link to="/login"><button>Login first if you want to comment</button></Link>
                             }
                         </section>
-                        {this.state.post.author_id == this.props.user.id
-                            ?
-                            <section className="author-section">
-                                <p>-------Buttons if you are the author--------</p>
-                                <Link to={`/post/${this.state.post.id}/edit`}><button>Edit Post</button><br/></Link>
-                                <button onClick={this.handleDelete}>Delete Post</button><br/>
-                                <button onClick={this.postPhases}>{this.state.publishButton}</button>
-                            </section>
-                            : null
-                        }
+
                 </div>);
         }
         else{
