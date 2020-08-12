@@ -27,8 +27,22 @@
 .post-section .posts-list .post .post-title{
     font-size: 24px;
     font-weight: bold;
+    white-space: nowrap;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.sidePostTitle {
+    white-space: nowrap;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.SideListPosts{
+    display: flex;
+}
 .post-section .posts-list .post .post-content {
     padding-right: 100px;
     overflow: hidden;

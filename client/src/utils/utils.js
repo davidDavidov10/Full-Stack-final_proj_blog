@@ -8,7 +8,9 @@ const makePosts =(posts)=>{
         post.user_image = "https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
         return(
             <div className="post">
-                    <Link className="post-title" to={`/post/${post.id}`}>{post.title}</Link>
+                <div className="post-title">
+                    <Link to={`/post/${post.id}`}>{post.title}</Link>
+                </div>
                     <img className="post-image" src={post.user_image} width="90" height="50"/>
                     <p>{post.content}</p>
                     <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
