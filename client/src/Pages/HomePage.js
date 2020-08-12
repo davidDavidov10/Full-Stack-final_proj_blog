@@ -40,17 +40,15 @@ render() {
         let firstThree = this.state.posts.slice(0, 3);
         console.log(firstThree)
         return (
-
             <section className="main-section">
-            <Sidebar LatestPostr={firstThree}/>
                 <div className="post-section">
                     <label className="title"><h1>This is my blog</h1></label>
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
                     {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0 ? <div className="posts-list">{makePosts(this.state.resultsFromSearch)}</div>:<div>No results found...</div>:
                         <MainSection posts={this.state.posts} />}
                 </div>
+                <Sidebar LatestPostr={firstThree}/>
             </section>
-
             );
 }
 
