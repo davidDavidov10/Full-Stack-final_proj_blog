@@ -1,5 +1,5 @@
 import React from 'react';
-import {checkLogin} from "../utils/server/User";
+import Typucal from 'react-typical'
 
 class AboutPage extends React.Component {
     constructor(props) {
@@ -11,8 +11,20 @@ class AboutPage extends React.Component {
             <div>
                 <h1>About me </h1>
                 <p>
-                    this is the about me page<br/>
-                    here you read stuff about me.
+                    Hey, I'm Udi Rahav,
+                    I'm a { }
+                    <Typucal
+                        loop={Infinity}
+                        wrapper="b"
+                        steps=
+                            {[
+                            'student', 2000 ,
+                            'developer', 2000 ,
+                            'biker', 2000 ,
+                            'basketball player', 2000
+                            ]}
+                    />
+                    <br/>
                 </p>
             </div>
         );
