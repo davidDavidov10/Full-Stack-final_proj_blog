@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 
 import {checkLogin} from "../utils/server/User"
-import LoginPage from "../draft/LoginPage";
-import SignupPage from "../draft/SignupPage";
 import HomePage from "../Pages/HomePage";
 import AboutPage from "../Pages/AboutPage"
 import NewPostPage from "../Pages/NewPostPage"
@@ -19,7 +17,6 @@ import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
 import LoginPage_test from "../Pages/Account/LoginPage_test";
 import Header_test from "../Components/Header_test";
-
 
 
 import '../styles/App/App.css';
@@ -87,6 +84,3 @@ class App extends React.Component {
   }
 }
 export default App;
-
-//<Route path='/signUp' render={(props) => <SignupPage{...props} handleLog={this.handleLog}/>}/>
-//<Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LoginPage from "../draft/LoginPage";
 import {Link, Route} from "react-router-dom";
 import '../styles/Home/Sidarbar.css'
 
