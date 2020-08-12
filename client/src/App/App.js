@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 
 import {checkLogin} from "../utils/server/User"
-import Header from "../Components/Header";
-
 import LoginPage from "../Pages/UserLog/LoginPage";
 import SignupPage from "../Pages/UserLog/SignupPage";
 import HomePage from "../Pages/HomePage";
@@ -67,6 +65,7 @@ class App extends React.Component {
           <Router>
             <Header_test user={this.state.user} handleLogout={this.handleLog}/>
             {/*<Header user={this.state.user} handleLogout={this.handleLog}/>*/}
+
             <div className="blog-body">
               <Switch>
                 <Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
@@ -80,7 +79,8 @@ class App extends React.Component {
                 <Route path='/post/:id' render={(props) => <SinglePostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
-                <Route path ="/"><HomePage/></Route>
+                <Route path='/' render={(props) => <HomePage{...props} />}/>
+
               </Switch>
             </div>
           </Router>

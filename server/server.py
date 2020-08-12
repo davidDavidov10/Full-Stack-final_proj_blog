@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask import Flask, request, g, make_response, abort, Response
 from flask_mail import Mail, Message
 import mysql.connector.pooling
@@ -6,6 +5,7 @@ import uuid
 import bcrypt
 import json
 from configparser import ConfigParser
+from datetime import datetime
 from datetime import timedelta
 
 parser = ConfigParser()
@@ -33,8 +33,6 @@ app.config.update(
 )
 
 mail = Mail(app)
-
-
 @app.before_request
 def before_request():
     g.db = pool.get_connection()

@@ -1,5 +1,6 @@
 body {
-  background-image: url(https://udir-blog-avatar.s3.amazonaws.com/background.jpg);
+  /*background-image: url(https://udir-blog-avatar.s3.amazonaws.com/background.jpg);*/
+  background-color: lightgray;
   -webkit-background-size:cover;
   background-size:cover;
   background-position: center center;
