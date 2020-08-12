@@ -20,7 +20,7 @@
     overflow: hidden;
     position: relative;
     width: 900px;
-    height: 550px;
+    height: 600px;
     background: #fff;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
     box-sizing: border-box;
@@ -38,12 +38,12 @@
     box-sizing: border-box;
 }
 
-.sign-up-body h2{
+.sign-up-body h2, h6{
     width: 100%;
-    font-size: 30px;
     text-align: center;
     box-sizing: border-box;
 }
+
 
 .sign-up-body label{
     display: block;
@@ -131,7 +131,6 @@
 .social-media ul li{
     display: inline-block;
     cursor: pointer;
-    margin: 25px 15px;
     box-sizing: border-box;
 }
 
@@ -220,7 +219,7 @@
     box-sizing: border-box;
 }
 
-.img-text h2{
+.img-text h2 {
     margin-bottom: 10px;
     font-weight: normal;
     box-sizing: border-box;

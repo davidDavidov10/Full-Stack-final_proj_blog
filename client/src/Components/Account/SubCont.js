@@ -16,12 +16,12 @@ class SubCont extends React.Component {
 
                 <div className="img-text m-in">
                     <h2>One of us?</h2>
-                    <p>If you already has an account, just sign in. We've missed you!</p>
+                    <p>If you already has an account, just Log in. We've missed you!</p>
                 </div>
 
                 <div className="img-btn" >
                     <span className="m-up" >Sign Up</span>
-                    <span className="m-in">Sign In</span>
+                    <span className="m-in">Log in</span>
                 </div>
 
             </div>

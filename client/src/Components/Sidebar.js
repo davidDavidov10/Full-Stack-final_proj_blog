@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import LoginPage from "../Pages/UserLog/LoginPage";
+import LoginPage from "../draft/LoginPage";
 import {Link, Route} from "react-router-dom";
-import '../styles/Sidarbar.css'
+import '../styles/Home/Sidarbar.css'
 
 class Sidebar extends Component{
     constructor(props) {

@@ -1,7 +1,8 @@
 import React from 'react';
-import {doLogin} from "../utils/server/User";
+import {doLogin} from "../../utils/server/User";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
+import {Link} from "react-router-dom";
 
 class LoginPart extends React.Component {
     constructor(props) {
@@ -44,7 +45,6 @@ class LoginPart extends React.Component {
 
     }
     responseFacebook=(response)=>{
-        console.log(response);
         if(response){
             let data = {
                 userName:response.name,
@@ -101,8 +101,8 @@ class LoginPart extends React.Component {
                     <input type="password" name="password" onChange={this.handlePassword}></input>
                 </label>
                 <button className="submit" type="button" onClick={this.handleLogin}>Login</button>
-                <p className="forgot-pass">Forgot Password ?</p>
-
+                <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>
+                <h6>OR</h6>
                 <div className="social-media">
                     <ul>
                         <li>
@@ -120,7 +120,6 @@ class LoginPart extends React.Component {
                                 onSuccess={this.responseGoogle}
                                 onFailure={this.responseGoogle}
                                 cookiePolicy={'single_host_origin'}/>
-
                         </li>
                     </ul>
                 </div>

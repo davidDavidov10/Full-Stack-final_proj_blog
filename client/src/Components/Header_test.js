@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {doLogout} from "../utils/server/User";
-import Header_test from "../test/Header_test.css";
+import Header_test from "../styles/App/Header_test.css";
 
 class Header extends React.Component{
     constructor(props) {
@@ -58,12 +58,11 @@ class Header extends React.Component{
                         :
                                 <ul className="rightNavSide">
                                     <li className="listElement">
-                                        <Link to="/signUp" className="link"><i className="fa fa-user-plus fa-fw mr-1"></i>Sign up</Link>
+                                        <Link to="/login" className="link"><i className="fa fa-user-plus fa-fw mr-1"></i>Sign up</Link>
                                     </li>
                                     <li className="listElement">
                                             <Link to="/login" className="link"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
                                     </li>
-
                                 </ul>
                             }
                             </ul>

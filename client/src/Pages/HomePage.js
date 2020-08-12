@@ -5,7 +5,7 @@ import {makePosts} from "../utils/utils";
 import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
 // import '../styles/HomePage.css';
-import '../styles/MainSection.css'
+import '../styles/Home/MainSection.css'
 
 
 export default class HomePage extends Component{

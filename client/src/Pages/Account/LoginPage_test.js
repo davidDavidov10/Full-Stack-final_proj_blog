@@ -1,8 +1,8 @@
 import React from 'react';
-import "./LoginPage_test.css";
-import LoginPart from "./LoginPart";
-import SignupPart from "./SignupPart";
-import SubCont from "./SubCont";
+import "../../styles/Account/LoginPage_test.css";
+import LoginPart from  "../../Components/Account/LoginPart"
+import SignupPart from "../../Components/Account/SignupPart";
+import SubCont from "../../Components/Account/SubCont";
 
 class LoginPage_test extends React.Component{
     constructor(props) {

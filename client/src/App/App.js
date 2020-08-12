@@ -7,22 +7,22 @@ import {
 } from "react-router-dom";
 
 import {checkLogin} from "../utils/server/User"
-import LoginPage from "../Pages/UserLog/LoginPage";
-import SignupPage from "../Pages/UserLog/SignupPage";
+import LoginPage from "../draft/LoginPage";
+import SignupPage from "../draft/SignupPage";
 import HomePage from "../Pages/HomePage";
 import AboutPage from "../Pages/AboutPage"
 import NewPostPage from "../Pages/NewPostPage"
 import MyPostsPage from "../Pages/MyPostsPage"
 import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
-import ForgetMyPasswordPage from "../Pages/UserLog/ForgetMyPasswordPage"
-import ResetPasswordPage from "../Pages/UserLog/ResetPasswordPage"
-import LoginPage_test from "../test/LoginPage_test";
-import Header_test from "../test/Header_test";
+import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
+import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
+import LoginPage_test from "../Pages/Account/LoginPage_test";
+import Header_test from "../Components/Header_test";
 
 
 
-import '../styles/App.css';
+import '../styles/App/App.css';
 
 const user ={
   id:null,
@@ -64,13 +64,11 @@ class App extends React.Component {
         <div>
           <Router>
             <Header_test user={this.state.user} handleLogout={this.handleLog}/>
-            {/*<Header user={this.state.user} handleLogout={this.handleLog}/>*/}
+            {/*<Header Account={this.state.Account} handleLogout={this.handleLog}/>*/}
 
             <div className="blog-body">
               <Switch>
-                <Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
-                <Route path='/test/login' render={(props) => <LoginPage_test{...props} handleLog={this.handleLog}/>}/>
-                <Route path='/signUp' render={(props) => <SignupPage{...props} handleLog={this.handleLog}/>}/>
+                <Route path='/login' render={(props) => <LoginPage_test{...props} handleLog={this.handleLog}/>}/>
                 <Route path ="/home"><HomePage  handleLog={this.handleLog}/></Route>
                 <Route path ="/about"><AboutPage  handleLog={this.handleLog}/></Route>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
@@ -89,3 +87,6 @@ class App extends React.Component {
   }
 }
 export default App;
+
+//<Route path='/signUp' render={(props) => <SignupPage{...props} handleLog={this.handleLog}/>}/>
+//<Route path='/login' render={(props) => <LoginPage{...props} handleLog={this.handleLog}/>}/>
