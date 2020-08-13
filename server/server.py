@@ -278,7 +278,7 @@ def get_all_user_posts():
     user = json.loads(check_login())
 
     query = "select posts.id, posts.title, posts.content, " \
-            "users.name, posts.published_at, posts.published, " \
+            "users.name, users.img, posts.published_at, posts.published, " \
             "posts.author_id from posts join users on posts.author_id=users.id " \
             "where posts.author_id=%s " \
             "order by published_at DESC"
@@ -286,11 +286,11 @@ def get_all_user_posts():
     cursor = g.db.cursor()
     cursor.execute(query, values)
     records = cursor.fetchall()
-    header = ['id', 'title', 'content', 'author_name']
+    header = ['id', 'title', 'content', 'author_name', 'img']
     data = []
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
-        data[itear]['published_at'] = record[4].strftime("%m/%d/%Y, %H:%M")
+        data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
 

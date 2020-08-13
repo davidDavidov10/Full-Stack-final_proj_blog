@@ -33,6 +33,7 @@ export default class ReactFirebaseFileUpload extends Component{
     //         }
     //     );
     // };
+
     render() {
         return (
             <div>

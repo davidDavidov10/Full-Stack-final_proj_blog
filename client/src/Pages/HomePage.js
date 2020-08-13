@@ -41,9 +41,16 @@ render() {
         return (
             <section className="main-section">
                 <div className="post-section">
-                    <label className="title"><h1>This is my blog</h1></label>
+                    <label className="title">
+                        <h1>This is my blog</h1>
+                    </label>
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
-                    {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0 ? <div className="posts-list">{makePosts(this.state.resultsFromSearch)}</div>:<div>No results found...</div>:
+                    {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0
+                        ?
+                        <div className="posts-list">{makePosts(this.state.resultsFromSearch)}</div>
+                        :
+                        <div>No results found...</div>
+                        :
                         <MainSection posts={this.state.posts} />}
                 </div>
                 <Sidebar LatestPostr={firstThree}/>
