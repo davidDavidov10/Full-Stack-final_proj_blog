@@ -4,14 +4,16 @@ import {Link} from "react-router-dom";
 
 
 const makePosts =(posts)=>{
-    var postsListJSXs = posts.map(function(post) {
-        post.user_image = "https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
+    console.log(posts);
+    let postsListJSXs = posts.map(function(post) {
+        let profileImg = post.img ? post.img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
+        console.log(post.user_image)
         return(
             <div className="post">
                 <div className="post-title">
                     <Link to={`/post/${post.id}`}>{post.title}</Link>
                 </div>
-                    <img className="post-image" src={post.user_image} width="90" height="50"/>
+                    <img className="post-image" src={profileImg} width="90" height="90"/>
                     <p>{post.content}</p>
                     <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
             </div>

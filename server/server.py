@@ -184,11 +184,12 @@ def get_user(user_id):
 
 def add_user():
     data = request.get_json()
+    print(data)
     if data['password']:
         pwd = data['password']
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
-        query = "insert into users (name, email,password) values (%s, %s, %s)"
-        values = (data['user_name'], data['email_address'], hashed_pwd)
+        query = "insert into users (name, email,password,img) values (%s, %s, %s,%s)"
+        values = (data['user_name'], data['email_address'], hashed_pwd, data['dataBaseImgUrl'])
     else:
         query = "insert into users (name, email) values (%s, %s)"
         values = (data['user_name'], data['email_address'])
@@ -228,13 +229,13 @@ def manage_post_phases(post_id):
 
 def get_all_published_posts():
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.published_at, " \
-            "posts.author_id from posts join users on posts.author_id=users.id " \
+            "posts.author_id, users.img from posts join users on posts.author_id=users.id " \
             "where published is true " \
             "order by published_at DESC"
     cursor = g.db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
-    header = ['id', 'title', 'content', 'author_name', 'published']
+    header = ['id', 'title', 'content', 'author_name', 'published', 'published_at','author_id', 'img']
     data = []
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))

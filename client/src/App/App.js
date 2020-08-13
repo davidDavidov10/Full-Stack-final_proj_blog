@@ -17,7 +17,7 @@ import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
 import Account from "../Pages/Account/LoginPage";
 import Header_test from "../Components/Header";
-
+import FileUpload from "../fb/fileUploadTest"
 
 import '../styles/App/App.css';
 
@@ -73,6 +73,7 @@ class App extends React.Component {
                 <Route path='/post/:id' render={(props) => <SinglePostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
+                <Route path='/test' render={(props) => <FileUpload{...props} />}/>
                 <Route path='/' render={(props) => <HomePage{...props} />}/>
 
               </Switch>

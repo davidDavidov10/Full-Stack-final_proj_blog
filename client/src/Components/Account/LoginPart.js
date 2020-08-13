@@ -89,12 +89,7 @@ class LoginPart extends React.Component {
                 });
         }
     }
-    findSelectedhandler =(e)=> {
-        this.setState({selectedFile:e.target.files[0]})
-    }
-    fileUploadHandler =(e)=> {
 
-    }
     render() {
         return(
             <div className="form log-in">
@@ -129,8 +124,6 @@ class LoginPart extends React.Component {
                                 cookiePolicy={'single_host_origin'}/>
                         </li>
                     </ul>
-                    <input type="file" onChange={this.findSelectedhandler}></input>
-                    <button onClick={this.fileUploadHandler}>Upload</button>
                 </div>
             </div>
             );

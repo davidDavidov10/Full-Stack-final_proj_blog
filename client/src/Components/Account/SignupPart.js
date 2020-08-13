@@ -2,6 +2,8 @@ import React from 'react';
 import {doSignUp} from "../../utils/server/User";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
+import ImgUpload from "../../fb/fileUploadTest"
+import {storage} from "../../fb/firebaseStorage";
 
 class SignupPart extends React.Component {
     constructor(props) {
@@ -11,9 +13,16 @@ class SignupPart extends React.Component {
             email_address:null,
             password:null,
             c_password:null,
-            resp:null
+            resp:null,
+            img:null,
+
         }
     }
+    handleImgChange = e => {
+        if (e.target.files[0]) {
+            this.setState({img:e.target.files[0]})
+        }
+    };
     handleEmail=(e)=>{
         this.setState({
             email_address: e.target.value
@@ -36,20 +45,45 @@ class SignupPart extends React.Component {
     }
     handleSingUp=(event)=>{
         event.preventDefault();
-        console.log(this.state)
-        if(this.state.password == this.state.c_password){
-            console.log(this.state)
-            doSignUp(this.state)
-                .then((res)=>{
-                    // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
-                })
-                .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
-                });
-        }else{
+        if(this.state.password == this.state.c_password) {
+            this.handleUploadImgToFirebase().then((url) => {
+                doSignUp({...this.state, dataBaseImgUrl:url})
+                    .then((res)=>{
+                        // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+                    })
+                    .catch(()=>{
+                        this.setState({resp:"Something went wrong, try again please."})
+                    });
+            })
+        }else {
             this.setState({resp:"Passwords Don't Match"})
         }
     }
+    handleUploadImgToFirebase =()=> {
+        const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
+        return new Promise((resolve, reject) => {
+            uploadTask.on(
+                "state_changed",
+                snapshot => {
+                },
+                error => {
+                    console.log(error);
+                },
+                () => {
+                    storage
+                        .ref(`profileImages/${this.state.img.name}`)
+                        .getDownloadURL()
+                        .then(url => {
+                            console.log(url)
+                           resolve(url)
+                        });
+                }
+            );
+        });
+
+    };
+
+
     componentClicked=()=>{
 
     }
@@ -106,6 +140,8 @@ class SignupPart extends React.Component {
                         <span>Confirm Password</span>
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
+                    <input type="file" onChange={this.handleImgChange} />
+
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
                 <h6>OR</h6>
