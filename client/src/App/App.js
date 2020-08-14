@@ -66,7 +66,7 @@ class App extends React.Component {
               <Switch>
                 <Route path='/account' render={(props) => <Account{...props} handleLog={this.handleLog}/>}/>
                 <Route path ="/home"><HomePage  handleLog={this.handleLog}/></Route>
-                <Route path ="/about"><AboutPage  handleLog={this.handleLog}/></Route>
+                <Route path='/about' render={(props) => <AboutPage{...props} handleLog={this.handleLog}/>}/>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
