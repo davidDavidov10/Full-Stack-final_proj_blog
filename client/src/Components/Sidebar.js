@@ -14,16 +14,13 @@ class Sidebar extends Component{
                     <label className="title">Latest</label>
                     <ul className="side-bar-list">
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">{this.props.LatestPostr[0].title}: </div>
-                            <Link to={`/post/${this.props.LatestPostr[0].id}`}>Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.LatestPostr[0].id}`}>{this.props.LatestPostr[0].title}</Link></div>
                         </li>
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">{this.props.LatestPostr[1].title}: </div>
-                            <Link to={`/post/${this.props.LatestPostr[1].id}`}>Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.LatestPostr[1].id}`}>{this.props.LatestPostr[1].title}</Link></div>
                         </li>
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">{this.props.LatestPostr[2].title}: </div>
-                            <Link to={`/post/${this.props.LatestPostr[2].id}`}>Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.LatestPostr[2].id}`}>{this.props.LatestPostr[2].title}</Link></div>
                         </li>
                     </ul>
                     <hr/>
