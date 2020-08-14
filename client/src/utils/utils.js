@@ -25,13 +25,15 @@ const makeComments=(comments)=>{
     var commentsListJSXs = comments.map(function(comment){
         return(
             <div className="comment">
-                <p>
-                    {comment.user_name} said:
-                </p>
-                <p>
-                    {comment.content}
-                </p>
-                <span>-------</span>
+                    <img src={comment.img} className="commentPic" alt="user Pic"/>
+                    <div className="commentBody">
+                        <div className="postHeader">
+                            <h4 className="postAuthor" >{comment.user_name}</h4>
+                            <span className="publishDate">{comment.published_at}</span>
+                        </div>
+                        <div className="commentContent">{comment.content}</div>
+                    </div>
+                <hr/>
             </div>
 
         );
