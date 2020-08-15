@@ -5,6 +5,7 @@ import {addComment} from "../utils/server/Comments"
 import {makeComments} from "../utils/utils"
 
 import '../styles/SinglePostPage.css';
+import {faToggleOn} from "@fortawesome/free-solid-svg-icons";
 
 class SinglePostPage extends  React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class SinglePostPage extends  React.Component {
             resp:null,
             published:false,
             errMsg:'',
+            liked:false,
         }
     }
 
@@ -81,23 +83,32 @@ class SinglePostPage extends  React.Component {
 
 
     }
+    handleLike=()=>{
+        this.setState({liked:!this.state.liked})
+    }
     render(){
         if (this.state.post) {
             return (
                 <div className="SinglePost">
                     <div className="post">
+
                         <div className="postBody">
                             <img src={this.state.post.img} className="postPic" alt="user Pic"/>
+
                             <div className="postContent">
                                 <div className="postHeader">
                                     <h4 className="postAuthor" >{this.state.post.author_name}</h4>
                                     <span className="publishDate">{this.state.post.published_at}</span>
                                 </div>
-                                <div className="postText"><h2>{this.state.post.title}</h2></div>
+                                <div className="postTitle"><h2>{this.state.post.title}</h2></div>
                                 <div className="postText">{this.state.post.content}</div>
+
                                 <div className="postDesc">
                                     <span className="desc">
-                                       <button className="fa fa-heart-o" style={{fontSize:"25px"}} aria-hidden="true" title="Like"></button>
+                                        {this.state.liked ?
+                                            <button className="fa fa-heart" aria-hidden="true" title="Like" style={{color: "red",fontSize:"25px"}} onClick={this.handleLike}></button>
+                                            : <button className="fa fa-heart-o" aria-hidden="true" title="Like" style={{color: "#00000030",fontSize:"25px"}} onClick={this.handleLike}></button>}
+                                       {/*<button className="fa fa-heart" aria-hidden="true" title="Like" ></button>*/}
                                         </span>
 
                                     {this.state.post.author_id == this.props.user.id
@@ -126,23 +137,18 @@ class SinglePostPage extends  React.Component {
                                     : null
                                 }
                                 </div>
+                                </div>
+                                </div>
+
                                 <div className="input_comment">
                                     <textarea type="text" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>
                                     <button className="save_comment" onClick={this.handleSubmitComment}>save comment</button>
                                     <p className="err"style={{color:"red"}}>{this.state.errMsg}</p>
                                 </div>
 
-                        </div>
-                    </div>
                 </div>
 
-
-
-
-
-
                     <section className="comments-section">
-
                             <br/>
                             <h5>Comments:</h5>
                                     <div className="comments">
