@@ -387,7 +387,6 @@ def add_comment(post_id):
 
 
 def get_comment(comment_id):
-    print(comment_id)
     query = "select comments.id, comments.post_id, users.name," \
             " comments.content, users.img, comments.published_at, comments.author_id " \
             "from comments join users on comments.author_id=users.id where comments.id=%s"
@@ -396,7 +395,6 @@ def get_comment(comment_id):
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
-    print(record)
     header = ['id', 'post_id', 'user_name', 'content', 'img']
     comment = dict(zip(header, record))
 
