@@ -170,11 +170,13 @@ def get_all_users():
 
 
 def get_user(user_id):
+    print("user_id", user_id)
     query = "select id,name,email from users where id =%s"
     values = (user_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
+    print("record = ", record)
     header = ['id', 'name', 'email']
     cursor.close()
     return json.dumps(dict(zip(header, record)))
@@ -182,6 +184,7 @@ def get_user(user_id):
 
 def add_user():
     data = request.get_json()
+    print(data)
     if data['password']:
         pwd = data['password']
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
@@ -243,16 +246,15 @@ def get_all_published_posts():
 
 def get_post(post_id):
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.author_id, " \
-            "posts.published_at, users.img from posts join users on posts.author_id=users.id where posts.id=%s "
+            "users.img, posts.published_at from posts join users on posts.author_id=users.id where posts.id=%s "
     values = (post_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
     post_id = record[0]
-    header = ['id', 'title', 'content', 'author_name', 'published', 'author_id','published_at', 'img']
+    header = ['id', 'title', 'content', 'author_name', 'published', 'author_id', 'img']
     post = dict(zip(header, record))
-
-    post['published_at'] = record[6].strftime("%m/%d/%Y, %H:%M")
+    post['published_at'] = record[7].strftime("%m/%d/%Y, %H:%M")
     comments = json.loads(get_all_comments(post_id))
     post['comments'] = comments
     cursor.close()
@@ -352,20 +354,17 @@ def manage_comments(post_id):
 
 
 def get_all_comments(post_id):
-# david
-    query = "select comments.id, comments.post_id, users.name, comments.content, users.img, published_at from " \
-            "comments join users on comments.author_id=users.id where post_id=%s " \
+    query = "select comments.id, comments.post_id, users.name, comments.content from comments join users on " \
+            "comments.author_id=users.id where post_id=%s " \
             " order by published_at DESC "
     values = (post_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     records = cursor.fetchall()
-    header = ['id', 'post_id', 'user_name', 'content','img','published_at']
+    header = ['id', 'post_id', 'user_name', 'content']
     data = []
     for r in records:
         data.append(dict(zip(header, r)))
-    for i in range(len(data)):
-        data[i]['published_at'] = data[i]['published_at'].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
 
@@ -495,7 +494,7 @@ def password_reset(token):
 
         data = request.get_json()
         pwd = data['password']
-
+        print(pwd)
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
         query = "update users set password = %s WHERE email= %s"
         values = (hashed_pwd, user_email)
@@ -539,6 +538,7 @@ def updateResetTable():
 
 @app.route('/api/postSearch/<wordToSearch>', methods=['GET'])
 def manage_search_post(wordToSearch):
+    print(wordToSearch)
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.published_at, " \
             "posts.author_id from posts join users on posts.author_id=users.id where published is true AND " \
             "lower(content) REGEXP %s "
@@ -554,6 +554,7 @@ def manage_search_post(wordToSearch):
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
+    print(json.dumps(data))
     return json.dumps(data)
 
 

@@ -35,7 +35,7 @@ class AboutPage extends React.Component {
                     <a href="https://facebook.com/" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faFacebook} size="3x" /></a>
                     <a href="https://linkedin.com/" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faLinkedin} size="3x" /></a>
                     <a href="mailto:someone@example.com" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faEnvelope} size="3x" color ="green"/></a>
-                    <a href="" className="about-social-media" download="my resume"><FontAwesomeIcon icon={faFileAlt} size="3x"  color ="brown"/></a>
+                    <a href="https://drive.google.com/uc?export=download&id=1Ly0P8U6_p-ZlqzZeOv1WDRH2XYklxM21" className="about-social-media" download><FontAwesomeIcon icon={faFileAlt} size="3x"  color ="brown"/></a>
             </div>
         );
     }
