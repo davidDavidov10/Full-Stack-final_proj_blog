@@ -19,6 +19,7 @@ class SinglePostPage extends  React.Component {
             resp:null,
             published:false,
             errMsg:'',
+            liked:false,
         }
     }
 
@@ -77,7 +78,9 @@ class SinglePostPage extends  React.Component {
 
 
     }
-
+    handleLike=()=>{
+        this.setState({liked:!this.state.liked})
+    }
     render(){
         if (this.state.post) {
             return (
@@ -97,7 +100,10 @@ class SinglePostPage extends  React.Component {
 
                                 <div className="postDesc">
                                     <span className="desc">
-                                       <button className="fa fa-heart" aria-hidden="true" title="Like" ></button>
+                                        {this.state.liked ?
+                                            <button className="fa fa-heart" aria-hidden="true" title="Like" style={{color: "red",fontSize:"25px"}} onClick={this.handleLike}></button>
+                                            : <button className="fa fa-heart-o" aria-hidden="true" title="Like" style={{color: "#00000030",fontSize:"25px"}} onClick={this.handleLike}></button>}
+                                       {/*<button className="fa fa-heart" aria-hidden="true" title="Like" ></button>*/}
                                         </span>
 
                                     {this.state.post.author_id == this.props.user.id
