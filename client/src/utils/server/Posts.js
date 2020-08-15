@@ -47,6 +47,7 @@ const searchPosts=(wordToSearch)=>{
 
 }
 
+
 export
 {
     getAllPosts,

@@ -91,20 +91,7 @@
 /*    padding-right: 5px;*/
 /*}*/
 
-.fa-heart:hover::after{
-    position: absolute;
-    margin-top: -4px;
-    margin-left: -20px;
-    content: "❤";
-    font-size: 24px;
-    opacity: 1;
-    animation: hearts .7s ease;
 
-}
-/*@keyframes hearts {*/
-/*    0% { opacity: 0; }*/
-/*    100% { opacity: 1; }*/
-/*}*/
 
 .postText{
     font-weight: 500;
@@ -151,7 +138,7 @@
     border: 1px solid #787878;
     padding: 5px 5px 5px 10px;
     height: 70px;
-    width: 100%;
+    width:100%;
     transition: 0.2s;
     box-sizing: border-box;
     resize: none;
@@ -295,4 +282,9 @@ input:checked[type = "checkbox"]:before {
 }
 .postDesc{
     display: flex;
+}
+
+.fa-heart{
+    color: #00000030;
+    font-size:25px;
 }
