@@ -33,6 +33,8 @@ app.config.update(
 )
 
 mail = Mail(app)
+
+
 @app.before_request
 def before_request():
     g.db = pool.get_connection()
@@ -235,7 +237,7 @@ def get_all_published_posts():
     cursor = g.db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
-    header = ['id', 'title', 'content', 'author_name', 'published', 'published_at','author_id', 'img']
+    header = ['id', 'title', 'content', 'author_name', 'published', 'published_at', 'author_id', 'img']
     data = []
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
@@ -354,17 +356,19 @@ def manage_comments(post_id):
 
 
 def get_all_comments(post_id):
-    query = "select comments.id, comments.post_id, users.name, comments.content from comments join users on " \
-            "comments.author_id=users.id where post_id=%s " \
-            " order by published_at DESC "
+    query = "select comments.id, comments.post_id, users.name," \
+            " comments.content, users.img, comments.published_at" \
+            " from comments join users on comments.author_id=users.id" \
+            " where post_id=%s  order by published_at DESC "
     values = (post_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     records = cursor.fetchall()
-    header = ['id', 'post_id', 'user_name', 'content']
+    header = ['id', 'post_id', 'user_name', 'content', 'img', 'published_at']
     data = []
-    for r in records:
-        data.append(dict(zip(header, r)))
+    for itear, record in enumerate(records):
+        data.append(dict(zip(header, record)))
+        data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
 
@@ -377,20 +381,28 @@ def add_comment(post_id):
     cursor = g.db.cursor()
     cursor.execute(query, values)
     g.db.commit()
-    new_comment = cursor.lastrowid
+    new_comment_id = cursor.lastrowid
     cursor.close()
-    return get_comment(new_comment)
+    return get_comment(new_comment_id)
 
 
 def get_comment(comment_id):
-    query = "select id,post_id,author_id,content from comments where id =%s"
+    print(comment_id)
+    query = "select comments.id, comments.post_id, users.name," \
+            " comments.content, users.img, comments.published_at, comments.author_id " \
+            "from comments join users on comments.author_id=users.id where comments.id=%s"
+
     values = (comment_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
-    header = ['id', 'post_id', 'author', 'content']
+    print(record)
+    header = ['id', 'post_id', 'user_name', 'content', 'img']
+    comment = dict(zip(header, record))
+
+    comment['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
-    return json.dumps(dict(zip(header, record)))
+    return json.dumps(comment)
 
 
 def delete_comments_from_post(post_id):
@@ -476,6 +488,7 @@ def check_reset_validation(email):
                 cursor.execute(query, values)
                 g.db.commit()
     cursor.close()
+
 
 @app.route('/api/password_rest/<token>', methods=['POST'])
 def manage_password_rest(token):

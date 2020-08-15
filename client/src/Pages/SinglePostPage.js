@@ -58,15 +58,20 @@ class SinglePostPage extends  React.Component {
                 content: this.state.newComment,
                 user_name: this.props.user.name
             }
-            addComment(dataToSend, this.handleResp)
-            this.setState({comments: [dataToSend, ...this.state.comments]});
+            addComment(dataToSend)
+                .then((res)=>{
+
+                    this.setState({comments: [res.data, ...this.state.comments]});
+                })
+                .catch(()=>{
+                    this.setState({resp:"Something went wrong, try again please."})
+                });
+
         }else{
             this.setState({errMsg:'You should Login first'})
         }
     }
-    changeClickState=()=>{
-        this.setState({userWantToComment:!this.state.userWantToComment});
-    }
+
     postPhases=()=>{
         this.setState({published:!this.state.published})
             changePostPhase(this.state.post,)
