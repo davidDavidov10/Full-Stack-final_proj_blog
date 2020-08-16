@@ -346,6 +346,25 @@ def set_phase(post_id):
     return get_post(post_id)
 
 
+@app.route('/api/like', methods=['POST'])
+def like_unlike():
+    #david
+    data = request.get_json()
+    # query = "insert into  posts_like(post_id, user_id, like_unlike) " \
+    #         "values(%s, %s, %s)"
+    query = "select * from posts_like where post_id=%s and user_id=%s"
+
+    values = (data['postId'], data['userId'])
+    # values = (data['postId'], data['userId'],data['like_unlike'])
+    cursor = g.db.cursor()
+    cursor.execute(query, values)
+    test2 = cursor.fetchall()
+    # g.db.commit()
+    print(test2)
+    cursor.close()
+    return json.dumps([{'response': "like/unlike updated"}])
+
+
 ##################comments######################
 @app.route('/api/post/<post_id>/comments', methods=['GET', 'POST'])
 def manage_comments(post_id):

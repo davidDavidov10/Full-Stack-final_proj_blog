@@ -1,17 +1,24 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {changePostPhase, deletePost} from "../../utils/server/Posts";
+import {changePostPhase, deletePost,like_unlike_Post} from "../../utils/server/Posts";
 
 
 class AutorButtons extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            published: this.props.post.published === 1 ? true : false
+            published: this.props.post.published === 1 ? true : false,
+            liked:false,
         }
     }
     handleLike=()=>{
+        let likedOrNot = !this.state.liked
         this.setState({liked:!this.state.liked})
+        like_unlike_Post({postId:this.props.post.id, userId:this.props.user.id ,like_unlike: likedOrNot ? 1: 0 })
+            .catch((err)=> {
+                console.log('something went wrong')
+                console.log(err)
+            });
     }
 
     handleDelete=()=>{
@@ -26,11 +33,13 @@ class AutorButtons extends React.Component {
     }
 
     postPhases=()=>{
+        // for some reason, if the row below is in the "then" section if we start with switch "on" it wont turned off till refresh
+        this.setState({published:!this.state.published})
         changePostPhase(this.props.post)
-            .then((res)=>{
-                this.setState({published:!this.state.published})
-            })
+            // .then((res)=>{
+            // })
             .catch(()=>{
+                this.setState({published:!this.state.published})
                 console.log("somethig wrong with publish/un-publish")
             });
     }
@@ -64,11 +73,13 @@ class AutorButtons extends React.Component {
                             {this.state.published
                                 ?
                                 <div>
+                                    {console.log("checked")}
                                     <input type="checkbox" className="toggle" checked onClick={this.postPhases}/>
                                     <p style={{color:"lime"}}>Published</p>
                                 </div>
                                 :
                                 <div>
+                                    {console.log("unchecked")}
                                     <input type="checkbox" className="toggle" onClick={this.postPhases}/>
                                     <p style={{color:"black" }}>Unpublished</p>
                                 </div>

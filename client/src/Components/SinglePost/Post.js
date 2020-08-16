@@ -13,6 +13,9 @@ class Post extends React.Component {
             errMsg:''
         }
     }
+    like_unlikeAction=()=>{
+        this.setState()
+    }
 
     render() {
         return (
