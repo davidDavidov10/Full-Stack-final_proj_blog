@@ -2,7 +2,7 @@ import React from 'react';
 import {getPost} from "../utils/server/Posts";
 import EditPostForm from '../Components/EditPostForm';
 import '../styles/NewPostPage.css';
-import {checkLogin} from "../utils/server/User";
+
 
 
 class EditPostPage extends React.Component {
@@ -11,9 +11,6 @@ class EditPostPage extends React.Component {
         this.state={
             post:null
         }
-    }
-    setPost=(data)=>{
-        this.setState({post:data})
     }
 
     componentDidMount() {
@@ -30,7 +27,7 @@ class EditPostPage extends React.Component {
         if(this.state.post){
             return (
                 <div>
-                    <EditPostForm {...this.props} user={this.props.user}
+                    <EditPostForm {...this.props}
                                   post = {this.state.post}
                                   newPost={false}/>
                 </div>

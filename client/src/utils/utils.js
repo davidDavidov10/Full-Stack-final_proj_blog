@@ -1,20 +1,42 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
+import parse from 'html-react-parser';
+
 
 
 const makePosts =(posts)=>{
     console.log(posts);
     let postsListJSXs = posts.map(function(post) {
         let profileImg = post.img ? post.img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
+        let  content = parse(`${post.content}`)
         return(
             <div className="post">
                 <div className="post-title">
                     <Link to={`/post/${post.id}`}>{post.title}</Link>
                 </div>
                     <img className="post-image" src={profileImg} width="90" height="90"/>
-                    <p>{post.content}</p>
+                    <p>{content}</p>
                     <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
+            </div>
+        );
+    });
+    return postsListJSXs;
+}
+
+const makePosts_test =(posts)=>{
+    console.log(posts);
+    let postsListJSXs = posts.map(function(post) {
+        let profileImg = post.img ? post.img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
+        let  content = parse(`${post.content}`)
+        return(
+            <div className="post">
+                <div className="post-title">
+                    <Link to={`/post/${post.id}`}>{post.title}</Link>
+                </div>
+                <img className="post-image" src={profileImg} width="90" height="90"/>
+                <p>{content}</p>
+                <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
             </div>
         );
     });
@@ -46,5 +68,6 @@ export
 {
     makePosts,
     makeComments,
+    makePosts_test
 }
 

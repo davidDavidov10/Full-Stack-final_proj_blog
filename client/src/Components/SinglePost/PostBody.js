@@ -1,7 +1,9 @@
 import AutorButtons from "./AutorButtons";
 import React from "react";
+import parse from 'html-react-parser';
 
 const  PostBody=(props)=>{
+    let content = parse(props.post.content)
     return (
         <div className="postBody">
         <img src={props.post.img} className="postPic" alt="user Pic"/>
@@ -11,7 +13,7 @@ const  PostBody=(props)=>{
                 <span className="publishDate">{props.post.published_at}</span>
             </div>
             <h2 className="postTitle">{props.post.title}</h2>
-            <div className="postText">{props.post.content}</div>
+            <div className="postText">{content}</div>
             <AutorButtons {...props}/>
         </div>
     </div>

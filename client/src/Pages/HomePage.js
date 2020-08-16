@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import MainSection from "../Components/MainSection";
 import {getAllPosts} from "../utils/server/Posts";
-import {makePosts} from "../utils/utils";
+import {makePosts,makePosts_test} from "../utils/utils";
 import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
+
 import '../styles/Home/MainSection.css'
+//import '../test/PostsSection_Test.css'
 
 
 export default class HomePage extends Component{
@@ -47,7 +49,7 @@ render() {
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
                     {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0
                         ?
-                        <div className="posts-list">{makePosts(this.state.resultsFromSearch)}</div>
+                        <div className="posts-list">{makePosts_test(this.state.resultsFromSearch)}</div>
                         :
                         <div>No results found...</div>
                         :

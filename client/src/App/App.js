@@ -6,6 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 
+import '../styles/App/App.css';
+
 import {checkLogin} from "../utils/server/User"
 import HomePage from "../Pages/HomePage";
 import AboutPage from "../Pages/AboutPage"
@@ -13,13 +15,14 @@ import NewPostPage from "../Pages/NewPostPage"
 import MyPostsPage from "../Pages/MyPostsPage"
 import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
+import Account from "../Pages/Account/LoginPage";
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
-import Account from "../Pages/Account/LoginPage";
 import Header_test from "../Components/Header";
 import FileUpload from "../fb/fileUploadTest"
 
-import '../styles/App/App.css';
+
+import EditPage_test from "../test/EditComp_test"
 
 const user ={
   id:null,
@@ -69,6 +72,7 @@ class App extends React.Component {
                 <Route path='/about' render={(props) => <AboutPage{...props} handleLog={this.handleLog}/>}/>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
+                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user} handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id' render={(props) => <SinglePostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
