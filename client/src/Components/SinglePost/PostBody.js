@@ -1,10 +1,12 @@
 import AutorButtons from "./AutorButtons";
 import React from "react";
+import {onLog} from "firebase";
 
 const  PostBody=(props)=>{
     return (
         <div className="postBody">
-        <img src={props.post.img} className="postPic" alt="user Pic"/>
+
+            <img src={props.post.img} className="postPic" alt="user Pic"/>
         <div className="postContent">
             <div className="postHeader">
                 <h4 className="postAuthor" >{props.post.author_name}</h4>

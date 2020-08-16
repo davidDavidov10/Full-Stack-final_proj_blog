@@ -259,9 +259,26 @@ def get_post(post_id):
     post['published_at'] = record[7].strftime("%m/%d/%Y, %H:%M")
     comments = json.loads(get_all_comments(post_id))
     post['comments'] = comments
+    likes = json.loads(get_all_likes(post_id))
+    post['likes'] = likes
+    print(post)
     cursor.close()
     return json.dumps(post)
 
+def get_all_likes(post_id):
+#david
+    query = "select posts_like.user_id, users.name" \
+            " from posts_like join users on posts_like.user_id=users.id where post_id =%s"
+    values = (post_id,)
+    cursor = g.db.cursor()
+    cursor.execute(query, values)
+    records = cursor.fetchall()
+    header = ['users_id', 'user_name']
+    data=[]
+    for record in records:
+        data.append(dict(zip(header, record)))
+    cursor.close()
+    return json.dumps(data)
 
 def add_post():
     user = json.loads(check_login())
@@ -349,8 +366,8 @@ def set_phase(post_id):
 @app.route('/api/like', methods=['POST'])
 def like():
     #david
-
     data = request.get_json()
+    print(data)
     query = "insert into  posts_like(post_id, user_id) " \
             "values(%s, %s)"
     values = (data['postId'], data['userId'])
@@ -365,7 +382,6 @@ def like():
 def unlike():
     #david
     data = request.get_json()
-    print(data)
     query = "delete from posts_like where post_id=%s and user_id=%s"
     values = (data['postId'], data['userId'])
     cursor = g.db.cursor()
@@ -373,6 +389,28 @@ def unlike():
     g.db.commit()
     cursor.close()
     return json.dumps([{'response': "unlike updated"}])
+
+# it is working only with POST methods!! why!?
+@app.route('/api/isUserLiked', methods=['POST'])
+def checkLike():
+    #david
+    #  take user id here!!
+
+    print("here")
+    print(json)
+    data = request.get_json()
+    print(data)
+    query = "select * from posts_like where post_id=%s and user_id=%s"
+    values = (data['postId'], data['userId'])
+    cursor = g.db.cursor()
+    cursor.execute(query, values)
+    record = cursor.fetchone()
+    if not record:
+        cursor.close()
+        return json.dumps([{'response': "like"}])
+    else:
+        cursor.close()
+        return json.dumps([{'response': "unlike"}])
 
 ##################comments######################
 @app.route('/api/post/<post_id>/comments', methods=['GET', 'POST'])

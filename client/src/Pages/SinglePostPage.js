@@ -10,7 +10,8 @@ class SinglePostPage extends  React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comments:null
+            comments:null,
+            likes:null
         }
         const post = null
     }
@@ -19,7 +20,10 @@ class SinglePostPage extends  React.Component {
         getPost(postId)
             .then((res)=>{
                 this.post = res.data;
-                this.setState({comments:res.data.comments})
+                this.setState({
+                    comments:res.data.comments,
+                    likes: res.data.likes
+                })
 
             })
             .catch(()=>{
@@ -28,19 +32,18 @@ class SinglePostPage extends  React.Component {
     }
 
     setComments=(newComment)=>{
-        console.log("setComments")
         this.setState({comments:[newComment, ...this.state.comments]})
-        console.log(this.state.comments)
+    }
+    addLikes=(newLike)=>{
+        this.setState({likes:[newLike,...this.state.likes]})
     }
 
     render(){
-        console.log("render PAGE")
-        console.log(this.state.comments)
-        if (this.post){
+        if (this.post && this.props.user.id){
             return (
                 <div className="SinglePost">
-                    <Post  post ={this.post} {...this.props} setComments={this.setComments}/>
-                    <Comments comments = {this.state.comments} {...this.props}/>
+                    <Post   {...this.props} post={this.post} setComments={this.setComments} addLikes = {this.addLikes}/>
+                    <Comments  {...this.props} comments = {this.state.comments}/>
                 </div>
             );
         }else{

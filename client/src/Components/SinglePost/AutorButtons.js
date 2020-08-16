@@ -8,20 +8,24 @@ class AutorButtons extends React.Component {
         super(props);
         this.state={
             published: this.props.post.published === 1 ? true : false,
-            liked:false,
+            // liked:false,
         }
     }
+
+
     handleLike=()=>{
-        let like = !this.state.liked
-        this.setState({liked:!this.state.liked})
+            let like = !this.state.liked
+        // this.setState({liked:!this.state.liked})
         if (like) {
             like_Post({postId: this.props.post.id, userId: this.props.user.id})
+                .then(()=>{this.props.addLikes({users_id:this.props.user.id, user_name:this.props.user.name})})
                 .catch((err) => {
                     console.log('something went wrong')
                     console.log(err)
                 });
         }else {
             unlike_Post({postId: this.props.post.id, userId: this.props.user.id})
+                .then()
                 .catch((err) => {
                     console.log('something went wrong')
                     console.log(err)
@@ -56,8 +60,15 @@ class AutorButtons extends React.Component {
         return (
             <div className="postDesc">
                 <span className="desc">
-                    {this.state.liked
-                        ?
+                    {/*{this.state.liked*/}
+                    {/*{console.log("this.props.likes"+this.props.likes)}*/}
+                    {/*{console.log("this.props.user.id"+this.props.user.id)}*/}
+                    {/*{console.log("this.props.likes.users_id"+this.props.likes.users_id)}*/}
+                    {console.log("this.props.likes= "+JSON.stringify(this.props.likes[0].users_id))}
+                    {console.log({users_id:this.props.user.id, user_name:this.props.user.name})}
+
+                    {this.props.likes.includes({users_id:this.props.user.id, user_name:this.props.user.name})
+                    ?
                         <button className="fa fa-heart" aria-hidden="true" title="Like" style={{color: "red",fontSize:"25px"}} onClick={this.handleLike}></button>
                         :
                         <button className="fa fa-heart-o" aria-hidden="true" title="Like" style={{color: "#00000030",fontSize:"25px"}} onClick={this.handleLike}></button>}

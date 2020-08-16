@@ -51,14 +51,9 @@ const like_Post=(data)=>{
     return axios.post(url,data)
 }
 const unlike_Post=(data)=>{
-    console.log("____________________________________________________________")
-    console.log(data)
-    console.log("____________________________________________________________")
-
     const url =`/api/unlike`
     return axios.post(url,data)
 }
-
 export
 {
     getAllPosts,
