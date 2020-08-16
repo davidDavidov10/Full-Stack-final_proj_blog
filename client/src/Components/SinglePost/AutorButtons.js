@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {changePostPhase, deletePost,like_unlike_Post} from "../../utils/server/Posts";
+import {changePostPhase, deletePost,like_Post,unlike_Post} from "../../utils/server/Posts";
 
 
 class AutorButtons extends React.Component {
@@ -12,13 +12,21 @@ class AutorButtons extends React.Component {
         }
     }
     handleLike=()=>{
-        let likedOrNot = !this.state.liked
+        let like = !this.state.liked
         this.setState({liked:!this.state.liked})
-        like_unlike_Post({postId:this.props.post.id, userId:this.props.user.id ,like_unlike: likedOrNot ? 1: 0 })
-            .catch((err)=> {
-                console.log('something went wrong')
-                console.log(err)
-            });
+        if (like) {
+            like_Post({postId: this.props.post.id, userId: this.props.user.id})
+                .catch((err) => {
+                    console.log('something went wrong')
+                    console.log(err)
+                });
+        }else {
+            unlike_Post({postId: this.props.post.id, userId: this.props.user.id})
+                .catch((err) => {
+                    console.log('something went wrong')
+                    console.log(err)
+                });
+        }
     }
 
     handleDelete=()=>{
