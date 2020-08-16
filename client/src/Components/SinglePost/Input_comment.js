@@ -9,7 +9,6 @@ class Input_comment extends React.Component {
         }
     }
     handleSubmitComment=()=> {
-        console.log("1")
         if (this.props.user.isLoggedIn) {
             let dataToSend = {
                 postId: this.props.post.id,

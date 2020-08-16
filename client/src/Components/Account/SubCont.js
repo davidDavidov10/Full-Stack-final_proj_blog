@@ -8,7 +8,6 @@ class SubCont extends React.Component {
     render() {
         return(
             <div className="img">
-
                 <div className="img-text m-up">
                     <h2>New here?</h2>
                     <p>Sign up and discover great amount of new opportunities!</p>
@@ -23,7 +22,6 @@ class SubCont extends React.Component {
                     <span className="m-up" >Sign Up</span>
                     <span className="m-in">Log in</span>
                 </div>
-
             </div>
         );
     }

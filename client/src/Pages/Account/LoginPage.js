@@ -1,5 +1,7 @@
+//import "../../styles/Account/LoginPage.css";
+import "../../styles/Account/SignUpPage.css";
+
 import React from 'react';
-import "../../styles/Account/LoginPage.css";
 import LoginPart from  "../../Components/Account/LoginPart"
 import SignupPart from "../../Components/Account/SignupPart";
 import SubCont from "../../Components/Account/SubCont";
