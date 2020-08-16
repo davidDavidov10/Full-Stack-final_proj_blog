@@ -63,11 +63,27 @@ const makeComments=(comments)=>{
     return commentsListJSXs;
 }
 
+const getLikeIds=(likes)=>{
+    var likeIds = likes.map(function(like){
+        return like.user_id;
+    });
+    return likeIds
+}
+const getLikeNames=(likes)=>{
+    var likeNames = likes.map(function(like){
+        return like.user_name;
+    });
+    return likeNames
+}
+
+
 
 export
 {
     makePosts,
     makeComments,
-    makePosts_test
+    makePosts_test,
+    getLikeIds,
+    getLikeNames
 }
 

@@ -254,14 +254,20 @@ def get_post(post_id):
     cursor.execute(query, values)
     record = cursor.fetchone()
     post_id = record[0]
+
     header = ['id', 'title', 'content', 'author_name', 'published', 'author_id', 'img']
     post = dict(zip(header, record))
     post['published_at'] = record[7].strftime("%m/%d/%Y, %H:%M")
+
     comments = json.loads(get_all_comments(post_id))
     post['comments'] = comments
+
+    likes = json.loads(get_all_likes(post_id))
+    post['likes'] = likes
+
+    print(post)
     cursor.close()
     return json.dumps(post)
-
 
 def add_post():
     user = json.loads(check_login())
@@ -345,34 +351,53 @@ def set_phase(post_id):
     cursor.close()
     return get_post(post_id)
 
+##################likes######################
+@app.route('/api/post/<post_id>/likes' , methods=['GET', 'POST','DELETE'])
+def manage_likes(post_id):
+    if request.method == 'GET':
+        return get_all_likes(post_id)
+    if request.method == 'POST':
+        return add_like(post_id)
+    if request.method == 'DELETE':
+        return delete_like(post_id)
 
-@app.route('/api/like', methods=['POST'])
-def like():
-    #david
+def get_all_likes(post_id):
+    query = "select posts_like.user_id, users.name " \
+            "from posts_like join users on posts_like.user_id=users.id " \
+            "where post_id =%s"
+    values = (post_id,)
+    cursor = g.db.cursor()
+    cursor.execute(query, values)
+    records = cursor.fetchall()
+    header = ['user_id', 'user_name']
+    data = []
+    for record in records:
+        data.append(dict(zip(header, record)))
+    cursor.close()
+    return json.dumps(data)
 
+def add_like(post_id):
+    user = json.loads(check_login())
     data = request.get_json()
-    query = "insert into  posts_like(post_id, user_id) " \
-            "values(%s, %s)"
-    values = (data['postId'], data['userId'])
+    query = "insert into posts_like(post_id, user_id) values(%s, %s)"
+    values = (post_id, user['id'])
     cursor = g.db.cursor()
     cursor.execute(query, values)
     g.db.commit()
     cursor.close()
     return json.dumps([{'response': "like updated"}])
 
-# i think the method should be DELETE but it is not working with delete
-@app.route('/api/unlike', methods=['POST'])
-def unlike():
-    #david
+def delete_like(post_id):
+    user = json.loads(check_login())
     data = request.get_json()
-    print(data)
     query = "delete from posts_like where post_id=%s and user_id=%s"
-    values = (data['postId'], data['userId'])
+    values = (post_id, user['id'])
     cursor = g.db.cursor()
     cursor.execute(query, values)
     g.db.commit()
     cursor.close()
     return json.dumps([{'response': "unlike updated"}])
+
 
 ##################comments######################
 @app.route('/api/post/<post_id>/comments', methods=['GET', 'POST'])

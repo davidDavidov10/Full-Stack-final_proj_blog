@@ -15,7 +15,6 @@ class LoginPage extends React.Component{
         document.querySelector('.cont').classList.toggle('s-signup')
     }
     componentDidMount() {
-        this.something()
         document.querySelector('.img-btn').addEventListener('click', this.something);
     }
     render(){

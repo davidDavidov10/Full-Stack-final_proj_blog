@@ -46,18 +46,6 @@ const searchPosts=(wordToSearch)=>{
     return axios.get(url)
 }
 
-const like_Post=(data)=>{
-    const url =`/api/like`
-    return axios.post(url,data)
-}
-const unlike_Post=(data)=>{
-    console.log("____________________________________________________________")
-    console.log(data)
-    console.log("____________________________________________________________")
-
-    const url =`/api/unlike`
-    return axios.post(url,data)
-}
 
 export
 {
@@ -69,6 +57,5 @@ export
     deletePost,
     changePostPhase,
     searchPosts,
-    like_Post,
-    unlike_Post,
+
 }

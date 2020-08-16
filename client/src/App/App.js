@@ -43,7 +43,7 @@ class App extends React.Component {
   componentDidMount() {
     checkLogin()
         .then((res)=>{
-          const  user ={
+          const user ={
             id:res.data["id"],
             name:res.data["name"],
             isLoggedIn:true
@@ -74,12 +74,11 @@ class App extends React.Component {
                 <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user} handleLog={this.handleLog}/>}/>
                 <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
-                <Route path='/post/:id' render={(props) => <SinglePostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
+                <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
                 <Route path='/test' render={(props) => <FileUpload{...props} />}/>
                 <Route path='/' render={(props) => <HomePage{...props} />}/>
-
               </Switch>
             </div>
           </Router>
