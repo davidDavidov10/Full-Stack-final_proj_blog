@@ -265,7 +265,6 @@ def get_post(post_id):
     likes = json.loads(get_all_likes(post_id))
     post['likes'] = likes
 
-    print(post)
     cursor.close()
     return json.dumps(post)
 
@@ -351,8 +350,9 @@ def set_phase(post_id):
     cursor.close()
     return get_post(post_id)
 
+
 ##################likes######################
-@app.route('/api/post/<post_id>/likes' , methods=['GET', 'POST','DELETE'])
+@app.route('/api/post/<post_id>/likes' , methods=['GET', 'POST', 'DELETE'])
 def manage_likes(post_id):
     if request.method == 'GET':
         return get_all_likes(post_id)
@@ -361,7 +361,9 @@ def manage_likes(post_id):
     if request.method == 'DELETE':
         return delete_like(post_id)
 
+
 def get_all_likes(post_id):
+
     query = "select posts_like.user_id, users.name " \
             "from posts_like join users on posts_like.user_id=users.id " \
             "where post_id =%s"
@@ -378,7 +380,6 @@ def get_all_likes(post_id):
 
 def add_like(post_id):
     user = json.loads(check_login())
-    data = request.get_json()
     query = "insert into posts_like(post_id, user_id) values(%s, %s)"
     values = (post_id, user['id'])
     cursor = g.db.cursor()
@@ -389,7 +390,6 @@ def add_like(post_id):
 
 def delete_like(post_id):
     user = json.loads(check_login())
-    data = request.get_json()
     query = "delete from posts_like where post_id=%s and user_id=%s"
     values = (post_id, user['id'])
     cursor = g.db.cursor()

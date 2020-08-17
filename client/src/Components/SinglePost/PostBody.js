@@ -16,8 +16,11 @@ const  PostBody=(props)=>{
 
             <h2 className="postTitle">{props.post.title}</h2>
             <div className="postText">{content}</div>
-
-            <AutorButtons {...props}/>
+            {props.user.isLoggedIn
+                ?
+                <AutorButtons {...props}/>
+                :null
+            }
         </div>
     </div>
     );

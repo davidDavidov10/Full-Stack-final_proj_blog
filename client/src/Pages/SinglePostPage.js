@@ -17,7 +17,6 @@ class SinglePostPage extends  React.Component {
         const post = null
     }
     componentDidMount() {
-        console.log("componentDidMount")
         let postId = this.props.match.params.id
         getPost(postId)
             .then((res)=>{
@@ -38,20 +37,18 @@ class SinglePostPage extends  React.Component {
     }
 
     setLikesIds=(userId,toAdd)=>{
-        console.log("setLikesIds")
+
         if(toAdd){
             this.setState({likes:[userId,...this.state.likes]})
-        }else{
-            //how to get out one elment from array ??
-            const newList = this.state.likes.splice(this.state.likes.indexOf(userId), 1);
-            console.log(newList)
-            this.setState({likes: newList});
-        }
 
+        }else {
+            let newLikesList = this.state.likes
+            newLikesList.splice(newLikesList.indexOf(userId), 1);
+            this.setState({likes: newLikesList});
+        }
     }
 
     render(){
-        console.log(this.state.likes)
         if (this.post){
             return (
                 <div className="SinglePost">

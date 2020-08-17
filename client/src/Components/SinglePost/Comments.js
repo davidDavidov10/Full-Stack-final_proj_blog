@@ -6,8 +6,6 @@ import {getAllComments} from "../../utils/server/Comments";
 class Comments extends React.Component {
     constructor(props) {
         super(props);
-        console.log("this.props.comments = ")
-        console.log(this.props.comments)
     }
     render() {
         if (this.props.comments){
