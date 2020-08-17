@@ -53,7 +53,7 @@ render() {
                             :
                             <MainSection posts={this.state.posts}/>}
                     </div>
-                    <Sidebar LatestPostr={latestThree} pouplatThree={popularThree}/>
+                    <Sidebar LatestPosts={latestThree} pouplatThree={popularThree}/>
                 </section>
             );
         }else{

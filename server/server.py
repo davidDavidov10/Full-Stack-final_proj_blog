@@ -243,9 +243,7 @@ def get_all_published_posts():
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
 
-    query = "select post_id, posts.title ,count(post_id) as number_of_likes from posts_" \
-            "like join posts where posts_like.post_id =posts.id " \
-            "group by post_id order by number_of_likes DESC"
+    query = "select post_id, posts.title ,count(post_id) as number_of_likes from posts_like join posts where posts_like.post_id =posts.id and posts.published=1 group by post_id order by number_of_likes DESC"
 
     cursor = g.db.cursor()
     cursor.execute(query)
