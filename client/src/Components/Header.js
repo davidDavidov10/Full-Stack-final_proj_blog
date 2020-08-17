@@ -71,9 +71,9 @@ class Header extends React.Component{
                 </nav>
                 <div className="header-pic-container">
                     <img className="header-pic"
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMti-9yi9IgVgWl6lOGlTfnNdHiIceEnJ80Q&usqp=CAU"
+                         src="https://firebasestorage.googleapis.com/v0/b/blog-91cd0.appspot.com/o/BlogImages%2Fblog_header_pic.jpg?alt=media&token=ba63a39f-2e71-4855-9483-0cf9a6043ce3"
                          alt="Snow"/>
-                    <div className="header-pic-centered">This is my blog</div>
+                    {/*<div className="header-pic-centered">This is my blog</div>*/}
                 </div>
 
             </header>

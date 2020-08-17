@@ -4,10 +4,7 @@ import {getAllPosts} from "../utils/server/Posts";
 import {makePosts,makePosts_test} from "../utils/utils";
 import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
-
-// import '../styles/Home/MainSection.css'
 import '../styles/Home/HomePage.css'
-//import '../test/PostsSection_Test.css'
 
 
 export default class HomePage extends Component{

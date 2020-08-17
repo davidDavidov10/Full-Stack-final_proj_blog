@@ -4,9 +4,7 @@ import '../styles/Home/MainSection.css'
 
 // functional component currently present only posts.
 export default function MainSection(props){
-        return (<div className="posts-list">
-                {makePosts(props.posts)}
-            </div>);
+        return (<div>{makePosts(props.posts)}</div>);
 }
 
 

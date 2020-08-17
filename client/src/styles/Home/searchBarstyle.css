@@ -1,26 +1,23 @@
-.search-container {
-    float: right;
-}
-
-.topnav input[type=text] {
+.searchBarInput {
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
+    border-radius: 10px;
 }
 
-.search-container button {
-    float: right;
+#SearchButton {
     padding: 6px 10px;
     margin-top: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
+    margin-left:10px;
+    background: white;
     border: none;
     cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
-.search-container button:hover {
+.SearchButton:hover {
     background: #ccc;
 }
 
@@ -30,7 +27,6 @@
     }
 }
 .topnav{
-    position: absolute;
-    right: 0;
-    top: 11%;
+    display: flex;
+    margin-left: 100%;
 }

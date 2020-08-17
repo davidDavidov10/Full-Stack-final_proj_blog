@@ -1,5 +1,6 @@
 import React from 'react';
 import {searchPosts} from "../utils/server/Posts";
+import "../styles/Home/searchBarstyle.css"
 
 class searchBar extends  React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class searchBar extends  React.Component {
         this.setState({
             search:event.target.value,
         })
-        if (this.state.search.length -1 === 0 ) {
+        if (event.target.value.length === 0) {
             this.props.showAll();
         }
     }
@@ -27,10 +28,8 @@ class searchBar extends  React.Component {
     render(){
             return(
                     <div className="topnav">
-                        <div className="search-container">
-                            <input type="text" onChange={this.onChangeSearchBar} placeholder="Search..."/>
-                            <button onClick={this.handlePostSearch} className="SearchButton" >Search</button>
-                        </div>
+                            <input type="text" onChange={this.onChangeSearchBar} className="searchBarInput" placeholder="Search..."/>
+                            <button onClick={this.handlePostSearch} className="fa fa-search" id="SearchButton"></button>
                     </div>
             );
         }
