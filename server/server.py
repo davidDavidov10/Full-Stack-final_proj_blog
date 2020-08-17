@@ -242,19 +242,18 @@ def get_all_published_posts():
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
-    # print(data)
-    #david
-    query = "select post_id, count(post_id) as number_of_likes from posts_like group by post_id " \
-            "order by number_of_likes DESC"
+
+    query = "select post_id, posts.title ,count(post_id) as number_of_likes from posts_like join posts where posts_like.post_id =posts.id and posts.published=1 group by post_id order by number_of_likes DESC"
+
     cursor = g.db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
-    header = ['post_id', 'number_of_likes']
+    header = ['post_id', 'post_title', 'number_of_likes']
     posts_and_likes = []
     for record in records:
         posts_and_likes.append(dict(zip(header, record)))
 
-    print(json.dumps(data))
+    data.append({'likes': posts_and_likes})
     cursor.close()
     return json.dumps(data)
 
@@ -280,6 +279,7 @@ def get_post(post_id):
 
     cursor.close()
     return json.dumps(post)
+
 
 def add_post():
     user = json.loads(check_login())
@@ -322,6 +322,7 @@ def delete_post(post_id):
         abort(401)
 
     delete_comments_from_post(post_id)
+    delete_likes_from_post(post_id)
     query = "delete from posts where id=%s"
     values = (post_id,)
     cursor = g.db.cursor()
@@ -365,7 +366,7 @@ def set_phase(post_id):
 
 
 ##################likes######################
-@app.route('/api/post/<post_id>/likes' , methods=['GET', 'POST', 'DELETE'])
+@app.route('/api/post/<post_id>/likes', methods=['GET', 'POST', 'DELETE'])
 def manage_likes(post_id):
     if request.method == 'GET':
         return get_all_likes(post_id)
@@ -376,7 +377,6 @@ def manage_likes(post_id):
 
 
 def get_all_likes(post_id):
-
     query = "select posts_like.user_id, users.name " \
             "from posts_like join users on posts_like.user_id=users.id " \
             "where post_id =%s"
@@ -391,6 +391,7 @@ def get_all_likes(post_id):
     cursor.close()
     return json.dumps(data)
 
+
 def add_like(post_id):
     user = json.loads(check_login())
     query = "insert into posts_like(post_id, user_id) values(%s, %s)"
@@ -400,6 +401,7 @@ def add_like(post_id):
     g.db.commit()
     cursor.close()
     return json.dumps([{'response': "like updated"}])
+
 
 def delete_like(post_id):
     user = json.loads(check_login())
@@ -471,6 +473,16 @@ def get_comment(comment_id):
 
 def delete_comments_from_post(post_id):
     query = "delete from comments where post_id=%s"
+    values = (post_id,)
+    cursor = g.db.cursor()
+    cursor.execute(query, values)
+    g.db.commit()
+    cursor.close()
+    return json.dumps([{'response': "deleted comment"}])
+
+
+def delete_likes_from_post(post_id):
+    query = "delete from posts_like where post_id=%s"
     values = (post_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)

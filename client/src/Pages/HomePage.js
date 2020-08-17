@@ -11,7 +11,7 @@ export default class HomePage extends Component{
 constructor(props) {
         super(props);
         this.state = {
-                posts:[],
+                posts:null,
                 resultsFromSearch:[],
                 waitingForSearchRes: false,
         }
@@ -36,28 +36,29 @@ constructor(props) {
         }
 
 render() {
-
-        let latestThree = this.state.posts.slice(0, 3);
-        let popularThree = this.state.posts.likes
-        console.log(this.state.posts[7])
-        return (
-            <section className="main-section">
-                <div className="post-section">
-                    <div className="SearchBar">
-                    <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
+        if(this.state.posts) {
+            let latestThree = this.state.posts.slice(0, 3);
+            let popularThree = this.state.posts.slice(-1)[0].likes.slice(0, 3)
+            return (
+                <section className="main-section">
+                    <div className="post-section">
+                        <div className="SearchBar">
+                            <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
+                        </div>
+                        {this.state.waitingForSearchRes ? this.state.resultsFromSearch.length > 0
+                            ?
+                            <div>{makePosts_test(this.state.resultsFromSearch)}</div>
+                            :
+                            <div>No results found...</div>
+                            :
+                            <MainSection posts={this.state.posts}/>}
                     </div>
-                    {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0
-                        ?
-                        <div>{makePosts_test(this.state.resultsFromSearch)}</div>
-                        :
-                        <div>No results found...</div>
-                        :
-                        <MainSection posts={this.state.posts} />}
-                </div>
-
-                <Sidebar LatestPostr={latestThree} pouplatThree={popularThree}/>
-            </section>
+                    <Sidebar LatestPosts={latestThree} pouplatThree={popularThree}/>
+                </section>
             );
+        }else{
+            return (<div>Loading...</div>);
+        }
 }
 
 }
