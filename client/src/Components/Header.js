@@ -59,14 +59,23 @@ class Header extends React.Component{
                                 :
                                 <ul className="rightNavSide">
                                     <li className="listElement">
-                                        <Link to="/account" className="link"><i className="fa fa-user-circle" aria-hidden="true"></i> Account</Link>
+                                        <Link to="/Log in" className="link"><i className="fa fa-user-circle" aria-hidden="true"></i> Log in </Link>
+                                    </li>
+                                    <li className="listElement">
+                                        <Link to="/Sign up" className="link"><i className="fa fa-user-plus" aria-hidden="true"></i> Sign up </Link>
                                     </li>
                                 </ul>
                             }
                         </ul>
                     </ul>
                 </nav>
-                <img className="header-cover-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMti-9yi9IgVgWl6lOGlTfnNdHiIceEnJ80Q&usqp=CAU"/>
+                <div className="header-pic-container">
+                    <img className="header-pic"
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMti-9yi9IgVgWl6lOGlTfnNdHiIceEnJ80Q&usqp=CAU"
+                         alt="Snow"/>
+                    <div className="header-pic-centered">This is my blog</div>
+                </div>
+
             </header>
 
         );

@@ -43,7 +43,22 @@
     margin-right: 10px;
     font-weight: bold;
 }
-.header-cover-pic{
+.header-pic-container{
+    position: relative;
+    text-align: center;
+
+}
+.header-pic{
     width: 100%;
+    color: white;
     height: 200px;
+}
+.header-pic-centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    color: #0a192b;
+
 }

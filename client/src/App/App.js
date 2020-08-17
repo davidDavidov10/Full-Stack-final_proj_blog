@@ -37,7 +37,7 @@ class App extends React.Component {
       user: user
     }
   }
-  handleLog=(data)=>{
+  setUser=(data)=>{
     this.setState({user: data});
   }
   componentDidMount() {
@@ -48,7 +48,7 @@ class App extends React.Component {
             name:res.data["name"],
             isLoggedIn:true
           }
-          this.handleLog(user)
+          this.setUser(user)
         })
         .catch(()=>{
           const  user ={
@@ -56,25 +56,26 @@ class App extends React.Component {
             name:null,
             isLoggedIn:false
           }
-          this.handleLog(user)
+          this.setUser(user)
         });
   }
   render(){
     return(
         <div>
           <Router>
-            <Header_test user={this.state.user} handleLogout={this.handleLog}/>
+            <Header_test user={this.state.user} handleLogout={this.setUser}/>
 
             <div className="blog-body">
               <Switch>
-                <Route path='/account' render={(props) => <Account{...props} handleLog={this.handleLog}/>}/>
-                <Route path ="/home"><HomePage  handleLog={this.handleLog}/></Route>
-                <Route path='/about' render={(props) => <AboutPage{...props} handleLog={this.handleLog}/>}/>
-                <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
-                <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
-                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user} handleLog={this.handleLog}/>}/>
-                <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
-                <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}  handleLog={this.handleLog}/>}/>
+                <Route path='/Sign up' render={(props) => <Account{...props} setUser={this.setUser} newUser={true}/>}/>
+                <Route path='/Log in' render={(props) => <Account{...props} setUser={this.setUser} newUser={false}/>}/>
+                <Route path ="/home"><HomePage  handleLog={this.setUser}/></Route>
+                <Route path='/about' render={(props) => <AboutPage{...props} setUser={this.setUser}/>}/>
+                <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  setUser={this.setUser}/>}/>
+                <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  setUser={this.setUser}/>}/>
+                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user} setUser={this.setUser}/>}/>
+                <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  setUser={this.setUser}/>}/>
+                <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}  setUser={this.setUser}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
                 <Route path='/test' render={(props) => <FileUpload{...props} />}/>

@@ -9,20 +9,25 @@ import SubCont from "../../Components/Account/SubCont";
 class LoginPage extends React.Component{
     constructor(props) {
         super(props);
+        this.state ={
+            serverResp:null
+        }
     }
-    doSomething=()=>
+    slideMenu=()=>
     {
         document.querySelector('.cont').classList.toggle('s-signup')
     }
     componentDidMount() {
-       // this.doSomething()
-        document.querySelector('.img-btn').addEventListener('click',this.doSomething);
+        if (this.props.newUser){
+            this.slideMenu()
+        }
+        document.querySelector('.img-btn').addEventListener('click',this.slideMenu);
     }
     render(){
         return(
             <div className="sign-up-body">
                 <div className="cont">
-                    <LoginPart {...this.props} handleLog ={this.props.handleLog}/>
+                    <LoginPart {...this.props}/>
                     <div className="sub-cont">
                         <SubCont/>
                         <SignupPart/>

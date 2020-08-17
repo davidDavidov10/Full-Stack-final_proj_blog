@@ -39,14 +39,13 @@ constructor(props) {
         }
 
 render() {
-        let firstThree = this.state.posts.slice(0, 3);
-        console.log(firstThree)
+
+        let latestThree = this.state.posts.slice(0, 3);
+        let pouplatThree = this.state.posts
+
         return (
             <section className="main-section">
                 <div className="post-section">
-                    <label className="title">
-                        <h1>This is my blog</h1>
-                    </label>
                     <div className="SearchBar">
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
                     </div>
@@ -58,7 +57,7 @@ render() {
                         :
                         <MainSection posts={this.state.posts} />}
                 </div>
-                <Sidebar LatestPostr={firstThree}/>
+                <Sidebar LatestPostr={latestThree}/>
             </section>
             );
 }
