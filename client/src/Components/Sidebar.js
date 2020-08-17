@@ -5,10 +5,9 @@ import '../styles/Home/Sidarbar.css'
 class Sidebar extends Component{
     constructor(props) {
         super(props);
-        console.log(this.props.pouplatThree)
+
     }
     render() {
-        if(this.props.LatestPostr[0]) {
             return (
                 <aside className="side-bar-section">
                     <label className="title">Latest</label>
@@ -24,27 +23,24 @@ class Sidebar extends Component{
                         </li>
                     </ul>
                     <hr/>
+                    {console.log(this.props.pouplatThree[0])}
                     <label className="title">Popular</label>
                     <ul className="side-bar-list">
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">Blog post #1</div>
-                            <Link to="/post/42">Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.pouplatThree[0].post_id}`}>{this.props.pouplatThree[0].post_title}
+                                {console.log(this.props.pouplatThree[0].post_title)}
+                            </Link></div>
                         </li>
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">Blog post #2</div>
-                            <Link to="/post/43">Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.pouplatThree[1].post_id}`}>{this.props.pouplatThree[1].post_title}</Link></div>
                         </li>
                         <li className="SideListPosts">
-                            <div className="sidePostTitle">Blog post #3</div>
-                            <Link to="/post/41">Here</Link>
+                            <div className="sidePostTitle"><Link to={`/post/${this.props.pouplatThree[2].post_id}`}>{this.props.pouplatThree[2].post_title}</Link></div>
                         </li>
                     </ul>
                 </aside>
 
             );
-        }else {
-            return (<div>loading...</div>)
-        }
     }
 
 
