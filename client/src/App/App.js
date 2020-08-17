@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import '../styles/App/App.css';
-
+import Header from "../Components/Header";
 import {checkLogin} from "../utils/server/User"
 import HomePage from "../Pages/HomePage";
 import AboutPage from "../Pages/AboutPage"
@@ -18,9 +18,7 @@ import SinglePostPage from "../Pages/SinglePostPage"
 import Account from "../Pages/Account/LoginPage";
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
-import Header_test from "../Components/Header";
 import FileUpload from "../fb/fileUploadTest"
-
 
 import EditPage_test from "../test/EditComp_test"
 
@@ -63,19 +61,18 @@ class App extends React.Component {
     return(
         <div>
           <Router>
-            <Header_test user={this.state.user} setUser={this.setUser}/>
-
+            <Header user={this.state.user} setUser={this.setUser}/>
             <div className="blog-body">
               <Switch>
                 <Route path='/Sign up' render={(props) => <Account{...props} setUser={this.setUser} newUser={true}/>}/>
                 <Route path='/Log in' render={(props) => <Account{...props} setUser={this.setUser} newUser={false}/>}/>
-                <Route path ="/home"><HomePage  setUser={this.setUser}/></Route>
-                <Route path='/about' render={(props) => <AboutPage{...props} setUser={this.setUser}/>}/>
-                <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  setUser={this.setUser}/>}/>
-                <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  setUser={this.setUser}/>}/>
-                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user} setUser={this.setUser}/>}/>
-                <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user}  setUser={this.setUser}/>}/>
-                <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}  setUser={this.setUser}/>}/>
+                <Route path ="/home"><HomePage  /></Route>
+                <Route path='/about' render={(props) => <AboutPage{...props} />}/>
+                <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user} />}/>
+                <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user} />}/>
+                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user}/>}/>
+                <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user} />}/>
+                <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
                 <Route path='/test' render={(props) => <FileUpload{...props} />}/>

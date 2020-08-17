@@ -342,3 +342,21 @@
     transform:translate3d(0, 0, 0);
     box-sizing: border-box;
 }
+.sign-up-body .input-img{
+    margin: 0 auto;
+    background: grey;
+    color:black;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sign-up-body .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+}

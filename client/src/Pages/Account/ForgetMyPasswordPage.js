@@ -32,12 +32,16 @@ class ForgetMyPasswordPage extends React.Component {
             <div className="restPassword">
                 <h1>Forget password</h1>
                 <p>Enter you email</p>
-                <input type="text" placeholder="example@example.com" onChange={this.handelEmail}></input><br/>
+                <input type="text"
+                       placeholder="example@example.com"
+                       onChange={this.handelEmail}
+                />
+                <br/>
                 <input type="submit"
                        value="Reset My Password"
                        className="forgetButton"
-                       onClick={this.handleClick}>
-                </input>
+                       onClick={this.handleClick}
+                />
             </div>
         );
     }

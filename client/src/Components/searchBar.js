@@ -10,9 +10,7 @@ class searchBar extends  React.Component {
         }
     }
     onChangeSearchBar = (event)=>{
-        this.setState({
-            search:event.target.value,
-        })
+        this.setState({search:event.target.value})
         if (event.target.value.length === 0) {
             this.props.showAll();
         }
@@ -21,15 +19,20 @@ class searchBar extends  React.Component {
         if (this.state.search !== '') {
             searchPosts(this.state.search.toLowerCase())
                 .then((response) => {
-                        this.props.sendSearchResults(response.data);
+                    this.props.sendSearchResults(response.data);
                 })
         }
     }
     render(){
             return(
                     <div className="topnav">
-                            <input type="text" onChange={this.onChangeSearchBar} className="searchBarInput" placeholder="Search..."/>
-                            <button onClick={this.handlePostSearch} className="fa fa-search" id="SearchButton"></button>
+                            <input type="text"
+                                   onChange={this.onChangeSearchBar}
+                                   className="searchBarInput"
+                                   placeholder="Search..."/>
+                            <button onClick={this.handlePostSearch}
+                                    className="fa fa-search"
+                                    id="SearchButton"/>
                     </div>
             );
         }

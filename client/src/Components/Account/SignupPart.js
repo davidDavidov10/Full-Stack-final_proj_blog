@@ -14,14 +14,19 @@ class SignupPart extends React.Component {
             password:null,
             c_password:null,
             resp:null,
-            img:null,
+            img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png",
 
         }
     }
-    handleImgChange = e => {
-        if (e.target.files[0]) {
-            this.setState({img:e.target.files[0]})
+    handleIFileSelected = (e) => {
+        const reader = new FileReader()
+        reader.onload = () =>{
+            if (reader.readyState === 2) {
+                this.setState({img:reader.result})
+            }
         }
+        reader.readAsDataURL(e.target.files[0])
+
     };
     handleEmail=(e)=>{
         this.setState({
@@ -46,36 +51,34 @@ class SignupPart extends React.Component {
     handleSingUp=(event)=>{
         event.preventDefault();
         if(this.state.password == this.state.c_password) {
-            this.handleUploadImgToFirebase().then((url) => {
-                doSignUp({...this.state, dataBaseImgUrl:url})
-                    .then((res)=>{
-                        // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
-                    })
-                    .catch(()=>{
-                        this.setState({resp:"Something went wrong, try again please."})
-                    });
+            this.handleFileUpload()
+                .then((url) => {
+                    doSignUp({...this.state, dataBaseImgUrl:url})
+                        .then((res)=>{
+
+                        })
+                        .catch(()=>{
+
+                        });
             })
         }else {
             this.setState({resp:"Passwords Don't Match"})
         }
     }
-    handleUploadImgToFirebase =()=> {
+    handleFileUpload =()=> {
         const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
         return new Promise((resolve, reject) => {
             uploadTask.on(
                 "state_changed",
                 snapshot => {
-                },
-                error => {
-                    console.log(error);
-                },
-                () => {
+                }, error => () =>
+                {
+                    /*{console.log(error);}*/
                     storage
-                        .ref(`profileImages/${this.state.img.name}`)
+                    .ref(`profileImages/${this.state.img.name}`)
                         .getDownloadURL()
                         .then(url => {
-                            console.log(url)
-                           resolve(url)
+                            resolve(url)
                         });
                 }
             );
@@ -122,6 +125,7 @@ class SignupPart extends React.Component {
     render() {
         return(
             <div className="form sign-up">
+                <img  className="avatar" src={this.state.img}/>
                 <form onSubmit={this.handleSingUp}>
                     <h2>Sign Up</h2>
                     <label>
@@ -140,11 +144,22 @@ class SignupPart extends React.Component {
                         <span>Confirm Password</span>
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
-                    <input type="file" onChange={this.handleImgChange} />
-
+                    <input type="file"
+                           style={{display:'none'}}
+                           onChange={this.handleIFileSelected}
+                           ref={fileInput =>this.fileInput = fileInput}
+                           accept="image/*"
+                    />
+                    <button type="button"
+                            className="input-img"
+                            onClick={()=>this.fileInput.click()}>Upload profile picture</button>
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
+
                 <h6>OR</h6>
+
+
+
                 <div className="social-media">
                     <ul>
                         <li>
