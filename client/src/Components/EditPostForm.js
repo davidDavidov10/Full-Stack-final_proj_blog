@@ -57,11 +57,13 @@ class EditPostForm extends Component {
                 <div>
                     <section className="new-post-section">
                         <h1>Create new post</h1>
-                            <textarea
+                            <input
+                                type="text"
+                                maxLength={50}
                                    className="new-post-title"
                                    placeholder="Title.."
                                    value={this.state.title}
-                                   onChange={this.handlePostTitle}/>
+                                   onChange={this.handlePostTitle} />
                             <br/>
                             <textarea
                                    className="new-post-content"

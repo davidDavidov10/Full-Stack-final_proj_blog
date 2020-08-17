@@ -1,22 +1,36 @@
-
-.SinglePost{
-    border: #0c0101 1px solid;
-}
-
 .postContent{
-    border: #b224ef 1px solid;
     width: 90%;
-    resize: vertical;
+    height:auto;
+    overflow: hidden;
 }
 .postTitle{
-    border: green 1px solid;
-    overflow: scroll;
-
-
+    position: relative;
+    overflow: auto;
 }
 
 .input_comment {
-    width: 50em;
+    width: auto;
+    position: relative;
+}
+.commentInput{
+    font-family: 'Darker Grotesque', sans-serif;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: 1px solid #787878;
+    padding: 5px 5px 5px 10px;
+    height: 70px;
+    width:50%;
+    transition: 0.2s;
+    box-sizing: border-box;
+    resize: none;
+    display: flex;
+}
+.commentInput:focus{
+    outline: none;
+    border: 1px solid black;
+}
+.commentInput::placeholder{
+    color: #bebebe;
 }
 
 .commentBox{
@@ -25,11 +39,7 @@
     padding: 0px 0px 20px 0px;
     border-radius: 20px;
     background: #1b212d;
-}
-.post{
-    /*background: white;*/
-    /*padding: 20px;*/
-    /*border-radius: 20px;*/
+    width: 30%;
 }
 .postBody{
     display: flex;
@@ -66,25 +76,7 @@
     margin-bottom: 5px;
 }
 
-.commentInput{
-    font-family: 'Darker Grotesque', sans-serif;
-    margin-top: 10px;
-    border-radius: 15px;
-    border: 1px solid #787878;
-    padding: 5px 5px 5px 10px;
-    height: 70px;
-    width:100%;
-    transition: 0.2s;
-    box-sizing: border-box;
-    resize: none;
-}
-.commentInput:focus{
-    outline: none;
-    border: 1px solid black;
-}
-.commentInput::placeholder{
-    color: #bebebe;
-}
+
 
 .postButton{
     font-family: 'Darker Grotesque', sans-serif;
@@ -146,11 +138,8 @@ button:focus{
 }
 .commentBody{
     max-width: 580px;
-    overflow-wrap: break-word;
+    overflow:auto;
 }
-
-
-
 
 
 /*Toggle Switch */

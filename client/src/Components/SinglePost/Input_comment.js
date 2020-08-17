@@ -6,6 +6,7 @@ class Input_comment extends React.Component {
         super(props);
         this.state={
             newComment:null,
+            errMsg:null
         }
     }
     handleSubmitComment=()=> {
@@ -25,7 +26,7 @@ class Input_comment extends React.Component {
 
 
         }else{
-            this.setState({errMsg:'You should Login first'})
+            this.setState({errMsg:'You should sign in first'})
         }
     }
     handleComment=(event)=>{
@@ -38,7 +39,7 @@ class Input_comment extends React.Component {
             <div className="input_comment">
                 <textarea type="text" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>
                 <button className="save_comment" onClick={this.handleSubmitComment}>save comment</button>
-                <p className="err"style={{color:"red"}}>{this.props.errMsg}</p>
+                <p className="err" style={{color:"red",marginTop:"5px"}}>{this.state.errMsg}</p>
             </div>
         );
     }

@@ -52,7 +52,11 @@
     display: flex;
 }
 
-
+.sep{
+    background-color: lightgray;
+    width: auto;
+    /*margin-right: 100%;*/
+}
 
 
 

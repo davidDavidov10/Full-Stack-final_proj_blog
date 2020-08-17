@@ -11,12 +11,14 @@ const makePosts =(posts)=>{
             <div className="post">
                 <div className="post-title">
                     <Link to={`/post/${post.id}`}>{post.title}</Link>
+                    <hr className="sep"/>
                 </div>
                     <img className="post-image" src={profileImg}/>
                     <div className="post-content">
                         <p>{content}</p>
                     </div>
-                    <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
+                <hr className="sep"/>
+                <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
             </div>
         );
     });
