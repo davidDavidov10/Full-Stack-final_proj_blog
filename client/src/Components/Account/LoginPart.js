@@ -96,11 +96,11 @@ class LoginPart extends React.Component {
                 <h2>Log In</h2>
                 <label>
                     <span>User Name</span>
-                    <input type="text" name="email"  onChange={this.handleUsername}></input>
+                    <input type="text" onChange={this.handleUsername}></input>
                 </label>
                 <label>
                     <span>Password</span>
-                    <input type="password" name="password" onChange={this.handlePassword}></input>
+                    <input type="password" onChange={this.handlePassword}></input>
                 </label>
                 <button className="submit" type="button" onClick={this.handleLogin}>Login</button>
                 <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>

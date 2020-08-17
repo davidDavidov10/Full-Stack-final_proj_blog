@@ -10,12 +10,13 @@ class LoginPage extends React.Component{
     constructor(props) {
         super(props);
     }
-    something=()=>
+    doSomething=()=>
     {
         document.querySelector('.cont').classList.toggle('s-signup')
     }
     componentDidMount() {
-        document.querySelector('.img-btn').addEventListener('click', this.something);
+       // this.doSomething()
+        document.querySelector('.img-btn').addEventListener('click',this.doSomething);
     }
     render(){
         return(

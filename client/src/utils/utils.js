@@ -3,10 +3,7 @@ import {Link} from "react-router-dom";
 
 import parse from 'html-react-parser';
 
-
-
 const makePosts =(posts)=>{
-    console.log(posts);
     let postsListJSXs = posts.map(function(post) {
         let profileImg = post.img ? post.img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
         let  content = parse(`${post.content}`)
