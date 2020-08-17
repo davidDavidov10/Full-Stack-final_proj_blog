@@ -12,8 +12,10 @@ const makePosts =(posts)=>{
                 <div className="post-title">
                     <Link to={`/post/${post.id}`}>{post.title}</Link>
                 </div>
-                    <img className="post-image" src={profileImg} width="90" height="90"/>
-                    <p>{content}</p>
+                    <img className="post-image" src={profileImg}/>
+                    <div className="post-content">
+                        <p>{content}</p>
+                    </div>
                     <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
             </div>
         );

@@ -2,35 +2,34 @@
     width: 80%;
     display: inline-block;
     font-size: 14px;
-    box-sizing:  border-box;
+    position: relative;
     padding:  10px 25px 10px 10px;
 }
-
-.post-section .posts-list{
-
-}
-
-.post-section .posts-list .post{
-    border: 2px solid black;
-    height: 150px;
-    padding: 10px;
-    box-sizing: border-box;
+.post{
+    border: black 1px solid;
+    padding: 20px;
+    width: 80%;
+    resize: vertical;
     position: relative;
+    margin-bottom: 2%;
+    border-radius: 20px;
     background-color: rgba(192, 219, 213, 0.82);
-
 }
 
-
-.post-section .posts-list .post + .post{
-    margin-top: 15px;
-}
-.post-section .posts-list .post .post-title{
+.post .post-title{
     font-size: 24px;
-    font-weight: bold;
     white-space: nowrap;
     width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.post-content{
+    width: 80%;
+
+}
+.post-title ,.post-content{
+    margin-bottom: 3%;
+    post-content: 3%;
 }
 
 .sidePostTitle {
@@ -38,33 +37,23 @@
     width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
+
 .SideListPosts{
     display: flex;
 }
-.post-section .posts-list .post .post-content {
-    padding-right: 100px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
 
-}
-
-.post-section .posts-list .post .publish-button{
-    float: right;
-    display: inline-block;
-}
-
-.post-section .posts-list .post .post-footer{
+.post img{
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    top: 18px;
+    right: 16px;
+    width:90px;
+    height:90px;
+    display: flex;
 }
 
-.post-section .posts-list .post .post-image{
-    position: absolute;
-    right: 10px;
-    top: 10px;
-}
+
+
+
+
+

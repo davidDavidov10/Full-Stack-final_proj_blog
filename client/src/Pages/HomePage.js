@@ -5,7 +5,8 @@ import {makePosts,makePosts_test} from "../utils/utils";
 import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
 
-import '../styles/Home/MainSection.css'
+// import '../styles/Home/MainSection.css'
+import '../styles/Home/HomePage.css'
 //import '../test/PostsSection_Test.css'
 
 
@@ -46,10 +47,12 @@ render() {
                     <label className="title">
                         <h1>This is my blog</h1>
                     </label>
+                    <div className="SearchBar">
                     <SearchBar sendSearchResults={this.showSearchResults} showAll={this.showAll}/>
+                    </div>
                     {this.state.waitingForSearchRes? this.state.resultsFromSearch.length > 0
                         ?
-                        <div className="posts-list">{makePosts_test(this.state.resultsFromSearch)}</div>
+                        <div>{makePosts_test(this.state.resultsFromSearch)}</div>
                         :
                         <div>No results found...</div>
                         :
