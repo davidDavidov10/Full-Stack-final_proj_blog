@@ -1,7 +1,7 @@
 import React from "react";
 import {getAllPostsByUser} from "../utils/server/Posts";
 import {makePosts} from "../utils/utils";
-
+import {Link} from "react-router-dom";
 
 class MyPostsPage extends React.Component {
     constructor(props) {
@@ -30,9 +30,12 @@ class MyPostsPage extends React.Component {
                     <div className="post-section">
                         <div className="posts-list">
                         {this.state.userPosts.length !== 0 ? makePosts(this.state.userPosts):
-                            <div className="post">
+                            <div>
                                 <p>no posts...</p>
-                        </div>}
+                                <p>you can create one by clicking <Link to="/new post">here</Link></p>
+
+                            </div>
+                        }
                     </div>
                     </div>
                 </div>
