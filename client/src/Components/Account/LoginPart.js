@@ -33,7 +33,7 @@ class LoginPart extends React.Component {
                     name:res.data["name"],
                     isLoggedIn:true
                 }
-                this.props.handleLog(user)
+                this.props.setUser(user)
                 this.props.history.push('/home')
                 // this.setState({resp:"Success ! you are Logged in"})
             })
@@ -59,7 +59,7 @@ class LoginPart extends React.Component {
                         name:res.data["name"],
                         isLoggedIn:true
                     }
-                    this.props.handleLog(user)
+                    this.props.setUser(user)
                     this.setState({resp:"Success ! you are Logged in!"})
                 })
                 .catch(()=>{

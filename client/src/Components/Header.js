@@ -15,7 +15,7 @@ class Header extends React.Component{
                     name:null,
                     isLoggedIn:false
                 }
-                this.props.handleLogout(user)
+                this.props.setUser(user)
             })
             .catch(()=>{
 

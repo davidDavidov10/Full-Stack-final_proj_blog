@@ -63,13 +63,13 @@ class App extends React.Component {
     return(
         <div>
           <Router>
-            <Header_test user={this.state.user} handleLogout={this.setUser}/>
+            <Header_test user={this.state.user} setUser={this.setUser}/>
 
             <div className="blog-body">
               <Switch>
                 <Route path='/Sign up' render={(props) => <Account{...props} setUser={this.setUser} newUser={true}/>}/>
                 <Route path='/Log in' render={(props) => <Account{...props} setUser={this.setUser} newUser={false}/>}/>
-                <Route path ="/home"><HomePage  handleLog={this.setUser}/></Route>
+                <Route path ="/home"><HomePage  setUser={this.setUser}/></Route>
                 <Route path='/about' render={(props) => <AboutPage{...props} setUser={this.setUser}/>}/>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user}  setUser={this.setUser}/>}/>
                 <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user}  setUser={this.setUser}/>}/>
