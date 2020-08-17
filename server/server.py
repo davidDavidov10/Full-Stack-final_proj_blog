@@ -242,6 +242,19 @@ def get_all_published_posts():
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
+    # print(data)
+    #david
+    query = "select post_id, count(post_id) as number_of_likes from posts_like group by post_id " \
+            "order by number_of_likes DESC"
+    cursor = g.db.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    header = ['post_id', 'number_of_likes']
+    posts_and_likes = []
+    for record in records:
+        posts_and_likes.append(dict(zip(header, record)))
+
+    print(json.dumps(data))
     cursor.close()
     return json.dumps(data)
 

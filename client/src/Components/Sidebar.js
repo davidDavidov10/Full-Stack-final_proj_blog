@@ -5,7 +5,7 @@ import '../styles/Home/Sidarbar.css'
 class Sidebar extends Component{
     constructor(props) {
         super(props);
-
+        console.log(this.props.pouplatThree)
     }
     render() {
         if(this.props.LatestPostr[0]) {
