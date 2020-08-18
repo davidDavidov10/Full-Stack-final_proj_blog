@@ -15,7 +15,7 @@ import NewPostPage from "../Pages/NewPostPage"
 import MyPostsPage from "../Pages/MyPostsPage"
 import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
-import Account from "../Pages/Account/LoginPage";
+import Account from "../Pages/Account/RegistrationPage";
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
 import FileUpload from "../fb/fileUploadTest"

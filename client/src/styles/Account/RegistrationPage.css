@@ -1,6 +1,5 @@
 
-
-.sign-up-body{
+.registration-body{
     width: 100%;
     height: 100vh;
     display: flex;
@@ -9,7 +8,7 @@
     box-sizing: border-box;
 }
 
-.sign-up-body input, button{
+.registration-body input, button{
     border:none;
     outline: none;
     background: none;
@@ -38,14 +37,14 @@
     box-sizing: border-box;
 }
 
-.sign-up-body h2, h6{
+.registration-body h2, h6{
     width: 100%;
     text-align: center;
     box-sizing: border-box;
 }
 
 
-.sign-up-body label{
+.registration-body label{
     display: block;
     width: 260px;
     margin: 25px auto 0;
@@ -53,7 +52,7 @@
     box-sizing: border-box;
 }
 
-.sign-up-body label span{
+.registration-body label span{
     font-size: 14px;
     font-weight: 600;
     color: #505f75;
@@ -61,7 +60,7 @@
     box-sizing: border-box;
 }
 
-.sign-up-body input{
+.registration-body input{
     display: block;
     width: 100%;
     margin-top: 5px;
@@ -73,7 +72,7 @@
     color: black;
 }
 
-.sign-up-body button{
+.registration-body button{
     display: block;
     margin: 0 auto;
     width: 260px;
@@ -341,4 +340,32 @@
     -webkit-transform:translate3d(0, 0, 0);
     transform:translate3d(0, 0, 0);
     box-sizing: border-box;
+}
+.registration-body .input-img{
+    margin: 0 auto;
+    background: grey;
+    color:black;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.registration-body .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+}
+.avatar{
+    left: 70%;
+    top: 20px;
+}
+.input-img {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }

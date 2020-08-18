@@ -1,11 +1,10 @@
-
-import "../../styles/Account/SignUpPage.css";
+import "../../styles/Account/RegistrationPage.css";
 import React from 'react';
 import LoginPart from  "../../Components/Account/LoginPart"
 import SignupPart from "../../Components/Account/SignupPart";
 import SubCont from "../../Components/Account/SubCont";
 
-class LoginPage extends React.Component{
+class RegistrationPage extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
@@ -24,7 +23,7 @@ class LoginPage extends React.Component{
     }
     render(){
         return(
-            <div className="sign-up-body">
+            <div className="registration-body">
                 <div className="cont">
                     <LoginPart {...this.props}/>
                     <div className="sub-cont">
@@ -36,4 +35,4 @@ class LoginPage extends React.Component{
         )
     }
 }
-export default LoginPage;
+export default RegistrationPage;

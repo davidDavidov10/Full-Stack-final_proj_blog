@@ -2,16 +2,24 @@ import React from 'react';
 import {doLogin} from "../../utils/server/User";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
-import {Link} from "react-router-dom";
+
 
 import {
-    TextField,
-    Button,
-    FormControl,
-    InputLabel,
-    Input,
-    FormHelperText
+    Avatar ,
+    Button ,
+    CssBaseline ,
+    TextField ,
+    FormControlLabel ,
+    Checkbox,
+    Link,
+    Grid,
+    Box,
+    LockOutlinedIcon ,
+    Typography ,
+    Container ,
 } from '@material-ui/core';
+
+import {makeStyles} from "@material-ui/core/styles";
 
 
 class LoginPart extends React.Component {
@@ -114,8 +122,8 @@ class LoginPart extends React.Component {
                         <TextField type="password" placeholder="" required onChange={this.handlePassword}/>
                     </label>
                     <Button type="submit"
-                               helperText = {this.state.error ? "something is wrong" : ""}
-                               className="submit">Log in</Button>
+                            helperText = {this.state.error ? "something is wrong" : ""}
+                            className="submit">Log in</Button>
                     {/*<button type="submit" className="submit">Login</button>*/}
                     <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>
                 </form>
@@ -141,7 +149,7 @@ class LoginPart extends React.Component {
                     </ul>
                 </div>
             </div>
-            );
+        );
     }
 }
 export default LoginPart;
