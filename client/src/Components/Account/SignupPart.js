@@ -145,6 +145,7 @@ class SignupPart extends React.Component {
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
                     <input type="file"
+                           className="input-img"
                            style={{display:'none'}}
                            onChange={this.handleIFileSelected}
                            ref={fileInput =>this.fileInput = fileInput}
