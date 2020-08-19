@@ -14,19 +14,19 @@ class SignupPart extends React.Component {
             password:null,
             c_password:null,
             resp:null,
-            img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png",
+            img:null,
 
         }
     }
-    handleIFileSelected = (e) => {
-        const reader = new FileReader()
-        reader.onload = () =>{
-            if (reader.readyState === 2) {
-                this.setState({img:reader.result})
+    handleImgChange = e => {
+        if (e.target.files[0]) {
+            if (e.target.files[0].size < 2000000 ){
+                this.setState({img:e.target.files[0]})
+            }else {
+                document.getElementById('profilePic').value = '';
+                alert("Please upload an image of at most 2MB")
             }
         }
-        reader.readAsDataURL(e.target.files[0])
-
     };
     handleEmail=(e)=>{
         this.setState({
@@ -48,36 +48,34 @@ class SignupPart extends React.Component {
             c_password: e.target.value
         });
     }
-    handleSingUp=(event)=>{
+    handleSingUp= async (event)=>{
         event.preventDefault();
         if(this.state.password == this.state.c_password) {
-            this.handleFileUpload()
-                .then((url) => {
-                    doSignUp({...this.state, dataBaseImgUrl:url})
-                        .then((res)=>{
-
-                        })
-                        .catch(()=>{
-
-                        });
-            })
+            let pictureUrl= this.state.img !==null ? await this.handleUploadImgToFirebase():null;
+            doSignUp({...this.state, dataBaseImgUrl:pictureUrl})
+                .then((res)=>{
+                    // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+                });
         }else {
             this.setState({resp:"Passwords Don't Match"})
         }
     }
-    handleFileUpload =()=> {
+    handleUploadImgToFirebase =()=> {
         const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
         return new Promise((resolve, reject) => {
             uploadTask.on(
                 "state_changed",
                 snapshot => {
-                }, error => () =>
-                {
-                    /*{console.log(error);}*/
+                },
+                error => {
+                    console.log(error);
+                },
+                () => {
                     storage
-                    .ref(`profileImages/${this.state.img.name}`)
+                        .ref(`profileImages/${this.state.img.name}`)
                         .getDownloadURL()
                         .then(url => {
+                            console.log(url)
                             resolve(url)
                         });
                 }
@@ -125,7 +123,6 @@ class SignupPart extends React.Component {
     render() {
         return(
             <div className="form sign-up">
-                <img  className="avatar" src={this.state.img}/>
                 <form onSubmit={this.handleSingUp}>
                     <h2>Sign Up</h2>
                     <label>
@@ -144,23 +141,21 @@ class SignupPart extends React.Component {
                         <span>Confirm Password</span>
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
-                    <input type="file"
-                           className="input-img"
-                           style={{display:'none'}}
-                           onChange={this.handleIFileSelected}
-                           ref={fileInput =>this.fileInput = fileInput}
-                           accept="image/*"
-                    />
-                    <button type="button"
-                            className="input-img"
-                            onClick={()=>this.fileInput.click()}>Upload profile picture</button>
+                        <div className="file-field ">
+                            <div className={this.state.img ?
+                                "btn btn-outline-success btn-rounded waves-effect btn-sm"
+                                :
+                                "btn btn-outline-secondary btn-rounded waves-effect btn-sm"}>
+                                <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
+                                <input type="file" onChange={this.handleImgChange} id="profilePic" accept="image/*"/>
+                            </div>
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text"/>
+                            </div>
+                        </div>
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
-
                 <h6>OR</h6>
-
-
-
                 <div className="social-media">
                     <ul>
                         <li>
@@ -169,7 +164,9 @@ class SignupPart extends React.Component {
                                 textButton = "Sign Up with Facebook"
                                 fields="name,email,picture"
                                 onClick={this.componentClicked}
-                                callback={this.responseFacebook}/>
+                                callback={this.responseFacebook}
+                                id="test"
+                            />
                         </li>
                         <li>
                             <GoogleLogin

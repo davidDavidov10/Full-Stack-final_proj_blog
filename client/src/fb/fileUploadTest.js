@@ -14,25 +14,25 @@ export default class ReactFirebaseFileUpload extends Component{
         }
     };
 
-    // handleUpload = () => {
-    //     const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
-    //     uploadTask.on(
-    //         "state_changed",
-    //         snapshot => {
-    //         },
-    //         error => {
-    //             console.log(error);
-    //         },
-    //         () => {
-    //             storage
-    //                 .ref(`profileImages/${this.state.img.name}`)
-    //                 .getDownloadURL()
-    //                 .then(url => {
-    //                     console.log(url);
-    //                 });
-    //         }
-    //     );
-    // };
+    handleUpload = () => {
+        const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage
+                    .ref(`profileImages/${this.state.img.name}`)
+                    .getDownloadURL()
+                    .then(url => {
+                        console.log(url);
+                    });
+            }
+        );
+    };
 
     render() {
         return (

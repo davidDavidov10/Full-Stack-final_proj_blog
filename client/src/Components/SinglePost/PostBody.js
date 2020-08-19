@@ -4,9 +4,10 @@ import parse from 'html-react-parser';
 
 const  PostBody=(props)=>{
     let content = parse(props.post.content)
+    let profileImg= props.post.img ? props.post.img :"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
     return (
         <div className="postBody">
-            <img src={props.post.img} className="postPic" alt="user Pic"/>
+            <img src={profileImg} className="postPic" alt="user Pic"/>
         <div className="postContent">
 
             <div className="postHeader">
