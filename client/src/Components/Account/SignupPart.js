@@ -15,6 +15,8 @@ class SignupPart extends React.Component {
             c_password:null,
             resp:null,
             img:null,
+            error:false,
+            errorMsg:null
 
         }
     }
@@ -54,10 +56,13 @@ class SignupPart extends React.Component {
             let pictureUrl= this.state.img !==null ? await this.handleUploadImgToFirebase():null;
             doSignUp({...this.state, dataBaseImgUrl:pictureUrl})
                 .then((res)=>{
-                    // this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+                })
+                .catch(()=>{
+                    this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
                 });
-        }else {
-            this.setState({resp:"Passwords Don't Match"})
+        }
+        else {
+            this.setState({error:true,errorMsg:"Passwords dont match!"})
         }
     }
     handleUploadImgToFirebase =()=> {
@@ -97,10 +102,9 @@ class SignupPart extends React.Component {
             }
             doSignUp(data)
                 .then((res)=>{
-                    this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
                 })
                 .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
+                    this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
                 });
         }
     }
@@ -113,10 +117,9 @@ class SignupPart extends React.Component {
             }
             doSignUp(data)
                 .then((res)=>{
-                    this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
                 })
                 .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
+                    this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
                 });
         }
     }
@@ -155,6 +158,7 @@ class SignupPart extends React.Component {
                     </div>
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
+                {this.state.error ? <span>{this.state.errorMsg}</span> : null}
                 <h6>OR</h6>
                 <div className="social-media">
                     <ul>

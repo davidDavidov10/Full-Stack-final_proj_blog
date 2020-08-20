@@ -76,7 +76,7 @@ class EditPostForm extends Component {
                                             'insertdatetime media table paste code help wordcount'
                                         ],
                                     toolbar:
-                                        'undo redo | formatselect | bold italic backcolor | ' +
+                                        'undo redo | formatselect | bold italic underline backcolor | link' +
                                         ' lignleft aligncenter alignright alignjustify |' +
                                         ' bullist numlist outdent indent | removeformat | help'
                                 }}
@@ -87,7 +87,7 @@ class EditPostForm extends Component {
 
                         <br/>
                         <button className="save-post" onClick={this.handleEditPost}>save post</button>
-                        {this.state.resp ? <p className="server-response" >{this.state.resp}</p>:null}
+                        {this.state.resp ? <span className="server-response" >{this.state.resp}</span>:null}
                     </section>
                 </div>
             );
