@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import {changePostPhase, deletePost} from "../../utils/server/Posts";
 import {like_Post,unlike_Post} from "../../utils/server/Likes";
 
+import AlertDialog from "../AlertDialogs/Delete";
+
 class AutorButtons extends React.Component {
     constructor(props) {
         super(props);
@@ -88,6 +90,9 @@ class AutorButtons extends React.Component {
                                      title="Delete Post"
                                      onClick={this.handleDelete}/>
                                      <br/>
+                        </span>
+                        <span className="desc">
+                            <AlertDialog handleDelete = {this.handleDelete}/>
                         </span>
                         <span className="desc">
                             {this.state.published

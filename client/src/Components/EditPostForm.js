@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 
 import {addNewPost, editPost} from '../utils/server/Posts'
 import {Editor} from "@tinymce/tinymce-react";
+import AlertDialog from "./AlertDialogs/SavePost";
 
 class EditPostForm extends Component {
     constructor(props) {
@@ -86,6 +87,7 @@ class EditPostForm extends Component {
 
 
                         <br/>
+                        <AlertDialog handleEditPost={this.handleEditPost}/>
                         <button className="save-post" onClick={this.handleEditPost}>save post</button>
                         {this.state.resp ? <span className="server-response" >{this.state.resp}</span>:null}
                     </section>

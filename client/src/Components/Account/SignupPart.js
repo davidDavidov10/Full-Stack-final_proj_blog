@@ -56,6 +56,7 @@ class SignupPart extends React.Component {
             let pictureUrl= this.state.img !==null ? await this.handleUploadImgToFirebase():null;
             doSignUp({...this.state, dataBaseImgUrl:pictureUrl})
                 .then((res)=>{
+                    this.props.slideMenu()
                 })
                 .catch(()=>{
                     this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
@@ -93,12 +94,12 @@ class SignupPart extends React.Component {
     componentClicked=()=>{
 
     }
-    responseFacebook=(response)=>{
+    responseFacebook= (response)=>{
         if(response){
             let data = {
                 user_name:response.name,
                 email_address:response.email,
-                password:null
+                password:null,
             }
             doSignUp(data)
                 .then((res)=>{
@@ -108,7 +109,7 @@ class SignupPart extends React.Component {
                 });
         }
     }
-    responseGoogle=(response)=>{
+    responseGoogle= async (response)=>{
         if(response){
             let data = {
                 user_name:response.profileObj.name,
