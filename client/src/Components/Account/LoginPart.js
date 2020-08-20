@@ -23,7 +23,8 @@ class LoginPart extends React.Component {
             resp:null,
             social_login:false,
             selectedFile:null,
-            error: false
+            serverError: false,
+            errorMsg:null
         }
     }
     handleUsername=(e)=>{
@@ -49,7 +50,7 @@ class LoginPart extends React.Component {
                 this.props.history.push('/home')
             })
             .catch((err)=>{
-                this.setState({error:true})
+                this.setState({error:true,errorMsg:"Incorrect username or password"})
             });
     }
 
@@ -100,7 +101,6 @@ class LoginPart extends React.Component {
     }
 
     render() {
-        console.log(this.state.error)
         return(
             <div className="form log-in">
                 <h2>Log In</h2>
@@ -113,12 +113,10 @@ class LoginPart extends React.Component {
                         <span>Password</span>
                         <TextField type="password" placeholder="" required onChange={this.handlePassword}/>
                     </label>
-                    <Button type="submit"
-                               helperText = {this.state.error ? "something is wrong" : ""}
-                               className="submit">Log in</Button>
-                    {/*<button type="submit" className="submit">Login</button>*/}
-                    <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>
+                    <Button type="submit" className="submit">Log in</Button>
                 </form>
+                {this.state.error ? <span className="server-response">{this.state.errorMsg}</span> : null}
+                <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>
                 <h6>OR</h6>
                 <div className="social-media">
                     <ul>

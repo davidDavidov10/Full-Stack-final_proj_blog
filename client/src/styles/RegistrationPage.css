@@ -369,3 +369,9 @@
     padding: 6px 12px;
     cursor: pointer;
 }
+
+.server-response {
+    color: white;
+    background: red;
+    text-align: center;
+}

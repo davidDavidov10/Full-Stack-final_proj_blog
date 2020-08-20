@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 
 import {addNewPost, editPost} from '../utils/server/Posts'
+import {Editor} from "@tinymce/tinymce-react";
 
 class EditPostForm extends Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class EditPostForm extends Component {
         this.state = {
             title:props.post.title,
             content:props.post.content,
-            resp:null
         }
     }
     handlePostTitle =(event) =>{
@@ -16,10 +16,9 @@ class EditPostForm extends Component {
             title: event.target.value
         })
     }
-    handlePostContent =(event) =>{
-        this.setState({
-            content: event.target.value
-        })
+
+    handleEditorChange = (content, editor) => {
+        this.setState({content:content})
     }
 
     handleEditPost= ()=>{
@@ -28,7 +27,7 @@ class EditPostForm extends Component {
                 addNewPost(this.state)
                     .then((res)=>{
                         this.props.history.push(`post/${res.data.id}`)
-                })
+                    })
                     .catch(()=>{
                         this.setState({resp:"Something went wrong, try again please."})
                     });
@@ -40,38 +39,54 @@ class EditPostForm extends Component {
                 editPost(post)
                     .then((res)=>{
                         this.props.history.push(`post/${res.data.id}`)
-                        // this.setState({resp:"Post Edited!"})
                     })
                     .catch(()=>{
-                        this.setState({resp:"Something went wrong, try again please."})
+
                     });
             }
         }
         else {
-            this.setState({resp:"Must log in first!"})
+
         }
     }
     render(){
+        console.log(this.state)
         if (this.state){
             return (
                 <div>
                     <section className="new-post-section">
                         <h1>Create new post</h1>
-                            <input
-                                type="text"
-                                maxLength={50}
-                                   className="new-post-title"
-                                   placeholder="Title.."
-                                   value={this.state.title}
-                                   onChange={this.handlePostTitle} />
-                            <br/>
-                            <textarea
-                                   className="new-post-content"
-                                   placeholder="content.."
-                                   value={this.state.content}
-                                   onChange={this.handlePostContent}/>
-                            <br/>
-                            <button className="save-post" onClick={this.handleEditPost}>save post</button>
+                        <input
+                            type="text"
+                            maxLength={50}
+                            className="new-post-title"
+                            placeholder="Title.."
+                            value={this.state.title}
+                            onChange={this.handlePostTitle} />
+                        <br/>
+
+                        <Editor className="new-post-content"
+                                apiKey='c6tofwg98h3l1ncwn5r8eugb9w3bwaha5542p2qaqfma2d7j'
+                                initialValue={this.state.content}
+                                init={{height: 300, menubar: false,
+                                    plugins:
+                                        [
+                                            'advlist autolink lists link image charmap print preview anchor',
+                                            'searchreplace visualblocks code fullscreen',
+                                            'insertdatetime media table paste code help wordcount'
+                                        ],
+                                    toolbar:
+                                        'undo redo | formatselect | bold italic backcolor | ' +
+                                        ' lignleft aligncenter alignright alignjustify |' +
+                                        ' bullist numlist outdent indent | removeformat | help'
+                                }}
+                                onEditorChange={this.handleEditorChange}
+                        />
+
+
+
+                        <br/>
+                        <button className="save-post" onClick={this.handleEditPost}>save post</button>
                         {this.state.resp ? <p className="server-response" >{this.state.resp}</p>:null}
                     </section>
                 </div>

@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import ImgUpload from "../../fb/fileUploadTest"
 import {storage} from "../../fb/firebaseStorage";
+import {TextField, Input,Button} from "@material-ui/core";
 
 class SignupPart extends React.Component {
     constructor(props) {
@@ -13,20 +14,21 @@ class SignupPart extends React.Component {
             email_address:null,
             password:null,
             c_password:null,
-            resp:null,
-            img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png",
-
+            error:false,
+            errorMsg:null,
+            profileImg:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png",
+            profileImgName:"aa"
         }
     }
     handleIFileSelected = (e) => {
         const reader = new FileReader()
         reader.onload = () =>{
             if (reader.readyState === 2) {
-                this.setState({img:reader.result})
+                this.setState({profileImg:reader.result})
             }
         }
         reader.readAsDataURL(e.target.files[0])
-
+        this.setState({profileImgName:e.target.files[0].name})
     };
     handleEmail=(e)=>{
         this.setState({
@@ -50,34 +52,39 @@ class SignupPart extends React.Component {
     }
     handleSingUp=(event)=>{
         event.preventDefault();
-        if(this.state.password == this.state.c_password) {
+        if(this.state.password === this.state.c_password) {
+            console.log("1")
             this.handleFileUpload()
+            console.log("2")
                 .then((url) => {
                     doSignUp({...this.state, dataBaseImgUrl:url})
                         .then((res)=>{
-
+                            this.props.slideMenu()
                         })
                         .catch(()=>{
-
+                            this.setState({error:true,errorMsg:"Something is wrong, try again!"})
                         });
             })
         }else {
-            this.setState({resp:"Passwords Don't Match"})
+            this.setState({error:true,errorMsg:"Passwords doesn\'t match!"})
         }
     }
     handleFileUpload =()=> {
-        const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
+        const uploadTask = storage.ref(`profileImages/${this.state.profileImgName}`).put(this.state.profileImg);
         return new Promise((resolve, reject) => {
             uploadTask.on(
                 "state_changed",
                 snapshot => {
-                }, error => () =>
-                {
-                    /*{console.log(error);}*/
+                },
+                error => {
+                    console.log(error);
+                },
+                () => {
                     storage
-                    .ref(`profileImages/${this.state.img.name}`)
+                        .ref(`profileImages/${this.state.profileImg.name}`)
                         .getDownloadURL()
                         .then(url => {
+                            console.log(url)
                             resolve(url)
                         });
                 }
@@ -99,10 +106,10 @@ class SignupPart extends React.Component {
             }
             doSignUp(data)
                 .then((res)=>{
-                    this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+
                 })
                 .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
+                    this.setState({error:true,errorMsg:"Something is wrong, try again!"})
                 });
         }
     }
@@ -115,34 +122,34 @@ class SignupPart extends React.Component {
             }
             doSignUp(data)
                 .then((res)=>{
-                    this.setState({resp:"Success ! you are Signed up, go to log in page to log in."})
+
                 })
                 .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
+                    this.setState({error:true,errorMsg:"Something is wrong, try again!"})
                 });
         }
     }
     render() {
         return(
             <div className="form sign-up">
-                <img  className="avatar" src={this.state.img}/>
+                <img  className="avatar" src={this.state.profileImg}/>
                 <form onSubmit={this.handleSingUp}>
                     <h2>Sign Up</h2>
                     <label>
-                        <span>Name</span>
-                        <input type="text" onChange={this.handleUsername}></input>
+                        <span>User Name</span>
+                        <TextField type="text" required onChange={this.handleUsername}/>
                     </label>
                     <label>
-                        <span>Email</span>
-                        <input type="email" onChange={this.handleEmail}></input>
+                        <span>Email Address</span>
+                        <TextField type="email" required onChange={this.handleEmail}/>
                     </label>
                     <label>
                         <span>Password</span>
-                        <input type="password" required onChange={this.handlePassword}></input>
+                        <TextField type="password" required onChange={this.handlePassword}/>
                     </label>
                     <label>
                         <span>Confirm Password</span>
-                        <input type="password" required onChange={this.handle_c_Password}></input>
+                        <TextField type="password" required onChange={this.handle_c_Password}/>
                     </label>
                     <input type="file"
                            className="input-img"
@@ -153,14 +160,12 @@ class SignupPart extends React.Component {
                     />
                     <button type="button"
                             className="input-img"
-                            onClick={()=>this.fileInput.click()}>Upload profile picture</button>
-                    <button type="submit" className="submit">Sign Up Now</button>
+                            onClick={()=>this.fileInput.click()}>Upload profile picture
+                    </button>
+                    <Button type="submit" className="submit">Sign Up Now</Button>
                 </form>
-
+                <h6>{this.state.error ? <h6>{this.state.errorMsg}</h6>: null}</h6>
                 <h6>OR</h6>
-
-
-
                 <div className="social-media">
                     <ul>
                         <li>

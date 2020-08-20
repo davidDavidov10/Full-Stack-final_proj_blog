@@ -7,7 +7,7 @@ import {checkLogin} from "../utils/server/User";
 class NewPostPage extends React.Component {
     constructor(props) {
         super(props);
-        this.post = {
+         this.post = {
             title:"",
             content:""
         }

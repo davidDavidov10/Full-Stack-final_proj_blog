@@ -20,8 +20,6 @@ import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
 import FileUpload from "../fb/fileUploadTest"
 
-import EditPage_test from "../test/EditComp_test"
-
 const user ={
   id:null,
   name:null,
@@ -70,7 +68,6 @@ class App extends React.Component {
                 <Route path='/about' render={(props) => <AboutPage{...props} />}/>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user} />}/>
                 <Route path='/new post' render={(props) => <NewPostPage {...props} user= {this.state.user} />}/>
-                <Route path='/test/new post' render={(props) => <EditPage_test {...props} user= {this.state.user}/>}/>
                 <Route path='/post/:id/edit' render={(props) => <EditPostPage{...props} user= {this.state.user} />}/>
                 <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>

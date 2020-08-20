@@ -1,8 +1,9 @@
-import "../../styles/Account/RegistrationPage.css";
+import "../../styles/RegistrationPage.css";
 import React from 'react';
 import LoginPart from  "../../Components/Account/LoginPart"
 import SignupPart from "../../Components/Account/SignupPart";
 import SubCont from "../../Components/Account/SubCont";
+
 
 class RegistrationPage extends React.Component{
     constructor(props) {
@@ -28,7 +29,7 @@ class RegistrationPage extends React.Component{
                     <LoginPart {...this.props}/>
                     <div className="sub-cont">
                         <SubCont/>
-                        <SignupPart/>
+                        <SignupPart slideMenu={this.slideMenu}/>
                     </div>
                 </div>
             </div>
