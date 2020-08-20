@@ -5,6 +5,11 @@ const getAllPosts = () =>{
     return  axios.get(url)
 
 }
+const getTheMostPopular = () =>{
+    const url = "/api/threeMostPopular"
+    return  axios.get(url)
+}
+
 
 const getAllPostsByUser=()=>{
     const url = `/api/user/posts`
@@ -57,5 +62,5 @@ export
     deletePost,
     changePostPhase,
     searchPosts,
-
+    getTheMostPopular
 }

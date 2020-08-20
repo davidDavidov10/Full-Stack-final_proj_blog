@@ -248,21 +248,22 @@ def get_all_published_posts():
     return json.dumps(data)
 
 
-# def get_likes():
-#     query = "select post_id, posts.title , count(post_id) as number_of_likes" \
-#             " from posts_like join posts " \
-#             "where posts_like.post_id =posts.id and posts.published=1" \
-#             " group by post_id order by number_of_likes DESC"
-#     cursor = g.db.cursor()
-#     cursor.execute(query)
-#     records = cursor.fetchall()
-#     header = ['post_id', 'post_title', 'number_of_likes']
-#     data = []
-#     for record in records:
-#         data.append(dict(zip(header, record)))
-#     cursor.close()
-#
-#     return json.dumps(data)
+@app.route('/api/threeMostPopular', methods=['GET'])
+def get_likes():
+    query = "select post_id, posts.title , count(post_id) as number_of_likes" \
+            " from posts_like join posts " \
+            "where posts_like.post_id =posts.id and posts.published=1" \
+            " group by post_id order by number_of_likes DESC LIMIT 3"
+    cursor = g.db.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    header = ['post_id', 'post_title', 'number_of_likes']
+    data = []
+    for record in records:
+        data.append(dict(zip(header, record)))
+    cursor.close()
+    print(json.dumps(data))
+    return json.dumps(data)
 
 def get_post(post_id):
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.author_id, " \

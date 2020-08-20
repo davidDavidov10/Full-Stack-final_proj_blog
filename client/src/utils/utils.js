@@ -54,33 +54,34 @@ const getLikeNames=(likes)=>{
     return likeNames
 }
 
-const doSomething =(posts)=>{
-    console.log("doSomething")
-    var first = [-1,-Infinity]
-    var second = [-1,-Infinity]
-    var third =  [-1,-Infinity]
-    var MostLiked = posts.map(function (post) {
-        if (post.likes.length > first[1])
-        {
-            third = second
-            second = first
-            first = [post.id,post.likes.length]
-        }
-        else if (post.likes.length > second[1])
-        {
-            third = second
-            second = [post.id,post.likes.length]
-        }
-        else if (post.likes.length > third[1])
-        {
-            third = [post.id,post.likes.length]
-        }
-        return [first[0],second[0],third[0]]
-    })
-    console.log("do something end")
-    console.log(MostLiked)
-    return MostLiked
-}
+// const doSomething =(posts)=>{
+//     console.log("doSomething")
+//     let first = []
+//     let second = []
+//     let third = []
+//     console.log("posts="+ posts)
+//     let MostLiked = posts.map(function (post) {
+//         if (post.likes.length > first[1])
+//         {
+//             third = second
+//             second = first
+//             first = [post.id,post.likes.length]
+//         }
+//         else if (post.likes.length > second[1])
+//         {
+//             third = second
+//             second = [post.id,post.likes.length]
+//         }
+//         else if (post.likes.length > third[1])
+//         {
+//             third = [post.id,post.likes.length]
+//         }
+//         return [first[0],second[0],third[0]]
+//     })
+//     console.log("do something end")
+//     console.log(MostLiked)
+//     return MostLiked
+// }
 
 
 
@@ -90,6 +91,6 @@ export
     makeComments,
     getLikeIds,
     getLikeNames,
-    doSomething
+    // doSomething
 }
 
