@@ -94,12 +94,12 @@
     /*margin-top: 20px;*/
     /*box-shadow: 0px 5px 0px 0px gray;*/
 }
-button:hover{
+.fa:hover{
     box-shadow: none;
     transform: translateY(5px);
     transition: all .1s linear;
 }
-button:focus{
+.fa:focus{
     outline: none;
 }
 .save_comment{

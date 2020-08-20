@@ -37,8 +37,9 @@ constructor(props) {
 
 render() {
         if(this.state.posts) {
-            /*let latestThree = this.state.posts.slice(0, 3);
-            let popularThree = this.state.posts.slice(-1)[0].likes.slice(0, 3)*/
+            let numOfPosts = Math.min(this.state.posts.length, 3);
+            let latestThree = this.state.posts.slice(0, numOfPosts);
+            let popularThree = this.state.posts.slice(-1)[0].likes.slice(0, numOfPosts)
             return (
                 <section className="main-section">
                     <div className="post-section">
@@ -53,7 +54,7 @@ render() {
                             :
                             <MainSection posts={this.state.posts}/>}
                     </div>
-                    {/*<Sidebar LatestPosts={latestThree} pouplatThree={popularThree}/>*/}
+                    <Sidebar LatestPosts={latestThree} pouplatThree={popularThree}/>
                 </section>
             );
         }else{

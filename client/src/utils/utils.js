@@ -5,7 +5,9 @@ import parse from 'html-react-parser';
 
 const makePosts =(posts)=>{
     let postsListJSXs = posts.map(function(post) {
-        let profileImg = post.img ? post.img:"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
+        console.log(post)
+        console.log(post.img)
+        let profileImg = post.img ? post.img :"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
         let  content = parse(`${post.content}`)
         return(
             <div className="post">
