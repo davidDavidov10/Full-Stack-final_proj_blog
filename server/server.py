@@ -234,6 +234,7 @@ def get_all_published_posts():
             "posts.author_id, users.img from posts join users on posts.author_id=users.id " \
             "where published is true " \
             "order by published_at DESC"
+
     cursor = g.db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
@@ -242,21 +243,26 @@ def get_all_published_posts():
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
+        data[itear]['likes'] = get_all_likes(data[itear]['id'])
 
-    query = "select post_id, posts.title ,count(post_id) as number_of_likes from posts_like join posts where posts_like.post_id =posts.id and posts.published=1 group by post_id order by number_of_likes DESC"
-
-    cursor = g.db.cursor()
-    cursor.execute(query)
-    records = cursor.fetchall()
-    header = ['post_id', 'post_title', 'number_of_likes']
-    posts_and_likes = []
-    for record in records:
-        posts_and_likes.append(dict(zip(header, record)))
-
-    data.append({'likes': posts_and_likes})
-    cursor.close()
     return json.dumps(data)
 
+
+# def get_likes():
+#     query = "select post_id, posts.title , count(post_id) as number_of_likes" \
+#             " from posts_like join posts " \
+#             "where posts_like.post_id =posts.id and posts.published=1" \
+#             " group by post_id order by number_of_likes DESC"
+#     cursor = g.db.cursor()
+#     cursor.execute(query)
+#     records = cursor.fetchall()
+#     header = ['post_id', 'post_title', 'number_of_likes']
+#     data = []
+#     for record in records:
+#         data.append(dict(zip(header, record)))
+#     cursor.close()
+#
+#     return json.dumps(data)
 
 def get_post(post_id):
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.author_id, " \
@@ -313,6 +319,9 @@ def get_all_user_posts():
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
+
+
+
 
 
 def delete_post(post_id):

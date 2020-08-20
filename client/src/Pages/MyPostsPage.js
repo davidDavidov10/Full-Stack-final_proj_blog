@@ -33,7 +33,6 @@ class MyPostsPage extends React.Component {
                             <div>
                                 <p>no posts...</p>
                                 <p>you can create one by clicking <Link to="/new post">here</Link></p>
-
                             </div>
                         }
                     </div>
