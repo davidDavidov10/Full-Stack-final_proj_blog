@@ -147,20 +147,22 @@ class SignupPart extends React.Component {
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
 
-                    {/*<div className="file-field ">*/}
-                    {/*    <div className={this.state.img ?*/}
-                    {/*        "upLoaded"*/}
-                    {/*        :*/}
-                    {/*        "NotUpLoaded"}>*/}
-                    {/*        <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>*/}
-                    {/*        <input type="file" onChange={this.handleImgChange} id="profilePic" accept="image/*"/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className="file-path-wrapper">*/}
-                    {/*        <input className="file-path validate" type="text"/>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
-                    
+                        <div className="file">
+                        <div className={this.state.img ?
+                            "file is-primary"
+                            :
+                            "fileB"}>
+                            <label className="fileLabel">
+                                <input className="file-input" type="file" id="profilePic" onChange={this.handleImgChange} accept="image/*"/>
+                                  <span className="file-cta">
+                                    <span className="file-icon">
+                                    <i className="fa fa-upload"></i>
+                                   </span>
+                                    <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
+                                  </span>
+                            </label>
+                    </div>
+                        </div>
 
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>

@@ -49,7 +49,7 @@ class Header extends React.Component{
                                 <ul className="leftNavSide">
                                     <li className="listElement">
                                         <Link to="/new post"className="link">
-                                            <i className="fa fa-plus-square-o" aria-hidden="true"></i>
+                                            <i className="fa fa-plus-square-o" aria-hidden="true"></i> 
                                             New post
                                         </Link>
                                     </li>
