@@ -381,6 +381,15 @@
 .file{
     margin-left: 27%;
     width: 0px;
-
-
+}
+.notUploaded {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+}
+.uploaded{
+    border: 1px solid black;
+    background: greenyellow;
+    padding: 5px;
+    border-radius: 20px;
 }

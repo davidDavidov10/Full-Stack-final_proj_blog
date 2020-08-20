@@ -4,7 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import ImgUpload from "../../fb/fileUploadTest"
 import {storage} from "../../fb/firebaseStorage";
-// import Button from 'react-bootstrap/Button';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SignupPart extends React.Component {
     constructor(props) {
@@ -156,9 +156,9 @@ class SignupPart extends React.Component {
                             :
                             "fileB"}>
                             <label className="fileLabel">
-                                <input className="file-input" type="file" id="profilePic" onChange={this.handleImgChange} accept="image/*"/>
-                                  <span className="file-cta">
-                                    <span className="file-icon">
+                                <input className="file-input" type="file" id="profilePic" onChange={this.handleImgChange} accept="image/*" style={{display:"none"}}/>
+                                  <span className={this.state.img ? 'uploaded':'notUploaded'} >
+                                    <span className="file-icon" >
                                     <i className="fa fa-upload"></i>
                                    </span>
                                     <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
