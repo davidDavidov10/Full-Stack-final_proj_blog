@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import ImgUpload from "../../fb/fileUploadTest"
 import {storage} from "../../fb/firebaseStorage";
+// import Button from 'react-bootstrap/Button';
 
 class SignupPart extends React.Component {
     constructor(props) {
@@ -145,18 +146,22 @@ class SignupPart extends React.Component {
                         <span>Confirm Password</span>
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
-                    <div className="file-field ">
-                        <div className={this.state.img ?
-                            "btn btn-outline-success btn-rounded waves-effect btn-sm"
-                            :
-                            "btn btn-outline-secondary btn-rounded waves-effect btn-sm"}>
-                            <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
-                            <input type="file" onChange={this.handleImgChange} id="profilePic" accept="image/*"/>
-                        </div>
-                        <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text"/>
-                        </div>
-                    </div>
+
+                    {/*<div className="file-field ">*/}
+                    {/*    <div className={this.state.img ?*/}
+                    {/*        "upLoaded"*/}
+                    {/*        :*/}
+                    {/*        "NotUpLoaded"}>*/}
+                    {/*        <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>*/}
+                    {/*        <input type="file" onChange={this.handleImgChange} id="profilePic" accept="image/*"/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="file-path-wrapper">*/}
+                    {/*        <input className="file-path validate" type="text"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
+                    
+
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
                 {this.state.error ? <span>{this.state.errorMsg}</span> : null}
