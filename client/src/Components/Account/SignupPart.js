@@ -23,6 +23,7 @@ class SignupPart extends React.Component {
     }
     handleImgChange = e => {
         if (e.target.files[0]) {
+            console.log(e.target.files[0])
             if (e.target.files[0].size < 2000000 ){
                 this.setState({img:e.target.files[0]})
             }else {
@@ -97,12 +98,14 @@ class SignupPart extends React.Component {
     }
     responseFacebook= (response)=>{
         if(response){
+            console.log(response)
             let data = {
                 user_name:response.name,
                 email_address:response.email,
                 password:null,
             }
-            doSignUp(data)
+            console.log({...data , dataBaseImgUrl: response.picture.data.url}.dataBaseImgUrl);
+            doSignUp({...data , dataBaseImgUrl: response.picture.data.url})
                 .then((res)=>{
                 })
                 .catch(()=>{

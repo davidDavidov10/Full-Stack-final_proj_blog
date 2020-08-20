@@ -186,15 +186,18 @@ def get_user(user_id):
 
 def add_user():
     data = request.get_json()
+    print("data")
     print(data)
+    print('dataBaseImgUrl')
+    print(data['dataBaseImgUrl'])
     if data['password']:
         pwd = data['password']
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
         query = "insert into users (name, email,password,img) values (%s, %s, %s,%s)"
         values = (data['user_name'], data['email_address'], hashed_pwd, data['dataBaseImgUrl'])
     else:
-        query = "insert into users (name, email) values (%s, %s)"
-        values = (data['user_name'], data['email_address'])
+        query = "insert into users (name, email,img) values (%s, %s, %s)"
+        values = (data['user_name'], data['email_address'],  data['dataBaseImgUrl'])
 
     cursor = g.db.cursor()
     cursor.execute(query, values)
