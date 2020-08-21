@@ -45,8 +45,7 @@ render() {
             let numOfSiderBarPosts = Math.min(this.state.posts.length, 3);
             let latestThree = this.state.posts.slice(0, numOfSiderBarPosts);
             let bestThree = doSomething(this.state.posts)
-            console.log("bestThree = ")
-            console.log(bestThree)
+
             return (
                 <section className="main-section">
                     <div className="post-section">

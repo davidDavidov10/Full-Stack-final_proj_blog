@@ -55,7 +55,6 @@ const getLikeNames=(likes)=>{
 }
 
 const doSomething =(posts)=>{
-    console.log("doSomething")
     var first = [-1,-Infinity]
     var second = [-1,-Infinity]
     var third =  [-1,-Infinity]
@@ -64,21 +63,19 @@ const doSomething =(posts)=>{
         {
             third = second
             second = first
-            first = [post.id,post.likes.length]
+            first = [post,post.likes.length]
         }
         else if (post.likes.length > second[1])
         {
             third = second
-            second = [post.id,post.likes.length]
+            second = [post,post.likes.length]
         }
         else if (post.likes.length > third[1])
         {
-            third = [post.id,post.likes.length]
+            third = [post,post.likes.length]
         }
         return [first[0],second[0],third[0]]
     })
-    console.log("do something end")
-    console.log(MostLiked)
     return MostLiked
 }
 

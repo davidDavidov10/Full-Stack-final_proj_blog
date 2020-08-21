@@ -23,10 +23,12 @@ class Sidebar extends Component{
                     <label className="title">Popular</label>
                     <ul className="side-bar-list">
                             {this.props.pouplatThree.map((popularPost)=>{
-                                return(
-                                    <li className="SideListPosts">
-                                <div className="sidePostTitle"><Link to={`/post/${popularPost.post_id}`}>{popularPost.post_title}
-                                </Link></div></li>);
+                                if(popularPost !== -1){
+                                    return(
+                                        <li className="SideListPosts">
+                                            <div className="sidePostTitle"><Link to={`/post/${popularPost.id}`}>{popularPost.title}
+                                            </Link></div></li>);
+                                }
                             })}
                     </ul>
                 </aside>

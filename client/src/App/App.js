@@ -15,7 +15,7 @@ import NewPostPage from "../Pages/NewPostPage"
 import MyPostsPage from "../Pages/MyPostsPage"
 import EditPostPage from "../Pages/EditPostPage"
 import SinglePostPage from "../Pages/SinglePostPage"
-import Account from "../Pages/Account/RegistrationPage";
+import RegistrationPage from "../Pages/Account/RegistrationPage";
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
 import FileUpload from "../fb/fileUploadTest"
@@ -62,8 +62,8 @@ class App extends React.Component {
             <Header user={this.state.user} setUser={this.setUser}/>
             <div className="blog-body">
               <Switch>
-                <Route path='/Sign up' render={(props) => <Account{...props} setUser={this.setUser} newUser={true}/>}/>
-                <Route path='/Log in' render={(props) => <Account{...props} setUser={this.setUser} newUser={false}/>}/>
+                <Route path='/Sign up' render={(props) => <RegistrationPage{...props} setUser={this.setUser} newUser={true}/>}/>
+                <Route path='/Log in' render={(props) => <RegistrationPage{...props} setUser={this.setUser} newUser={false}/>}/>
                 <Route path ="/home"><HomePage  /></Route>
                 <Route path='/about' render={(props) => <AboutPage{...props} />}/>
                 <Route path='/my posts' render={(props) => <MyPostsPage{...props} user= {this.state.user} />}/>

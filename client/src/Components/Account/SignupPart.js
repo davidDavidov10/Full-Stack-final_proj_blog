@@ -95,6 +95,7 @@ class SignupPart extends React.Component {
 
     }
     responseFacebook= (response)=>{
+        console.log(response)
         if(response){
             let data = {
                 user_name:response.name,
