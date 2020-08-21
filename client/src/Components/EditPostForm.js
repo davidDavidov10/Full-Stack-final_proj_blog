@@ -83,8 +83,6 @@ class EditPostForm extends Component {
                                 onEditorChange={this.handleEditorChange}
                         />
 
-
-
                         <br/>
                         <AlertDialog handleEditPost={this.handleEditPost}/>
                         <button className="save-post" onClick={this.handleEditPost}>save post</button>

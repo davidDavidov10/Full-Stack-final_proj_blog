@@ -5,7 +5,7 @@ import SignupPart from "../../Components/Account/SignupPart";
 import SubCont from "../../Components/Account/SubCont";
 
 
-class RegistrationPage extends React.Component{
+class SignUpPage extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
@@ -17,9 +17,7 @@ class RegistrationPage extends React.Component{
         document.querySelector('.cont').classList.toggle('s-signup')
     }
     componentDidMount() {
-        if (this.props.newUser){
-            this.slideMenu()
-        }
+        this.slideMenu()
         document.querySelector('.img-btn').addEventListener('click',this.slideMenu);
     }
     render(){
@@ -36,4 +34,4 @@ class RegistrationPage extends React.Component{
         )
     }
 }
-export default RegistrationPage;
+export default SignUpPage;

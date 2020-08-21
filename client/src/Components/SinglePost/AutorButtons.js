@@ -81,16 +81,10 @@ class AutorButtons extends React.Component {
                                         style={{fontSize:"25px"}}
                                         aria-hidden="true"
                                         title="Edit Post"/>
-                                <br/>
+
                             </Link>
                         </span>
-                        <span className="desc">
-                            <button  className="fa fa-trash-o"
-                                     style={{fontSize:"25px"}}
-                                     title="Delete Post"
-                                     onClick={this.handleDelete}/>
-                                     <br/>
-                        </span>
+                        <AlertDialog handleDelete={this.handleDelete}/>
                         <span className="desc">
                             {this.state.published
                                 ?

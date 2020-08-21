@@ -1,12 +1,15 @@
 import React from "react";
 import {sendRestPassEmail} from "../../utils/server/User"
 
+import { Alert } from '@material-ui/lab';
+
 class ForgetMyPasswordPage extends React.Component {
     constructor(props) {
         super(props);
         this.state={
             email:"",
-            ErrMsg:false
+            ErrMsg:false,
+            emailSent:null
         }
 
     }
@@ -19,10 +22,10 @@ class ForgetMyPasswordPage extends React.Component {
     handleClick=()=>{
         sendRestPassEmail(this.state)
             .then((res)=>{
-
+                this.setState({emailSent: true})
         })
             .catch((err)=>{
-                this.setState({ErrMsg:err.response.data.msg})
+                this.setState({emailSent:false})
             });
     }
     render(){
@@ -42,6 +45,8 @@ class ForgetMyPasswordPage extends React.Component {
                        className="forgetButton"
                        onClick={this.handleClick}
                 />
+                {this.state.emailSent === true ? <Alert severity="success">An email will send in a few minutes, make sure you check your spam.</Alert> : null}
+                {this.state.emailSent === false ? <Alert severity="error">Email doesn't exsit</Alert> : null}
             </div>
         );
     }

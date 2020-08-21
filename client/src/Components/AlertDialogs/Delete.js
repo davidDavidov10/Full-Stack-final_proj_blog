@@ -7,7 +7,6 @@ import {
     IconButton,
 } from '@material-ui/core';
 
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 
 export default function AlertDialog(props) {
@@ -23,16 +22,11 @@ export default function AlertDialog(props) {
 
 
     return (
-        <div>
-            <IconButton
-                aria-label="delete"
-                className="fa fa-trash-o"
-                style={{fontSize:"25px"}}
-                title="Delete Post"
-                onClick={handleClickOpen}
-            >
-            </IconButton>
-
+        <span className="desc" >
+        <button  className="fa fa-trash-o"
+                 style={{fontSize:"25px"}}
+                 title="Delete Post"
+                 onClick = {handleClickOpen}/>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -49,6 +43,6 @@ export default function AlertDialog(props) {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </span>
     );
 }

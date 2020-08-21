@@ -26,7 +26,7 @@ class ResetPasswordPage extends React.Component {
             let token = this.props.match.params.token;
             setUserPassword(token,this.state)
                 .then((res)=>{
-
+                    this.props.history.push('/Log in')
                 })
                 .catch((err)=>{
                     this.setState({MsgOfErr:err.response.data.msg})
@@ -42,9 +42,9 @@ class ResetPasswordPage extends React.Component {
                     <div className="restPassword">
                         <h1>Forget password</h1>
                         <p>Enter your password</p>
-                        <input type="text" placeholder="your password here" onChange={this.handelPassword}></input><br/>
+                        <input type="password" placeholder="your password here" onChange={this.handelPassword}></input><br/>
                         <p>confirm password</p>
-                        <input type="text" placeholder="enter password again"
+                        <input type="password" placeholder="enter password again"
                                onChange={this.handelConfirmPassword}></input><br/>
 
                         <input type="submit"

@@ -105,6 +105,7 @@ class LoginPart extends React.Component {
     render() {
         return(
             <div className="form log-in">
+                {this.state.error ? <span className="server-response" >{this.state.errorMsg}</span> : null}
                 <h2>Log In</h2>
                 <form onSubmit= {this.handleLogin}>
                     <label>
@@ -117,7 +118,6 @@ class LoginPart extends React.Component {
                     </label>
                     <Button type="submit" className="submit">Log in</Button>
                 </form>
-                {this.state.error ? <span className="server-response">{this.state.errorMsg}</span> : null}
                 <Link to="/password_reset"> <p className="forgot-pass">Forgot Password ?</p></Link>
                 <h6>OR</h6>
                 <div className="social-media">
