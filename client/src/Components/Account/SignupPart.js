@@ -22,6 +22,7 @@ class SignupPart extends React.Component {
         }
     }
     handleImgChange = e => {
+        console.log(e.target.files[0])
         if (e.target.files[0]) {
             if (e.target.files[0].size < 2000000 ){
                 this.setState({img:e.target.files[0]})
@@ -69,13 +70,9 @@ class SignupPart extends React.Component {
     }
     handleUploadImgToFirebase =()=> {
         const uploadTask = storage.ref(`profileImages/${this.state.img.name}`).put(this.state.img);
+
         return new Promise((resolve, reject) => {
-            uploadTask.on(
-                "state_changed",
-                snapshot => {
-                },
-                error => {
-                },
+            uploadTask.on("state_changed",
                 () => {
                     storage
                         .ref(`profileImages/${this.state.img.name}`)
@@ -83,7 +80,7 @@ class SignupPart extends React.Component {
                         .then(url => {
                             resolve(url)
                         });
-                }
+            }
             );
         });
     };
