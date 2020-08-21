@@ -30,7 +30,6 @@ class ResetPasswordPage extends React.Component {
                 })
                 .catch((err)=>{
                     this.setState({MsgOfErr:err.response.data.msg})
-                    console.log(err.response.data.msg)
                 });
         }else{
             alert("Passwords don't much!")

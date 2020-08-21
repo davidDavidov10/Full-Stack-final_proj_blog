@@ -172,13 +172,13 @@ def get_all_users():
 
 
 def get_user(user_id):
-    print("user_id", user_id)
+
     query = "select id,name,email from users where id =%s"
     values = (user_id,)
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
-    print("record = ", record)
+
     header = ['id', 'name', 'email']
     cursor.close()
     return json.dumps(dict(zip(header, record)))
@@ -186,15 +186,14 @@ def get_user(user_id):
 
 def add_user():
     data = request.get_json()
-    print(data)
     if data['password']:
         pwd = data['password']
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
         query = "insert into users (name, email,password,img) values (%s, %s, %s,%s)"
         values = (data['user_name'], data['email_address'], hashed_pwd, data['dataBaseImgUrl'])
     else:
-        query = "insert into users (name, email) values (%s, %s)"
-        values = (data['user_name'], data['email_address'])
+        query = "insert into users (name, email,img) values (%s, %s, %s)"
+        values = (data['user_name'], data['email_address'],  data['dataBaseImgUrl'])
 
     cursor = g.db.cursor()
     cursor.execute(query, values)
@@ -248,21 +247,21 @@ def get_all_published_posts():
     return json.dumps(data)
 
 
-# def get_likes():
-#     query = "select post_id, posts.title , count(post_id) as number_of_likes" \
-#             " from posts_like join posts " \
-#             "where posts_like.post_id =posts.id and posts.published=1" \
-#             " group by post_id order by number_of_likes DESC"
-#     cursor = g.db.cursor()
-#     cursor.execute(query)
-#     records = cursor.fetchall()
-#     header = ['post_id', 'post_title', 'number_of_likes']
-#     data = []
-#     for record in records:
-#         data.append(dict(zip(header, record)))
-#     cursor.close()
-#
-#     return json.dumps(data)
+@app.route('/api/threeMostPopular', methods=['GET'])
+def get_likes():
+    query = "select post_id, posts.title , count(post_id) as number_of_likes" \
+            " from posts_like join posts " \
+            "where posts_like.post_id =posts.id and posts.published=1" \
+            " group by post_id order by number_of_likes DESC LIMIT 3"
+    cursor = g.db.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    header = ['post_id', 'post_title', 'number_of_likes']
+    data = []
+    for record in records:
+        data.append(dict(zip(header, record)))
+    cursor.close()
+    return json.dumps(data)
 
 def get_post(post_id):
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.author_id, " \
@@ -542,7 +541,7 @@ def password_reset_email():
                "But don't worry! You can use the following link to reset your password : \n" \
                "{0}\n" \
                "if you don't use this link within 3 hours, it will expire.\n" \
-               "To get a new password reset link, visit: {1}" \
+               "To get a new password reset link, visit: {1} \n" \
                "Thanks,\n" \
                "The BLOG Team".format(url + token, url)
 
@@ -592,7 +591,6 @@ def password_reset(token):
 
         data = request.get_json()
         pwd = data['password']
-        print(pwd)
         hashed_pwd = bcrypt.hashpw(pwd.encode('utf-8'), bcrypt.gensalt())
         query = "update users set password = %s WHERE email= %s"
         values = (hashed_pwd, user_email)
@@ -636,7 +634,6 @@ def updateResetTable():
 
 @app.route('/api/postSearch/<wordToSearch>', methods=['GET'])
 def manage_search_post(wordToSearch):
-    print(wordToSearch)
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.published_at, " \
             "posts.author_id from posts join users on posts.author_id=users.id where published is true AND " \
             "lower(content) REGEXP %s "
@@ -652,7 +649,6 @@ def manage_search_post(wordToSearch):
         data.append(dict(zip(header, record)))
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
-    print(json.dumps(data))
     return json.dumps(data)
 
 

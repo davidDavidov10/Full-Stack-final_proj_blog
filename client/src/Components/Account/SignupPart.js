@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import ImgUpload from "../../fb/fileUploadTest"
 import {storage} from "../../fb/firebaseStorage";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SignupPart extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class SignupPart extends React.Component {
     handleSingUp= async (event)=>{
         event.preventDefault();
         if(this.state.password == this.state.c_password) {
-            let pictureUrl= this.state.img !==null ? await this.handleUploadImgToFirebase():null;
+            let pictureUrl = this.state.img !== null ? await this.handleUploadImgToFirebase() : null;
             doSignUp({...this.state, dataBaseImgUrl:pictureUrl})
                 .then((res)=>{
                     this.props.slideMenu()
@@ -74,20 +75,17 @@ class SignupPart extends React.Component {
                 snapshot => {
                 },
                 error => {
-                    console.log(error);
                 },
                 () => {
                     storage
                         .ref(`profileImages/${this.state.img.name}`)
                         .getDownloadURL()
                         .then(url => {
-                            console.log(url)
                             resolve(url)
                         });
                 }
             );
         });
-
     };
 
 
@@ -95,15 +93,16 @@ class SignupPart extends React.Component {
 
     }
     responseFacebook= (response)=>{
-        console.log(response)
         if(response){
             let data = {
                 user_name:response.name,
                 email_address:response.email,
+                dataBaseImgUrl: response.picture.data.url,
                 password:null,
             }
             doSignUp(data)
                 .then((res)=>{
+                    this.props.slideMenu()
                 })
                 .catch(()=>{
                     this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
@@ -115,10 +114,12 @@ class SignupPart extends React.Component {
             let data = {
                 user_name:response.profileObj.name,
                 email_address:response.profileObj.email,
+                dataBaseImgUrl: response.profileObj.imageUrl,
                 password:null
             }
             doSignUp(data)
                 .then((res)=>{
+                    this.props.slideMenu()
                 })
                 .catch(()=>{
                     this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
@@ -146,18 +147,24 @@ class SignupPart extends React.Component {
                         <span>Confirm Password</span>
                         <input type="password" required onChange={this.handle_c_Password}></input>
                     </label>
-                    <div className="file-field ">
+
+                        <div className="file">
                         <div className={this.state.img ?
-                            "btn btn-outline-success btn-rounded waves-effect btn-sm"
+                            "file is-primary"
                             :
-                            "btn btn-outline-secondary btn-rounded waves-effect btn-sm"}>
-                            <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
-                            <input type="file" onChange={this.handleImgChange} id="profilePic" accept="image/*"/>
-                        </div>
-                        <div className="file-path-wrapper">
-                            <input className="file-path validate" type="text"/>
-                        </div>
+                            "fileB"}>
+                            <label className="fileLabel">
+                                <input className="file-input" type="file" id="profilePic" onChange={this.handleImgChange} accept="image/*" style={{display:"none"}}/>
+                                  <span className={this.state.img ? 'uploaded':'notUploaded'} >
+                                    <span className="file-icon" >
+                                    <i className="fa fa-upload"></i>
+                                   </span>
+                                    <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
+                                  </span>
+                            </label>
                     </div>
+                        </div>
+
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
                 {this.state.error ? <span>{this.state.errorMsg}</span> : null}

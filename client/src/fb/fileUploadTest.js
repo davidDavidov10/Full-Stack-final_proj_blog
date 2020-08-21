@@ -21,14 +21,13 @@ export default class ReactFirebaseFileUpload extends Component{
             snapshot => {
             },
             error => {
-                console.log(error);
+
             },
             () => {
                 storage
                     .ref(`profileImages/${this.state.img.name}`)
                     .getDownloadURL()
                     .then(url => {
-                        console.log(url);
                     });
             }
         );

@@ -72,6 +72,7 @@ class LoginPart extends React.Component {
                         isLoggedIn:true
                     }
                     this.props.setUser(user)
+                    this.props.history.push('/home')
                 })
                 .catch(()=>{
 
@@ -93,6 +94,7 @@ class LoginPart extends React.Component {
                         isLoggedIn:true
                     }
                     this.props.setUser(user)
+                    this.props.history.push('/home')
                 })
                 .catch(()=>{
 

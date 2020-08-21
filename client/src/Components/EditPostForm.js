@@ -51,7 +51,6 @@ class EditPostForm extends Component {
         }
     }
     render(){
-        console.log(this.state)
         if (this.state){
             return (
                 <div>
