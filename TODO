@@ -1,38 +1,11 @@
 TODO LIST 
-
-**Acount**
-V  1. Change back to sign-up log-in buutons( call the function if signup).
-  2. Add resopnses.
-  3. If not uplad profile picture- add defualt picture ( annoyimos kind of...)
-  4.fix CSS:
-V   a.choose file.
-    b. social-login
-    c.when sign up with facebook or google take the profile picture from them.
-    
-**HomePage**
- 1.fix CSS:
-V  a.change picture header- add text to the picture.
-V  b.out of bound text....
-  
- 2.
-  **SideBar**
-V 1.active poupler section.
-
-  **MyPosts**
-V 1. change no posts CSS..
-
-
- **SinglePage**
-V 1.CSS: out of bound text....
-
 **About**
 Upgarde...
 
 
-
-20.8
-1.Most liked posts..
-2.Picture from social madia sign up 
-3.check box Single post ( where is it ???)
-4.drop icons nac-bar
-
+ 21.8
+1. color the respone of sign up
+2. after sign up empty all the data fron this page
+3. remember to change all the url's when uploading to amazon
+4. convert the input type text to password where it is needed
+5. add redirect after reseting password to login page 
