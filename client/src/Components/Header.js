@@ -27,10 +27,10 @@ class Header extends React.Component{
                     <ul className="AllLinks">
                         <ul className="leftNavSide">
                             <li className="Logo">
-                                <a className="navbar-brand text-white" href="#">
+                                <Link  to = "/home" className="navbar-brand text-white">
                                     <i className="fa fa-graduation-cap fa-lg mr-2"></i>
                                     BLOG
-                                </a>
+                                </Link>
                             </li>
                             <li className="listElement">
                                 <Link to="/home" className="link">

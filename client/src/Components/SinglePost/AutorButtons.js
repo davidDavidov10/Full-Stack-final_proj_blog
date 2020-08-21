@@ -91,10 +91,7 @@ class AutorButtons extends React.Component {
                                      onClick={this.handleDelete}/>
                                      <br/>
                         </span>
-
                         <span className="desc">
-
-
                             {this.state.published
                                 ?
                                 <div>

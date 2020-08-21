@@ -39,17 +39,16 @@ export default class HomePage extends Component{
             .catch(() => {
 
             });
-        getTheMostPopular().then((res)=>{
-            this.setState({popularPosts:res.data})
-        });
+        getTheMostPopular()
+            .then((res)=>{
+                this.setState({popularPosts:res.data})
+            });
     }
 
 
     render() {
-        if(this.state.posts) {
+        if(this.state.posts && this.state.popularPosts) {
             let numOfSiderBarPosts = Math.min(this.state.posts.length, 3);
-            let latestThree = this.state.posts.slice(0,numOfSiderBarPosts)
-            let popularPosts = this.state.popularPosts;
             return (
                 <section className="main-section">
                     <div className="post-section">
@@ -64,7 +63,7 @@ export default class HomePage extends Component{
                             :
                             <MainSection posts={this.state.posts}/>}
                     </div>
-                    <Sidebar LatestPosts={latestThree} pouplatThree={popularPosts}/>
+                    <Sidebar LatestPosts={this.state.posts.slice(0,numOfSiderBarPosts)} pouplatThree={this.state.popularPosts}/>
                 </section>
             );
         }else{

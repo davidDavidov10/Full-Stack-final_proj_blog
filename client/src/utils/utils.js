@@ -23,6 +23,7 @@ const makePosts =(posts)=>{
 
 const makeComments=(comments)=>{
     var commentsListJSXs = comments.map(function(comment){
+        comment.img = comment.img ? comment.img : "https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
         return(
             <div className="comment">
                 <img src={comment.img} className="commentPic" alt="user Pic"/>

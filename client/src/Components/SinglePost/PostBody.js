@@ -13,11 +13,9 @@ const  PostBody=(props)=>{
             <div className="postHeader">
                 <h4 className="postAuthor" >{props.post.author_name}</h4>
                 <span className="publishDate">{props.post.published_at}</span>
-
             </div>
-
-            <h2 className="postTitle" >{props.post.title}</h2>
-            <div className="postText">{content}</div>
+            <h2 className= "postTitle" >{props.post.title}</h2>
+            <div className= "postText">{content}</div>
             {props.user.isLoggedIn
                 ?
                 <AutorButtons {...props}/>

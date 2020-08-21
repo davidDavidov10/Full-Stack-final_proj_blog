@@ -634,8 +634,11 @@ def updateResetTable():
 
 @app.route('/api/postSearch/<wordToSearch>', methods=['GET'])
 def manage_search_post(wordToSearch):
-    query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.published_at, " \
-            "posts.author_id from posts join users on posts.author_id=users.id where published is true AND " \
+    query = "select posts.id, posts.title, posts.content,users.name," \
+            "posts.published, users.img, posts.published_at, " \
+            "posts.author_id " \
+            "from posts join users on posts.author_id=users.id" \
+            " where published is true AND " \
             "lower(content) REGEXP %s "
 
     values = (wordToSearch,)
@@ -643,11 +646,11 @@ def manage_search_post(wordToSearch):
     cursor.execute(query, values)
     records = cursor.fetchall()
 
-    header = ['id', 'title', 'content', 'author_name', 'published']
+    header = ['id', 'title', 'content', 'author_name', 'published', 'img']
     data = []
     for itear, record in enumerate(records):
         data.append(dict(zip(header, record)))
-        data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
+        data[itear]['published_at'] = record[6].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
 
