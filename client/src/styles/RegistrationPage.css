@@ -369,11 +369,10 @@
     cursor: pointer;
 }
 
-.server-response {
-    color: white;
-    background: red;
+.errMsg{
     text-align: center;
-    margin-left: 30%;
+    color: red;
+    position: absolute;
 }
 
 .file-field{

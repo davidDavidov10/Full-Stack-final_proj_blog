@@ -24,7 +24,8 @@ export default function AlertDialog(props) {
 
     return (
         <div>
-            <Button title="save Post" onClick={handleClickOpen} >
+            <Button title="save Post" onClick={handleClickOpen}
+                    style={{backgroundColor:"white",border:"1px solid black", marginLeft:"50%"}}>
                 Save Post
             </Button>
             <Dialog

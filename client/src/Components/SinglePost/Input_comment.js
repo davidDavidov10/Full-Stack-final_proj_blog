@@ -5,25 +5,27 @@ class Input_comment extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            newComment:null,
+            newComment:'',
             errMsg:null
         }
     }
     handleSubmitComment=()=> {
-        if (this.props.user.isLoggedIn) {
+        if (this.props.user.isLoggedIn ) {
             let dataToSend = {
                 postId: this.props.post.id,
                 content: this.state.newComment,
                 user_name: this.props.user.name
             }
-            addComment(dataToSend)
-                .then((res)=>{
-                    this.props.setComments(res.data)
-                })
-                .catch(()=>{
-                    this.setState({resp:"Something went wrong, try again please."})
-                });
+            if(this.state.newComment != '') {
+                addComment(dataToSend)
+                    .then((res) => {
+                        this.props.setComments(res.data)
+                    })
 
+                    .catch(() => {
+                        this.setState({resp: "Something went wrong, try again please."})
+                    });
+            }
 
         }else{
             this.setState({errMsg:'You should sign in first'})

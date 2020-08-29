@@ -59,6 +59,8 @@ class SignupPart extends React.Component {
             doSignUp({...this.state, dataBaseImgUrl:pictureUrl})
                 .then((res)=>{
                     this.props.slideMenu()
+                    document.getElementById("signUpForm").reset();
+                    this.setState({error:true,errorMsg:""})
                 })
                 .catch(()=>{
                     this.setState({error:true,errorMsg:"Something went wrong.. please try again"})
@@ -126,7 +128,7 @@ class SignupPart extends React.Component {
     render() {
         return(
             <div className="form sign-up">
-                <form onSubmit={this.handleSingUp}>
+                <form onSubmit={this.handleSingUp} id="signUpForm">
                     <h2>Sign Up</h2>
                     <label>
                         <span>Name</span>
@@ -156,7 +158,7 @@ class SignupPart extends React.Component {
                                     <span className="file-icon" >
                                     <i className="fa fa-upload"></i>
                                    </span>
-                                    <span>{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
+                                    <span >{this.state.img ? 'Profile picture chosen': 'Choose profile picture'}</span>
                                   </span>
                             </label>
                     </div>
@@ -164,7 +166,7 @@ class SignupPart extends React.Component {
 
                     <button type="submit" className="submit">Sign Up Now</button>
                 </form>
-                {this.state.error ? <span>{this.state.errorMsg}</span> : null}
+                {this.state.error ? <span className="errMsg">{this.state.errorMsg}</span> : null}
                 <h6>OR</h6>
                 <div className="social-media">
                     <ul>
