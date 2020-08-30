@@ -12,7 +12,7 @@ class Post extends React.Component {
 
     render() {
         return (
-            <section className="post">
+            <section className="singlePost">
                 <PostBody {...this.props} />
                 <Input_comment {...this.props}/>
             </section>

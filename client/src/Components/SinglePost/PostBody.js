@@ -1,28 +1,37 @@
 import AutorButtons from "./AutorButtons";
 import React from "react";
 import parse from 'html-react-parser';
+import {makePosts} from "../../utils/utils";
+import {Link} from "react-router-dom";
 
 const  PostBody=(props)=>{
-    let content = parse(props.post.content)
     let profileImg= props.post.img ? props.post.img :"https://udir-blog-avatar.s3.amazonaws.com/avatar.png"
-    return (
-        <div className="postBody">
-            <img src={profileImg} className="postPic" alt="user Pic"/>
-        <div className="postContent">
+    return(
+        <div>
+            <div className="post">
+                <div className="postBody">
+                    <img src={profileImg} className="postPic" alt="user Pic" width="90" height="90"/>
+                    <div className="postContent">
 
-            <div className="postHeader">
-                <h4 className="postAuthor" >{props.post.author_name}</h4>
-                <span className="publishDate">{props.post.published_at}</span>
+                        <div className="postHeader">
+                            <h2><Link to={`/post/${props.post.id}`} className= "postTitle">{props.post.title}</Link></h2>
+                        </div>
+                        <div className= "postText">{parse(props.post.content)}</div><br/>
+                        {props.user.isLoggedIn
+                            ?
+                            <AutorButtons {...props}/>
+                            :null
+                        }
+                        <label>Published at {props.post.published_at} by <span className="postAuthor" >{props.post.author_name}</span></label>
+                    </div>
+                </div>
             </div>
-            <h2 className= "postTitle" >{props.post.title}</h2>
-            <div className= "postText">{content}</div>
-            {props.user.isLoggedIn
-                ?
-                <AutorButtons {...props}/>
-                :null
-            }
-        </div>
-    </div>
+
+
+
+
+
+         </div>
     );
 }
 export default PostBody;

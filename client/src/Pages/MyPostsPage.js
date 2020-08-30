@@ -26,17 +26,12 @@ class MyPostsPage extends React.Component {
                         welcome {this.props.user.name} <br/>
                         click on title to edit the post!
                     </div>
-
-                    <div className="post-section">
-                        <div className="posts-list">
                         {this.state.userPosts.length !== 0 ? makePosts(this.state.userPosts):
                             <div>
                                 <p>no posts...</p>
                                 <p>you can create one by clicking <Link to="/new post">here</Link></p>
                             </div>
                         }
-                    </div>
-                    </div>
                 </div>
             );
         }

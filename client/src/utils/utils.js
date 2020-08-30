@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-
 import parse from 'html-react-parser';
 
 const makePosts =(posts)=>{
@@ -9,14 +8,21 @@ const makePosts =(posts)=>{
         let  content = parse(`${post.content}`)
         return(
             <div className="post">
-                <div className="post-title">
-                    <Link to={`/post/${post.id}`}>{post.title}</Link>
+            <div className="postBody">
+            <img src={profileImg} className="postPic" alt="user Pic" width="90" height="90"/>
+            <div className="postContent">
+
+                <div className="postHeader">
+                    <h2><Link to={`/post/${post.id}`} className= "postTitle">{post.title}</Link></h2>
                 </div>
-                <img className="post-image" src={profileImg} width="90" height="90"/>
-                <p>{content}</p>
-                <label className="post-footer">Published at {post.published_at} by {post.author_name}</label>
+                <div className= "postText">{content}</div>
+
+                <label>Published at {post.published_at} by <span className="postAuthor" >{post.author_name}</span></label>
             </div>
-        );
+        </div>
+        </div>
+                );
+
     });
     return postsListJSXs;
 }

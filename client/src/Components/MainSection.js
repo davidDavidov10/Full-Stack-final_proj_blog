@@ -3,7 +3,7 @@ import {makePosts} from "../utils/utils";
 import '../styles/Home/MainSection.css'
 
 // functional component currently present only post
-//s.
+
 export default function MainSection(props){
     if (props.posts.length !== 0){
         return (
