@@ -14,7 +14,7 @@ const  PostBody=(props)=>{
                     <div className="postContent">
 
                         <div className="postHeader">
-                            <h2><Link to={`/post/${props.post.id}`} className= "postTitle">{props.post.title}</Link></h2>
+                            <h2>{props.post.title}</h2>
                         </div>
                         <div className= "postText">{parse(props.post.content)}</div><br/>
                         {props.user.isLoggedIn
