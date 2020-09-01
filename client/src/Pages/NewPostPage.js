@@ -13,13 +13,18 @@ class NewPostPage extends React.Component {
         }
     }
     render(){
-        return (
-            <div>
-                <EditPostForm {...this.props} 
-                             post={this.post}
-                             newPost={true}/>
-            </div>
-        );
+        if(this.props.user.isLoggedIn){
+            return (
+                <div>
+                    <EditPostForm {...this.props}
+                                  post={this.post}
+                                  newPost={true}/>
+                </div>
+            );
+        }else{
+            return(<div>you should Login first</div>);
+        }
+
     }
 }
 
