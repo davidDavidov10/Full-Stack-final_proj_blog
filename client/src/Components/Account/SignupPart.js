@@ -22,7 +22,6 @@ class SignupPart extends React.Component {
         }
     }
     handleImgChange = e => {
-        console.log(e.target.files[0])
         if (e.target.files[0]) {
             if (e.target.files[0].size < 2000000 ){
                 this.setState({img:e.target.files[0]})

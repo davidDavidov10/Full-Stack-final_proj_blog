@@ -17,9 +17,11 @@ class Input_comment extends React.Component {
                 user_name: this.props.user.name
             }
             if(this.state.newComment != '') {
+
                 addComment(dataToSend)
                     .then((res) => {
                         this.props.setComments(res.data)
+                        document.getElementById('textInput').value ='';
                     })
 
                     .catch(() => {
@@ -39,7 +41,7 @@ class Input_comment extends React.Component {
     render() {
         return (
             <div className="input_comment">
-                <textarea type="text" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>
+                <textarea type="text" id= "textInput" className="commentInput" placeholder="Join the conversation.." onChange={this.handleComment}/>
                 <button className="save_comment" onClick={this.handleSubmitComment}>save comment</button>
                 <p className="err" style={{color:"red",marginTop:"5px"}}>{this.state.errMsg}</p>
             </div>

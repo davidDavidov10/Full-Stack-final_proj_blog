@@ -10,6 +10,7 @@ class EditPostForm extends Component {
         this.state = {
             title:props.post.title,
             content:props.post.content,
+            clicked:false
         }
     }
     componentDidMount() {
@@ -40,13 +41,15 @@ class EditPostForm extends Component {
     }
 
     handleEditPost= ()=>{
-        if (this.props.user.isLoggedIn){
+        if (this.props.user.isLoggedIn & !this.state.clicked){
+            this.setState({clicked:true})
             if(this.props.newPost){
                 addNewPost(this.state)
                     .then((res)=>{
                         this.props.history.push(`post/${res.data.id}`)
                     })
                     .catch(()=>{
+                        this.setState({clicked:false})
                         this.setState({resp:"Something went wrong, try again please."})
                     });
             }
@@ -59,7 +62,7 @@ class EditPostForm extends Component {
                         this.props.history.push(`post/${res.data.id}`)
                     })
                     .catch(()=>{
-
+                        this.setState({clicked:false})
                     });
             }
         }

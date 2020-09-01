@@ -50,18 +50,23 @@ class SinglePostPage extends  React.Component {
 
     render(){
         if (this.post){
-            return (
-                <div className="SinglePost">
-                    <Post post = {this.post}
-                          likes = {this.state.likes}
-                          setComments = {this.setComments}
-                          setLikesIds = {this.setLikesIds}
-                          {...this.props}/>
-                    <Comments  {...this.props} comments = {this.state.comments}/>
-                </div>
-            );
+            if(this.post.author_id !== this.props.user.id && !this.post.published){
+                return (<div>post is not available</div>);
+            }
+            else {
+                return (
+                    <div className="SinglePost">
+                        <Post post={this.post}
+                              likes={this.state.likes}
+                              setComments={this.setComments}
+                              setLikesIds={this.setLikesIds}
+                              {...this.props}/>
+                        <Comments  {...this.props} comments={this.state.comments}/>
+                    </div>
+                );
+            }
         }else{
-            return null
+            return (<div>Loading post...</div>);
         }
 
         }

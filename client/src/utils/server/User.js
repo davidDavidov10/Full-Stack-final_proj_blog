@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const doSignUp = (data)=>{
-    console.log("....")
     const url = "/api/signup"
     return  axios.post(url,data)
 }
