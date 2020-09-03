@@ -84,13 +84,13 @@ P: white
 
 .starcontainer h2 {
     font-size: 2.8em;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.1em;
 }
 
 .starcontainerportfolio > h2 {
     text-align: center;
     font-size: 2.8em;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.1em;
 }
 
 /*.fa-star {*/
@@ -174,7 +174,7 @@ P: white
 }
 
 .questions {
-    padding-bottom: 1.5em;
+    padding-bottom: 1em;
 }
 
 /* -------------------------
