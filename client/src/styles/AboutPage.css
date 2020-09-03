@@ -1,44 +1,17 @@
-/*.about-social-media{*/
-/*    margin: 10px;*/
-/*}*/
+.member{
+    border: 2px solid #222222;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+}
 
-/*.links-social{*/
-/*    list-style-type: none;*/
-/*    display: flex;*/
-
-/*}*/
-
-/*.aboutMePage{*/
-/*    border: 2px solid black;*/
-/*}*/
-/*.moving{*/
-/*    border: 2px solid red;*/
-/*    width: fit-content;*/
-/*}*/
-/*.images{*/
-/*    border: 2px solid blue;*/
-/*    width: fit-content;*/
-
-/*}*/
-/*.links-social{*/
-/*    border: 2px solid yellow;*/
-/*    width: fit-content;*/
-
-/*}*/
-/*.selfImg{*/
-/*    width: 100px;*/
-/*    height: 100px;*/
-/*    border-radius: 100%;*/
-/*    margin: auto;*/
-/*}*/
-
-/*****color
-Body: #222222
-Border: #a1a1a1
-Footer bg: #282828
-Link: #a1a1a1
-P: white
-*****/
+.selfImg{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 100%;
+    margin: auto;
+    margin-left: 2%;
+}
 
 /* -------------------------
     Typography Declarartions
@@ -74,10 +47,6 @@ P: white
     color: #F1F1F1;
 }
 
-.about-social-media:visited {
-    color: #F1F1F1;
-}
-
 /* -------------------------
       Global Styles
    -------------------------*/
@@ -93,9 +62,6 @@ P: white
     margin-bottom: 0.1em;
 }
 
-/*.fa-star {*/
-/*    margin-bottom: 0 auto;*/
-/*}*/
 
 .star {
     border: 2px solid #a1a1a1;
@@ -285,20 +251,57 @@ section > h1 {
     display: flex;
     /*border: 2px solid black;*/
     justify-content: space-between;
-    width: 100%;
+    width: fit-content;
     /*border: 2px solid black;*/
 }
 .selfImg{
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
     border-radius: 100%;
 }
 .AboutUsHeader{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: flex-end;*/
 }
  .fa-star {
     background-color: lightgray;
     padding: 0 .25em;
+}
+.MoreAboutUs{
+/*border: 1px solid black;*/
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 0px;
+}
+.memberName{
+    /*margin-top: 0px ;*/
+}
+
+.hrWithoutStar{
+    border: 1px solid #a1a1a1;
+    width: 15.7em;
+
+    margin-top: 0.5%;
+    margin-bottom: 2em;
+    background-color: white;
+}
+.member{
+    display: block;
+}
+.socialMediaList{
+    width: fit-content;
+    height: fit-content;
+    display: block;
+}
+.up{
+    width: 100%;
+    display: flex;
+}
+.introduction{
+    margin-bottom: 5%;
+}
+.socialMediaList{
+    margin: auto;
 }
