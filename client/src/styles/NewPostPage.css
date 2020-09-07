@@ -16,7 +16,7 @@
     margin-right: auto;
     display: block;
 }
-#savePostButton{
+.savePostButton{
     height: 30px;
     width: 200px;
     margin-left: auto;

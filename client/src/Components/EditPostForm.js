@@ -11,6 +11,7 @@ class EditPostForm extends Component {
         this.state = {
             title:props.post.title,
             content:props.post.content,
+            readyForSub:false,
             clicked:false
         }
     }
@@ -23,21 +24,18 @@ class EditPostForm extends Component {
         await this.setState({
             title: event.target.value
         })
-        this.checkButton();
+        await this.checkButton();
     }
 
     handleEditorChange = async (content, editor) => {
-        await this.setState({content:content})
-        this.checkButton();
+        await this.setState({content:content});
+        await this.checkButton();
     }
     checkButton =()=>{
         if (this.state.title !== '' && this.state.content !== ''){
-            document.getElementById("savePostButton").disabled =false;
-            document.getElementById("savePostButton").onclick=this.handleEditPost;
-            document.getElementById("savePostButton").style.border = '1px solid lime';
+            this.setState({readyForSub: true});
         }else {
-            document.getElementById("savePostButton").disabled =true;
-            document.getElementById("savePostButton").style.border = '1px solid black';
+            this.setState({readyForSub: false});
         }
     }
 
@@ -110,8 +108,12 @@ class EditPostForm extends Component {
                                 }}
                                 onEditorChange={this.handleEditorChange} />
                         <br/>
-                        {/*<AlertDialog handleEditPost={this.handleEditPost}/>*/}
-                        <button id="savePostButton" disabled>save post</button>
+                        {this.state.readyForSub ?
+                            <button className="savePostButton"
+                                    onClick={this.handleEditPost}
+                                    style={{border: "1px solid lime"}}>save post</button>
+                            :<button className="savePostButton" disabled>save post</button>}
+
                         {this.state.resp ? <span className="errMsg" >{this.state.resp}</span>:null}
                     </section>
                 </div>
