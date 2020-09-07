@@ -14,7 +14,6 @@
     margin-bottom: 2%;
     border-radius: 20px;
     background: white;
-    /*background-color: rgba(192, 219, 213, 0.82);*/
 }
 
 .post .post-title{
@@ -55,7 +54,7 @@
 .sep{
     background-color: lightgray;
     width: auto;
-    /*margin-right: 100%;*/
+
 }
 
 

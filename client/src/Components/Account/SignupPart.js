@@ -2,9 +2,7 @@ import React from 'react';
 import {doSignUp} from "../../utils/server/User";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
-import ImgUpload from "../../fb/fileUploadTest"
 import {storage} from "../../fb/firebaseStorage";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SignupPart extends React.Component {
     constructor(props) {

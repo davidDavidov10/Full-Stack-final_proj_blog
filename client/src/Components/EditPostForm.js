@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
 import {addNewPost, editPost} from '../utils/server/Posts'
 import {Editor} from "@tinymce/tinymce-react";
-import AlertDialog from "./AlertDialogs/SavePost";
-import {Button} from "@material-ui/core";
-import {Alert} from "@material-ui/lab";
 
 class EditPostForm extends Component {
     constructor(props) {
@@ -40,8 +37,6 @@ class EditPostForm extends Component {
     }
 
     handleEditPost= ()=>{
-        // <Alert severity="error">Email doesn't exsit</Alert>
-
         if (this.props.user.isLoggedIn & !this.state.clicked){
             this.setState({clicked:true})
             if(this.props.newPost){
@@ -91,7 +86,7 @@ class EditPostForm extends Component {
                                 initialValue={this.state.content}
                                 init={{
                                     height: 300,
-                                    // width:700,
+
                                     menubar: false,
                                     resize: false,
 

@@ -134,6 +134,7 @@
 .commentBody{
     max-width: 580px;
     overflow:auto;
+    margin-left: 2%;
 }
 
 

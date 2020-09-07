@@ -21,7 +21,6 @@ import SinglePostPage from "../Pages/SinglePostPage"
 
 import ForgetMyPasswordPage from "../Pages/Account/ForgetMyPasswordPage"
 import ResetPasswordPage from "../Pages/Account/ResetPasswordPage"
-import FileUpload from "../fb/fileUploadTest"
 
 const user ={
   id:null,
@@ -75,7 +74,6 @@ class App extends React.Component {
                 <Route path='/post/:id' render={(props) => <SinglePostPage {...props} user= {this.state.user}/>}/>
                 <Route path='/password_reset/:token' render={(props) => <ResetPasswordPage{...props}/>}/>
                 <Route path='/password_reset' render={(props) => <ForgetMyPasswordPage{...props}/>}/>
-                <Route path='/test' render={(props) => <FileUpload{...props} />}/>
                 <Route path='/' render={(props) => <HomePage{...props} />}/>
               </Switch>
             </div>

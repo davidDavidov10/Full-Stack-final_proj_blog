@@ -43,7 +43,6 @@
 .about-social-media {
     font-weight: bold;
     text-decoration: none;
-    /*color: #a1a1a1;*/
     color: #F1F1F1;
 }
 
@@ -224,9 +223,7 @@ section > h1 {
    -------------------------*/
 
 @media only screen and (max-width: 500px) {
-    .img-responsive {
-        /*margin-top: -1em;*/
-    }
+
     .box:nth-child(1n+2) {
         border-top: 3px solid #a1a1a1;
         padding-top: 3em;
@@ -249,34 +246,23 @@ section > h1 {
 }
 .images{
     display: flex;
-    /*border: 2px solid black;*/
     justify-content: space-between;
     width: fit-content;
-    /*border: 2px solid black;*/
 }
 .selfImg{
     width: 250px;
     height: 250px;
     border-radius: 100%;
 }
-.AboutUsHeader{
 
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: flex-end;*/
-}
  .fa-star {
     background-color: lightgray;
     padding: 0 .25em;
 }
 .MoreAboutUs{
-/*border: 1px solid black;*/
     text-align: center;
     margin-top: 4%;
     margin-bottom: 0px;
-}
-.memberName{
-    /*margin-top: 0px ;*/
 }
 
 .hrWithoutStar{

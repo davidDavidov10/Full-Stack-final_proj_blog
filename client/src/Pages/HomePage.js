@@ -6,7 +6,7 @@ import Sidebar from "../Components/Sidebar";
 import SearchBar from "../Components/searchBar";
 import '../styles/Home/HomePage.css'
 
-// import {doSomething} from "../utils/utils"
+
 
 
 export default class HomePage extends Component{
