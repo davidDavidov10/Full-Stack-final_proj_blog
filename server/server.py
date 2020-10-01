@@ -9,7 +9,7 @@ from datetime import datetime
 from datetime import timedelta
 
 parser = ConfigParser()
-parser.read('dev.ini')
+parser.read('resourcesPassword.ini')
 
 pool = mysql.connector.pooling.MySQLConnectionPool(
     pool_name="mypool",
@@ -172,7 +172,6 @@ def get_all_users():
 
 
 def get_user(user_id):
-
     query = "select id,name,email from users where id =%s"
     values = (user_id,)
     cursor = g.db.cursor()
@@ -193,7 +192,7 @@ def add_user():
         values = (data['user_name'], data['email_address'], hashed_pwd, data['dataBaseImgUrl'])
     else:
         query = "insert into users (name, email,img) values (%s, %s, %s)"
-        values = (data['user_name'], data['email_address'],  data['dataBaseImgUrl'])
+        values = (data['user_name'], data['email_address'], data['dataBaseImgUrl'])
 
     cursor = g.db.cursor()
     cursor.execute(query, values)
@@ -263,6 +262,7 @@ def get_likes():
     cursor.close()
     return json.dumps(data)
 
+
 def get_post(post_id):
     query = "select posts.id, posts.title, posts.content,users.name, posts.published, posts.author_id, " \
             "users.img, posts.published_at from posts join users on posts.author_id=users.id where posts.id=%s "
@@ -318,9 +318,6 @@ def get_all_user_posts():
         data[itear]['published_at'] = record[5].strftime("%m/%d/%Y, %H:%M")
     cursor.close()
     return json.dumps(data)
-
-
-
 
 
 def delete_post(post_id):
@@ -402,13 +399,26 @@ def get_all_likes(post_id):
 
 def add_like(post_id):
     user = json.loads(check_login())
-    query = "insert into posts_like(post_id, user_id) values(%s, %s)"
-    values = (post_id, user['id'])
+    if not isPostLiked(post_id, user['id']):
+        query = "insert into posts_like(post_id, user_id) values(%s, %s)"
+        values = (post_id, user['id'])
+        cursor = g.db.cursor()
+        cursor.execute(query, values)
+        g.db.commit()
+        cursor.close()
+        return json.dumps([{'response': "like updated"}])
+    else:
+        return json.dumps([{'response': "already liked"}])
+
+
+def isPostLiked(post_id, user):
+    query = "select exists(select * from posts_like where post_id = %s and user_id = %s)"
+    values = (post_id, user)
     cursor = g.db.cursor()
     cursor.execute(query, values)
-    g.db.commit()
+    record = cursor.fetchone()
     cursor.close()
-    return json.dumps([{'response': "like updated"}])
+    return record[0]
 
 
 def delete_like(post_id):
