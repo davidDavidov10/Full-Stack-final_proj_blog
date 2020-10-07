@@ -95,7 +95,7 @@ class AutorButtons extends React.Component {
                                 :
                                 <div>
                                     <input type="checkbox" className="toggle" onClick={this.postPhases}/>
-                                    <p style={{color:"black" }}>Unpublished</p>
+                                    <p style={{color:"black" }}>Draft</p>
                                 </div>
                             }
                         </span>

@@ -26,11 +26,6 @@ const  PostBody=(props)=>{
                     </div>
                 </div>
             </div>
-
-
-
-
-
          </div>
     );
 }
