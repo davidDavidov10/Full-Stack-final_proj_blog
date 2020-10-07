@@ -26,7 +26,7 @@ class searchBar extends  React.Component {
     render(){
             return(
                     <div className="topnav">
-                            <input type="text"
+                            <input type="search"
                                    onChange={this.onChangeSearchBar}
                                    className="searchBarInput"
                                    placeholder="Search..."/>
