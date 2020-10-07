@@ -10,6 +10,7 @@ class searchBar extends  React.Component {
         }
     }
     onChangeSearchBar = (event)=>{
+
         this.setState({search:event.target.value})
         if (event.target.value.length === 0) {
             this.props.showAll();
@@ -23,16 +24,25 @@ class searchBar extends  React.Component {
                 })
         }
     }
+    handleKey = (event)=>{
+        const keyCode = event.keyCode;
+        if (keyCode === 13) {
+            this.handlePostSearch()
+        }
+    }
+
     render(){
             return(
                     <div className="topnav">
-                            <input type="search"
-                                   onChange={this.onChangeSearchBar}
+                            <input onChange={this.onChangeSearchBar}
                                    className="searchBarInput"
-                                   placeholder="Search..."/>
-                            <button onClick={this.handlePostSearch}
+                                   placeholder="Search..."
+                                   onKeyUp={this.handleKey}/>
+                            <button type="submit"
+                                    onClick={this.handlePostSearch}
                                     className="fa fa-search"
-                                    id="SearchButton"/>
+                                    id="SearchButton"
+                                    ref={node => (this.btn = node)}/>
                     </div>
             );
         }

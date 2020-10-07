@@ -75,7 +75,7 @@ class LoginPart extends React.Component {
                     this.props.history.push('/home')
                 })
                 .catch(()=>{
-
+                    this.setState({error:true,errorMsg:"Incorrect username or password"})
                 });
         }
     }
@@ -97,7 +97,7 @@ class LoginPart extends React.Component {
                     this.props.history.push('/home')
                 })
                 .catch(()=>{
-
+                    this.setState({error:true,errorMsg:"Incorrect username or password"})
                 });
         }
     }

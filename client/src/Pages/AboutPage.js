@@ -53,9 +53,9 @@ class AboutPage extends React.Component {
                         <ul className="social">
                             <li className="social-media-ele"><a href="https://github.com/davidDavidov10" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faGithub} size="3x" /></a></li>
                             <li className="social-media-ele"><a href="https://www.facebook.com/cooling10" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faFacebook} size="3x" /></a></li>
-                            <li className="social-media-ele"><a href="hhttps://www.linkedin.com/in/david-davidov-a0b32518a/" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faLinkedin} size="3x" /></a></li>
+                            <li className="social-media-ele"><a href="https://www.linkedin.com/in/david-davidov-a0b32518a/" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faLinkedin} size="3x" /></a></li>
                             <li className="social-media-ele"><a href="mailto:davidjob205@gmail.com" target="_blank" className="about-social-media"><FontAwesomeIcon icon={faEnvelope} size="3x" /></a></li>
-                            <li className="social-media-ele"><a href="" className="about-social-media"  ><FontAwesomeIcon icon={faFileAlt} size="3x"  /></a></li>
+                            <li className="social-media-ele"><a href="https://drive.google.com/uc?export=download&id=1E2qmz0A5VmVxEOF2_756fWGevI5c72TT" className="about-social-media"  ><FontAwesomeIcon icon={faFileAlt} size="3x"  /></a></li>
                         </ul>
 
                     </div>
