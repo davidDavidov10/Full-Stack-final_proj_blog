@@ -1,5 +1,4 @@
 from flask import Flask, request, g, make_response, abort, Response
-from flask_mail import Mail, Message
 import mysql.connector.pooling
 import uuid
 import bcrypt
@@ -7,6 +6,8 @@ import json
 from configparser import ConfigParser
 from datetime import datetime
 from datetime import timedelta
+from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient
 
 parser = ConfigParser()
 parser.read('resourcesPassword.ini')
@@ -24,15 +25,8 @@ app = Flask(__name__,
             static_folder='/home/ubuntu/build',
             static_url_path='/')
 
-app.config.update(
-    MAIL_SERVER='smtp.gmail.com',
-    MAIL_PORT=465,
-    MAIL_USE_SSL=True,
-    MAIL_USERNAME=parser.get('systemEmail', 'email'),
-    MAIL_PASSWORD=parser.get('systemEmail', 'password')
-)
 
-mail = Mail(app)
+sg = SendGridAPIClient(parser.get('sendGrid', 'SENDGRID_API_KEY'))
 
 
 @app.before_request
@@ -524,7 +518,6 @@ def password_reset_email():
     cursor = g.db.cursor()
     cursor.execute(query, values)
     record = cursor.fetchone()
-
     if not record:
         abort(401)
     check_reset_validation(user_email)
@@ -542,20 +535,26 @@ def password_reset_email():
     g.db.commit()
 
     cursor.close()
-    msg = Message("[Blog] Please rest your password",
-                  sender="forgetpassblog@gmail.com",
-                  recipients=[user_email])
 
     url = 'http://localhost:3000/password_reset/'
-    msg.body = "we heard that you lost your BLOG password. sorry about that!\n" \
+
+    msgBody = "we heard that you lost your BLOG password. sorry about that!\n" \
                "But don't worry! You can use the following link to reset your password : \n" \
                "{0}\n" \
                "if you don't use this link within 3 hours, it will expire.\n" \
                "To get a new password reset link, visit: {1} \n" \
                "Thanks,\n" \
                "The BLOG Team".format(url + token, url)
-
-    mail.send(msg)
+    emailToSend = Mail(
+        from_email='forgetpassblog@gmail.com',
+        to_emails=user_email,
+        subject="Blog password reset",
+        plain_text_content=msgBody
+        )
+    try:
+        sg.send(emailToSend)
+    except Exception as e:
+        return json.dumps([{'response': "Something went wrong."}])
     return json.dumps([{'response': "email sent"}])
 
 
